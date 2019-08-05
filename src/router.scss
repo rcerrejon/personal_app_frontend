@@ -1,0 +1,45 @@
+.page {
+  position: absolute;
+  background-color: whitesmoke;
+  margin: auto;
+  padding: 30px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #efefef;
+  box-shadow:
+          /* The top layer shadow */
+          0 1px 1px rgba(0,0,0,0.15),
+            /* The second layer */
+          0 10px 0 -5px #eee,
+            /* The second layer shadow */
+          0 10px 1px -4px rgba(0,0,0,0.15),
+            /* The third layer */
+          0 20px 0 -10px #eee,
+            /* The third layer shadow */
+          0 20px 1px -9px rgba(0,0,0,0.15);
+}
+
+.page-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}

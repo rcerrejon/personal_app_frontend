@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+ul {
+    text-decoration: none;
+
+    li {
+        text-decoration: none;
+    }
+}
+
+.App-container {
+  position: relative;
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all ease-in 0.5s;
+
+}
+
+.fixedClock{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  position: fixed;
+  right: 50px;
+  color: white;
+  font-size: 40px;
+  top: 0;
+  width: 200px;
+  height: 70px;
+  background-color: $primary;
+  border-radius: 0 0 20px 20px;
+}
+////
+
+
