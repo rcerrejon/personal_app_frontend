@@ -16,12 +16,13 @@ else
         touch src/components/$name/index.jsx
         touch src/components/$name/style.scss
 
+
         echo -e "import React from 'react';
-        import './style.scss';
+        import style from './style.scss';
 
         function $name() {
             return (
-                <div className='$name-container'>
+                <div className={style.$name"'Container'"}>
                     $name
                 </div>
             );
@@ -30,9 +31,7 @@ else
         export default $name;
         " >> src/components/$name/index.jsx
 
-        echo -e ".$name-container{
-
-        }
+        echo -e ".$name"'Container'"{}
         " >> src/components/$name/style.scss
         echo "| functional component |"
 
@@ -47,27 +46,21 @@ else
 
         echo -e "import React from 'react';
         import propTypes from 'prop-types'
-        import './style.scss';
+        import style from './style.scss';
 
         class $name extends React.Component{
             constructor(props){
                 super(props)
-                this.state = {
-
-                }
+                this.state = {}
             }
 
-            componentDidMount() {
+            componentDidMount() {}
 
-            }
-
-            componentWillUnmount() {
-
-            }
+            componentWillUnmount() {}
 
             render() {
                 return(
-                    <div className='$name-container'>
+                    <div className={style.$name"'Container'"}>
                         $name
                     </div>
                 )
@@ -77,9 +70,7 @@ else
         $name.propTypes = {  };
         export default $name;">> src/components/$name/index.jsx
 
-        echo -e ".$name-container{
-
-        }" >> src/components/$name/style.scss
+        echo -e ".$name"'Container'"{}" >> src/components/$name/style.scss
 
         echo "| class component |"
         echo " ------------------------------------------------ "

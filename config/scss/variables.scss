@@ -1,4 +1,19 @@
-$red-color: #ff5b68;
-$fontHuy: 40px;
-$primary: #5a8ca4;
-$primary-hover: #4747a4;
+$primary: #E91E63;
+
+@mixin pc {
+  @media screen and (min-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: 768px) and (max-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}

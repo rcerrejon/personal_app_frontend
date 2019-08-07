@@ -1,39 +1,39 @@
 import React from "react";
 import { Route, Switch } from 'react-router';
-import MainContent from "./components/MainContent";
 import { CSSTransition } from 'react-transition-group'
-import TodoListClass from "./components/TodoListClass";
-import Calendar from "./components/Calendar";
-import Page404 from "./components/Page404";
-import './router.scss'
+import style from'./router.scss'
+import Home from './pages/Home';
+import Portfolio from './pages/Portfolio';
+import Blog from './pages/Blog';
+import Contacts from './pages/Contacts';
 
 const routes = [
-  {path: '/', name: 'Home', Component: MainContent},
-  {path: '/calendar', name: 'Calendar', Component: Calendar},
-  {path: '/todolist', name: 'TodoList', Component: TodoListClass},
-
+  {path: '/', name: 'Home', Component: Home},
+  {path: '/portfolio', name: 'Portfolio', Component: Portfolio},
+  {path: '/blog', name: 'Blog', Component: Blog},
+  {path: '/contacts', name: 'Contacts', Component: Contacts},
 ]
 
 function Routes() {
   return (
-    <div>
+    <>
       {routes.map(({ path, Component }) => (
         <Route key={path} exact path={path}>
           {({ match }) => (
             <CSSTransition
               in={match != null}
-              timeout={300}
-              classNames="page"
+              timeout={0}
+              classNames={style.page}
               unmountOnExit
             >
-              <div className="page">
+              <div className={style.page}>
                 <Component />
               </div>
             </CSSTransition>
           )}
         </Route>
       ))}
-    </div>
+    </>
   )
 }
 

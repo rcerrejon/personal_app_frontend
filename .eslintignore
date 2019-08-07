@@ -6,3 +6,4 @@ config/*
 src/*
 utils/*
 scripts/*
+pages/*
