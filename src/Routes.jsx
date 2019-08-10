@@ -14,26 +14,33 @@ const routes = [
   {path: '/contacts', name: 'Contacts', Component: Contacts},
 ]
 
+// <Route key={path} exact path={path}>
+//   {({ match }) => (
+//     <CSSTransition
+//       in={match != null}
+//       timeout={0}
+//       classNames={style.page}
+//       unmountOnExit
+//     >
+//       <div className={style.page}>
+//         <Component />
+//       </div>
+//     </CSSTransition>
+//   )}
+// </Route>
 function Routes() {
   return (
-    <>
+    <Switch>
       {routes.map(({ path, Component }) => (
         <Route key={path} exact path={path}>
           {({ match }) => (
-            <CSSTransition
-              in={match != null}
-              timeout={0}
-              classNames={style.page}
-              unmountOnExit
-            >
-              <div className={style.page}>
-                <Component />
-              </div>
-            </CSSTransition>
+            <div className={style.page}>
+              <Component />
+            </div>
           )}
         </Route>
       ))}
-    </>
+    </Switch>
   )
 }
 
