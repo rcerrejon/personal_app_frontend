@@ -1,12 +1,12 @@
 import React from 'react';
-import style from './App.scss';
+import style from './App.module.scss';
 import Routes from "./Routes";
-import { Router, Route, Link } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheckSquare, faCoffee, faArrowRight, faArrowLeft, faEnvelopeOpenText, faTimes, faLanguage, faWindowClose } from '@fortawesome/free-solid-svg-icons'
-import { fab, faGithub } from '@fortawesome/free-brands-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome/index';
+import { library } from '@fortawesome/fontawesome-svg-core/index'
+import { faCheckSquare, faCoffee, faArrowRight, faArrowLeft, faEnvelopeOpenText, faTimes, faLanguage, faWindowClose } from '@fortawesome/free-solid-svg-icons/index'
+import { fab, faGithub } from '@fortawesome/free-brands-svg-icons/index'
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk';
@@ -32,18 +32,16 @@ const store = createStore(
 function App() {
 
   return (
-    <>
-      <Provider store={store}>
-        <Router history={history}>
-        <Header />
-        <NavbarMain />
-          <div className={style.AppContainer} >
-            <Routes/>
-          </div>
-        <Console />
-        </Router>
-      </Provider>
-    </>
+    <Provider store={store}>
+      <Router history={history}>
+      <Header />
+      <NavbarMain />
+        <div className={style.AppContainer} >
+          <Routes/>
+        </div>
+      <Console />
+      </Router>
+    </Provider>
   )
 }
 

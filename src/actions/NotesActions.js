@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import axios from 'axios';
+import axios from 'axios/index';
 
 export function getUserNotes(user_id) {
   return dispatch => {

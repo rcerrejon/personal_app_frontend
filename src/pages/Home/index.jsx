@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
 import propTypes from 'prop-types'
-import style from './style.scss';
+import style from './style.module.scss';
 import Logo from '../../components/Logo';
 
 class Home extends React.Component{
@@ -11,19 +11,21 @@ class Home extends React.Component{
     }
 
     render() {
+      const {HomeContainer, empty, profileContainer, image, btn_action, infoContainer, greetText, skills, empty2, coolThing} = style;
+
         return(
-            <div className={style.HomeContainer}>
-              <div className={style.empty}></div>
-              <div className={style.profileContainer}>
-                <div className={style.image} />
-                <div className={style.btn_action}><FontAwesomeIcon icon={['fab', 'github']}/> Github</div>
+            <div className={HomeContainer}>
+              <div className={empty}></div>
+              <div className={profileContainer}>
+                <div className={image} />
+                <div className={btn_action}><FontAwesomeIcon icon={['fab', 'github']}/> Github</div>
               </div>
-              <div className={style.infoContainer}>
-                <div className={style.greetText}>Hi,<br/> i'm Vadim,<br/> web developer</div>
-                <div className={style.skills}>Full stack / Reactjs / Expressjs </div>
+              <div className={infoContainer}>
+                <div className={greetText}>Hi,<br/> i'm Vadim,<br/> web developer</div>
+                <div className={skills}>Full stack / Reactjs / Expressjs </div>
               </div>
-              <div className={style.empty2}></div>
-              <div className={style.coolThing}>крутая штука <br/>вращается.</div>
+              <div className={empty2}></div>
+              <div className={coolThing}>крутая штука <br/>вращается.</div>
             </div>
         )
     }

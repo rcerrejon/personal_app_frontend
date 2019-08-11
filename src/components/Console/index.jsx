@@ -1,6 +1,6 @@
 import React from 'react';
         import propTypes from 'prop-types'
-        import style from './style.scss';
+        import style from './style.module.scss';
 
         class Console extends React.Component{
             constructor(props){

@@ -18,7 +18,7 @@ else
 
 
         echo -e "import React from 'react';
-        import style from './style.scss';
+        import style from './style.module.scss';
 
         function $name() {
             return (
@@ -46,7 +46,7 @@ else
 
         echo -e "import React from 'react';
         import propTypes from 'prop-types'
-        import style from './style.scss';
+        import style from './style.module.scss';
 
         class $name extends React.Component{
             constructor(props){

@@ -1,6 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types'
-import style from './style.scss';
+import style from './style.module.scss';
+import { KeyboardArrowDownRounded, KeyboardArrowRightRounded } from '@material-ui/icons/index';
+import { Route, Switch, withRouter } from 'react-router';
 
 class Portfolio extends React.Component{
     constructor(props){
@@ -29,7 +31,25 @@ class Portfolio extends React.Component{
                       id: 2,
                       type: 'proj',
                       name: 'my.homepage.com'
-                    }
+                    },
+                    {
+                      id: 3,
+                      type: 'folder',
+                      open: false,
+                      name: 'ReactJS',
+                      childs: [
+                        {
+                          id: 1,
+                          type: 'proj',
+                          name: 'www.zhopa.ru'
+                        },
+                        {
+                          id: 2,
+                          type: 'proj',
+                          name: 'my.heartBrent.com'
+                        }
+                      ]
+                    },
                   ]
                 },
                 {
@@ -49,20 +69,25 @@ class Portfolio extends React.Component{
     }
 
     render() {
-      const {PortfolioContainer, leftNavbar, mainContent, hidebar, button} = style;
+      const {rightInfoPanel, PortfolioContainer, leftNavbar, mainContent, hidebar, button} = style;
 
         return(
             <div className={PortfolioContainer}>
-                <div className={hidebar}>
-                  <div className={button}>1: Portfolio</div>
-                </div>
-                <div className={leftNavbar}>
-                  {this.renderNavlist()}
-                </div>
-              {/*<div className={[style.loader, style.center].join(" ")}><span>!</span></div>*/}
-                <div className={mainContent}>
-
-                </div>
+              <div className={hidebar}>
+                <div className={button}>2: Info</div>
+                <div className={button}>1: Portfolio</div>
+              </div>
+              <div className={leftNavbar}>
+                {this.renderNavlist()}
+              </div>
+            {/*<div className={[style.loader, style.center].join(" ")}><span>!</span></div>*/}
+              <div className={mainContent}>
+                <Switch>
+                  {this.props.children}
+                  {/*<Route exact path="/portfolio/zhopa"><div>zhopa</div></Route>*/}
+                </Switch>
+              </div>
+              <div className={rightInfoPanel}></div>
             </div>
         )
     }
@@ -71,7 +96,7 @@ class Portfolio extends React.Component{
 
     fun = (array, prefix) => {
       const { treeItem, folderInner, folderInnerClosed } = style;
-      prefix += '-';
+      prefix += 25;
       return array.map(item =>
       {
         let folderInnerClass = folderInnerClosed
@@ -81,12 +106,16 @@ class Portfolio extends React.Component{
         return (
         <div key={item.name}>
           {item.type === 'folder' ?
-            <div className={treeItem} onClick={() => {this.openFolder(item.id)}}>
-              {prefix + item.name}
+            <div className={treeItem}
+                 style={{paddingLeft: `${prefix - 25}px`}}
+                 onClick={() => {this.openFolder(item.id)}}>
+              {item.open ? <KeyboardArrowDownRounded/> : <KeyboardArrowRightRounded/>}
+              {item.name}
             </div>
             :
-            <div className={treeItem}>
-              {prefix + item.name}
+            <div className={treeItem}
+                 style={{paddingLeft: `${prefix}px`}}>
+              {item.name}
             </div>
           }
           {item.childs &&
@@ -116,11 +145,11 @@ class Portfolio extends React.Component{
     renderNavlist = () => {
       return (
         <div>
-          {this.fun(this.state.dirs, '')}
+          {this.fun(this.state.dirs, 0)}
         </div>
       )
     }
 }
 
 Portfolio.propTypes = {  };
-export default Portfolio;
+export default withRouter(Portfolio);

@@ -1,25 +1,25 @@
 import React from 'react';
-        import propTypes from 'prop-types'
-        import style from './style.scss';
+import propTypes from 'prop-types'
+import style from './style.module.scss';
 
-        class Blog extends React.Component{
-            constructor(props){
-                super(props)
-                this.state = {}
-            }
+class Blog extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {}
+    }
 
-            componentDidMount() {}
+    componentDidMount() {}
 
-            componentWillUnmount() {}
+    componentWillUnmount() {}
 
-            render() {
-                return(
-                    <div className={style.BlogContainer}>
-                        Blog
-                    </div>
-                )
-            }
-        }
+    render() {
+        return(
+            <div className={style.BlogContainer}>
+                Blog
+            </div>
+        )
+    }
+}
 
-        Blog.propTypes = {  };
-        export default Blog;
+Blog.propTypes = {  };
+export default Blog;

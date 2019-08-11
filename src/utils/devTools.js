@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStore as initialCreateStore, compose } from 'redux';
+import { createStore as initialCreateStore, compose } from 'redux/index';
 
 export let createStore = initialCreateStore;
 

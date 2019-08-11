@@ -1,7 +1,7 @@
 import React from 'react';
-import { DeveloperBoard, AppsRounded, Work, EventNote, Home, Email } from '@material-ui/icons';
+import { DeveloperBoard, AppsRounded, Work, EventNote, Home, Email } from '@material-ui/icons/index';
 import propTypes from 'prop-types'
-import style from './style.scss';
+import style from './style.module.scss';
 import { NavLink } from 'react-router-dom';
 
 class NavbarMain extends React.Component{
@@ -15,13 +15,14 @@ class NavbarMain extends React.Component{
     componentWillUnmount() {}
 
     render() {
+      const {NavbarMainContainer, button, home, portfolio, activeNavlink, blog, contacts} = style;
+
         return(
-            <div className={style.NavbarMainContainer}>
-              <NavLink exact to="/" className={[style.button, style.home].join(" ")} activeClassName={style.activeNavlink}><Home /></NavLink>
-              <NavLink to="/portfolio" className={[style.button, style.portfolio].join(" ")} activeClassName={style.activeNavlink}><Work /></NavLink>
-              <NavLink to="/blog" className={[style.button, style.blog].join(" ")} activeClassName={style.activeNavlink}><EventNote /></NavLink>
-              <NavLink to="/contacts" className={[style.button, style.contacts].join(" ")} activeClassName={style.activeNavlink}><Email /></NavLink>
-              {this.props.location}
+            <div className={NavbarMainContainer}>
+              <NavLink exact to="/" className={[button, home].join(" ")} activeClassName={activeNavlink}><Home /></NavLink>
+              <NavLink to="/portfolio" className={[button, portfolio].join(" ")} activeClassName={activeNavlink}><Work /></NavLink>
+              <NavLink to="/blog" className={[button, blog].join(" ")} activeClassName={activeNavlink}><EventNote /></NavLink>
+              <NavLink to="/contacts" className={[button, contacts].join(" ")} activeClassName={activeNavlink}><Email /></NavLink>
             </div>
         )
     }

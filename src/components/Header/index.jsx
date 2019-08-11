@@ -1,9 +1,9 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { WbSunny, WbSunnyOutlined } from '@material-ui/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
+import { WbSunny, WbSunnyOutlined } from '@material-ui/icons/index';
 import propTypes from 'prop-types'
 import { withRouter } from "react-router";
-import style from './style.scss';
+import style from './style.module.scss';
 
 class Header extends React.Component{
     constructor(props){
@@ -17,20 +17,22 @@ class Header extends React.Component{
     componentWillUnmount() {}
 
     render() {
+        const { HeaderContainer, HeaderLeftButtons, button, close, yellow, green, HeaderPath, HeaderRightButtons } = style;
+
         return(
-            <div className={style.HeaderContainer}>
-              <div className={style.HeaderLeftButtons}>
-                <div className={[style.button, style.close].join(" ")}> </div>
-                <div className={[style.button, style.yellow].join(" ")}> </div>
-                <div className={[style.button, style.green].join(" ")}> </div>
+            <div className={HeaderContainer}>
+              <div className={HeaderLeftButtons}>
+                <div className={[button, close].join(" ")}> </div>
+                <div className={[button, yellow].join(" ")}> </div>
+                <div className={[button, green].join(" ")}> </div>
               </div>
               {/*<div className={style.HeaderLogo}> </div>*/}
-              <div className={style.HeaderPath}>
+              <div className={HeaderPath}>
                 {`Udachin${this.props.location.pathname}`}
               </div>
-              <div className={style.HeaderRightButtons}>
-                <div className={[style.button].join(" ")}><WbSunnyOutlined/></div>
-                <div className={[style.button].join(" ")}><img width="40" height="25" src={require("../../../assets/ru.svg")} alt="missing"/></div>
+              <div className={HeaderRightButtons}>
+                <div className={[button].join(" ")}><WbSunnyOutlined/></div>
+                <div className={[button].join(" ")}><img width="40" height="25" src={require("../../assets/ru.svg")} alt="missing"/></div>
               </div>
             </div>
         )
