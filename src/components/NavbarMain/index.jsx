@@ -1,5 +1,5 @@
 import React from 'react';
-import { DeveloperBoard, AppsRounded, Work, EventNote, Home, Email } from '@material-ui/icons/index';
+import {  AppsRounded, Work, EventNote, Home, Email } from '@material-ui/icons/index';
 import propTypes from 'prop-types'
 import style from './style.module.scss';
 import { NavLink } from 'react-router-dom';

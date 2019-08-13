@@ -6,20 +6,21 @@ import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import Contacts from './pages/Contacts';
+import Types from './components/Types';
+import TypeFolder from './components/TypeFolder';
+import ProjectPage from './components/ProjectPage';
 
 const Page404 = () => {
   return <div>not found</div>
-}
-
-const PlanetaZhopa = () => {
-  return <div>Planeta zhopa</div>
 }
 
 const routes = [
   {path: '/', name: 'Home', exact: true, Component: Home},
   {path: '/portfolio', name: 'Portfolio', exact: false, Component: Portfolio,
     children: [
-      {path: '/portfolio/zhopa', name: '', exact: false, Component: PlanetaZhopa},
+      {path: '/portfolio/projects', name: 'Projects', exact: true, Component: Types},
+      {path: '/portfolio/projects/:type', name: 'Type', exact: true, Component: TypeFolder},
+      {path: '/portfolio/projects/:type/:id', name: 'ProjectPage', exact: true, Component: ProjectPage},
       {path: '/portfolio/*', name: '', exact: false, Component: Page404},
     ]
   },

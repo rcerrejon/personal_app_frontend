@@ -14,7 +14,7 @@ else
     then
         mkdir src/components/$name
         touch src/components/$name/index.jsx
-        touch src/components/$name/style.scss
+        touch src/components/$name/style.module.scss
 
 
         echo -e "import React from 'react';
@@ -31,8 +31,9 @@ else
         export default $name;
         " >> src/components/$name/index.jsx
 
-        echo -e ".$name"'Container'"{}
-        " >> src/components/$name/style.scss
+        echo -e "@import '../../config/scss/index';
+                .$name"'Container'"{}
+        " >> src/components/$name/style.module.scss
         echo "| functional component |"
 
         echo " ------------------------------------------------ "
@@ -42,7 +43,7 @@ else
     then
         mkdir src/components/$name
         touch src/components/$name/index.jsx
-        touch src/components/$name/style.scss
+        touch src/components/$name/style.module.scss
 
         echo -e "import React from 'react';
         import propTypes from 'prop-types'
@@ -70,7 +71,8 @@ else
         $name.propTypes = {  };
         export default $name;">> src/components/$name/index.jsx
 
-        echo -e ".$name"'Container'"{}" >> src/components/$name/style.scss
+        echo -e "@import '../../config/scss/index';
+                .$name"'Container'"{}" >> src/components/$name/style.module.scss
 
         echo "| class component |"
         echo " ------------------------------------------------ "

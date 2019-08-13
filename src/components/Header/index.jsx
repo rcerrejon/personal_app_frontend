@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { WbSunny, WbSunnyOutlined } from '@material-ui/icons/index';
 import propTypes from 'prop-types'
 import { withRouter } from "react-router";

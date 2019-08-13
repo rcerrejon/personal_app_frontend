@@ -1,8 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types'
 import style from './style.module.scss';
-import { KeyboardArrowDownRounded, KeyboardArrowRightRounded } from '@material-ui/icons/index';
+import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note } from '@material-ui/icons/index';
 import { Route, Switch, withRouter } from 'react-router';
+import history from '../../history';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Portfolio extends React.Component{
     constructor(props){
@@ -15,12 +17,14 @@ class Portfolio extends React.Component{
               root: true,
               open: true,
               name: 'Portfolio',
+              url: '',
               childs: [
                 {
                   id: 2,
                   type: 'folder',
                   open: false,
                   name: 'Projects',
+                  url: '/projects',
                   childs: [
                     {
                       id: 1,
@@ -95,7 +99,7 @@ class Portfolio extends React.Component{
     componentWillUnmount() {}
 
     fun = (array, prefix) => {
-      const { treeItem, folderInner, folderInnerClosed } = style;
+      const { treeItem, folderInner, folderInnerClosed, fileIcon } = style;
       prefix += 25;
       return array.map(item =>
       {
@@ -105,17 +109,19 @@ class Portfolio extends React.Component{
         }
         return (
         <div key={item.name}>
-          {item.type === 'folder' ?
+          {item.type === 'folder'
+            ?
             <div className={treeItem}
                  style={{paddingLeft: `${prefix - 25}px`}}
                  onClick={() => {this.openFolder(item.id)}}>
               {item.open ? <KeyboardArrowDownRounded/> : <KeyboardArrowRightRounded/>}
-              {item.name}
+              <div onClick={() => this.moveToFolder(item.url)}>{item.name}</div>
             </div>
             :
             <div className={treeItem}
-                 style={{paddingLeft: `${prefix}px`}}>
-              {item.name}
+                 style={{paddingLeft: `${prefix - 25}px`}}>
+              <FontAwesomeIcon icon="file" className={fileIcon}/>
+              { item.name}
             </div>
           }
           {item.childs &&
@@ -140,6 +146,14 @@ class Portfolio extends React.Component{
       })
       fun(dirs)
       this.setState({dirs})
+    }
+
+    moveToFile = (id) => {
+      history.push(`/portfolio/document/${id}`)
+    }
+
+    moveToFolder = (url) => {
+      history.push(`/portfolio${url}`)
     }
 
     renderNavlist = () => {

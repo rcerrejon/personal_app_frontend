@@ -47,7 +47,8 @@
 
   .leftNavbar{
     padding: 0 0 0 30px;
-    overflow: hidden;
+    overflow-x: hidden;
+    //overflow: hidden;
     border-right: 2px solid $router-bg;
     background-color: $dark;
 
@@ -67,10 +68,12 @@
         border-left: 2px solid $primary;
       }
 
+      .fileIcon{
+        font-size: 15px;
+        margin: 0 6px 0 6px;
+      }
     }
-    .folderInner{
-      display: block;
-    }
+    .folderInner{ display: block; }
     .folderInnerClosed{ display: none; }
   }
 

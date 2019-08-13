@@ -1,0 +1,49 @@
+@import '../../config/scss/index';
+
+.TypesContainer{
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .folderItem{
+    position: relative;
+    display: flex;
+    width: 100px;
+    cursor: pointer;
+    height: 100px;
+    margin: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover .folderName,&:hover  .indicator{
+      color: $primary;
+    }
+
+    .folderIcon{
+      height: 80%;
+      padding: 0 0 10px 0;
+    }
+    .folderName{
+      width: 100%;
+      font-weight: bold;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .indicator {
+      position: absolute;
+      color: #ffffff;
+      width: 20px;
+      height: 20px;
+      top: 0px;
+      left: 0px;
+      transition: all ease .3s;
+    }
+  }
+}
