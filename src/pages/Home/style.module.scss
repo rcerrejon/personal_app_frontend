@@ -47,7 +47,7 @@
     .image{
       border: 3px solid $primary;
       border-radius: 50%;
-      //background: url("../../assets/avatar.jpg") 100%/100%;
+      background: url("../../assets/avatar.jpg") 100%/100%;
       margin: 0 0 30px 0;
 
       @include pc{
@@ -61,8 +61,6 @@
     }
 
     .btn_action {
-      $github: #DBAB09;
-
       cursor: pointer;
       padding: 10px 20px;
       border-radius: 10px;

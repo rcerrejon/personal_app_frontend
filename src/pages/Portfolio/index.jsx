@@ -26,45 +26,70 @@ class Portfolio extends React.Component{
                   name: 'Projects',
                   url: '/projects',
                   childs: [
-                    {
-                      id: 1,
-                      type: 'proj',
-                      name: 'teams.mospolytech.ru'
-                    },
-                    {
-                      id: 2,
-                      type: 'proj',
-                      name: 'my.homepage.com'
-                    },
+
                     {
                       id: 3,
+                      parent_id: 2,
                       type: 'folder',
                       open: false,
-                      name: 'ReactJS',
+                      name: 'Frontend',
+                      url: '/projects/frontend',
+                      childs: [
+                        {
+                          id: 3,
+                          parent_id: 3,
+                          type: 'proj',
+                          name: 'www.zhopa.ru',
+                          url: '/projects/frontend/1',
+                        },
+                        {
+                          id: 4,
+                          parent_id: 3,
+                          type: 'proj',
+                          name: 'my.heartBrent.com',
+                          url: '/projects/frontend/2',
+                        }
+                      ]
+                    },
+                    {
+                      id: 4,
+                      parent_id: 2,
+                      type: 'folder',
+                      open: false,
+                      name: 'Backend',
+                      url: '/projects/backend',
                       childs: [
                         {
                           id: 1,
+                          parent_id: 2,
                           type: 'proj',
-                          name: 'www.zhopa.ru'
+                          name: 'teams.mospolytech.ru',
+                          url: '/projects/teams-mospolytech'
                         },
                         {
                           id: 2,
+                          parent_id: 2,
                           type: 'proj',
-                          name: 'my.heartBrent.com'
-                        }
+                          name: 'my.homepage.com',
+                          url: '/projects/my-homepage'
+                        },
                       ]
                     },
                   ]
                 },
                 {
-                  id: 1,
-                  type: 'txt',
-                  name: 'Education'
+                  id: 5,
+                  parent_id: 1,
+                  type: 'file',
+                  name: 'Education',
+                  url: '/education'
                 },
                 {
-                  id: 2,
-                  type: 'txt',
-                  name: 'About_me'
+                  id: 6,
+                  parent_id: 1,
+                  type: 'file',
+                  name: 'About_me',
+                  url: '/about'
                 }
               ]
 
@@ -73,7 +98,7 @@ class Portfolio extends React.Component{
     }
 
     render() {
-      const {rightInfoPanel, PortfolioContainer, leftNavbar, mainContent, hidebar, button} = style;
+      const {PortfolioContainer, leftNavbar, mainContent, hidebar, button} = style;
 
         return(
             <div className={PortfolioContainer}>
@@ -91,20 +116,19 @@ class Portfolio extends React.Component{
                   {/*<Route exact path="/portfolio/zhopa"><div>zhopa</div></Route>*/}
                 </Switch>
               </div>
-              <div className={rightInfoPanel}></div>
             </div>
         )
     }
     componentDidMount() {}
     componentWillUnmount() {}
 
-    fun = (array, prefix) => {
+    _makeObjToTree = (array, prefix) => {
       const { treeItem, folderInner, folderInnerClosed, fileIcon } = style;
       prefix += 25;
       return array.map(item =>
       {
         let folderInnerClass = folderInnerClosed
-        if (item.type === 'folder' && item.open === true){
+        if (item.type === 'folder' && item.open === true) {
           folderInnerClass = folderInner;
         }
         return (
@@ -113,43 +137,45 @@ class Portfolio extends React.Component{
             ?
             <div className={treeItem}
                  style={{paddingLeft: `${prefix - 25}px`}}
-                 onClick={() => {this.openFolder(item.id)}}>
-              {item.open ? <KeyboardArrowDownRounded/> : <KeyboardArrowRightRounded/>}
+                 >
+              {item.open ? <KeyboardArrowDownRounded onClick={() => {this.openFolder(item.id)}}/> : <KeyboardArrowRightRounded onClick={() => {this.openFolder(item.id)}}/>}
               <div onClick={() => this.moveToFolder(item.url)}>{item.name}</div>
             </div>
             :
             <div className={treeItem}
-                 style={{paddingLeft: `${prefix - 25}px`}}>
+                 style={{paddingLeft: `${prefix - 25}px`}}
+                 onClick={() => this.moveToFile(item.url)}>
               <FontAwesomeIcon icon="file" className={fileIcon}/>
-              { item.name}
+              { item.name }
             </div>
           }
           {item.childs &&
             <div className={folderInnerClass}>
-              {this.fun(item.childs, prefix)}
+              {this._makeObjToTree(item.childs, prefix)}
             </div>
           }
-        </div>)
+        </div>
+        )
       }
       )
     };
 
     openFolder = (id) => {
       let dirs = [...this.state.dirs]
-      let fun = (arr) => arr.forEach(item => {
+      let openEach = (arr) => arr.forEach(item => {
         if (item.type === 'folder' && item.id === id) {
           item.open = !item.open;
         }
         if (item.childs){
-          fun(item.childs)
+          openEach(item.childs)
         }
       })
-      fun(dirs)
+      openEach(dirs)
       this.setState({dirs})
     }
 
-    moveToFile = (id) => {
-      history.push(`/portfolio/document/${id}`)
+    moveToFile = (url) => {
+      history.push(`/portfolio${url}`)
     }
 
     moveToFolder = (url) => {
@@ -159,7 +185,7 @@ class Portfolio extends React.Component{
     renderNavlist = () => {
       return (
         <div>
-          {this.fun(this.state.dirs, 0)}
+          {this._makeObjToTree(this.state.dirs, 0)}
         </div>
       )
     }

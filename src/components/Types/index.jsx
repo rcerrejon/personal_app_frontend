@@ -14,7 +14,8 @@ class Types extends React.Component{
               id: 0,
               icon: 'http://icons.iconarchive.com/icons/bambulu/sailor-moon/256/ribbon-icon.png',
               name: 'Full stack',
-              url: 'fullstack'
+              url: 'fullstack',
+              path: ''
             },
             {
               id: 1,

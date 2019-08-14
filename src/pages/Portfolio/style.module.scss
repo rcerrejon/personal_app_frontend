@@ -5,11 +5,11 @@
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 4fr 1.5fr;
+  grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr;
 
   @include mobile{
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
   }
 
   .hidebar{
@@ -46,7 +46,7 @@
   }
 
   .leftNavbar{
-    padding: 0 0 0 30px;
+    padding: 10px 0 0 30px;
     overflow-x: hidden;
     //overflow: hidden;
     border-right: 2px solid $router-bg;
@@ -78,10 +78,6 @@
   }
 
   .mainContent{}
-
-  .rightInfoPanel{
-    background-color: $dark;
-  }
 
   .loader{
     position: absolute;

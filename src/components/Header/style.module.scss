@@ -49,6 +49,9 @@
   .HeaderLogo{}
   .HeaderPath{
     font-size: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .HeaderRightButtons{
     font-size: 30px;

@@ -18,10 +18,11 @@ const routes = [
   {path: '/', name: 'Home', exact: true, Component: Home},
   {path: '/portfolio', name: 'Portfolio', exact: false, Component: Portfolio,
     children: [
+      //TODO: Попробовать сделать пути динамически состовляемыми из пришедшей инфы о проектах
       {path: '/portfolio/projects', name: 'Projects', exact: true, Component: Types},
       {path: '/portfolio/projects/:type', name: 'Type', exact: true, Component: TypeFolder},
       {path: '/portfolio/projects/:type/:id', name: 'ProjectPage', exact: true, Component: ProjectPage},
-      {path: '/portfolio/*', name: '', exact: false, Component: Page404},
+      {path: '/portfolio/:filePath', name: '', exact: false, Component: ProjectPage},
     ]
   },
   {path: '/blog', name: 'Blog', exact: true, Component: Blog},

@@ -22,7 +22,7 @@ class Home extends React.Component{
               </div>
               <div className={infoContainer}>
                 <div className={greetText}>Hi,<br/> i'm Vadim,<br/> web developer</div>
-                <div className={skills}>Full stack / Reactjs / Expressjs </div>
+                <div className={skills}>Full stack / ReactJS / ExpressJS </div>
               </div>
               <div className={empty2}></div>
               <div className={coolThing}>крутая штука <br/>вращается.</div>

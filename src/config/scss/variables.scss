@@ -6,21 +6,4 @@ $edgePadding: 30px;
 $grey-select: #272727;
 $heightMainContent: calc(100vh - 300px);
 $heightMainContentMobile: calc(100vh - 200px);
-
-@mixin pc {
-  @media screen and (min-width: 1000px) {
-    @content;
-  }
-}
-
-@mixin tablet {
-  @media screen and (min-width: 768px) and (max-width: 1000px) {
-    @content;
-  }
-}
-
-@mixin mobile {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
+$github: #DBAB09;
