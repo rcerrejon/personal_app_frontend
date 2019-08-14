@@ -139,7 +139,7 @@ class Portfolio extends React.Component{
                  style={{paddingLeft: `${prefix - 25}px`}}
                  >
               {item.open ? <KeyboardArrowDownRounded onClick={() => {this.openFolder(item.id)}}/> : <KeyboardArrowRightRounded onClick={() => {this.openFolder(item.id)}}/>}
-              <div onClick={() => this.moveToFolder(item.url)}>{item.name}</div>
+              <div onClick={() => this.moveToFolder(item)}>{item.name}</div>
             </div>
             :
             <div className={treeItem}
@@ -178,8 +178,11 @@ class Portfolio extends React.Component{
       history.push(`/portfolio${url}`)
     }
 
-    moveToFolder = (url) => {
-      history.push(`/portfolio${url}`)
+    moveToFolder = (item) => {
+      if (!item.open){
+        this.openFolder(item.id)
+      }
+      history.push(`/portfolio${item.url}`)
     }
 
     renderNavlist = () => {

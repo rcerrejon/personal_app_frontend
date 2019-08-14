@@ -1,10 +1,10 @@
 import React from 'react';
-import IMAGE from '../../assets/f-1.png'
 import propTypes from 'prop-types'
 import style from './style.module.scss';
 import Img from 'react-image'
 import RightPanel from '../RightPanel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Preloader from '../Preloader';
 
 class ProjectPage extends React.Component{
     constructor(props){
@@ -39,24 +39,16 @@ class ProjectPage extends React.Component{
             images: [
               {
                 title: 'Панель администрирования сайта',
-                src: 'https://cdn2.iconfinder.com/data/icons/nodejs-1/512/nodejs-512.png'
+                src: 'https://sun9-15.userapi.com/c855128/v855128726/18345/SsZtDyWOt6Y.jpg'
               },
               {
-                title: 'Главная страница',
-                src: 'https://ibb.co/xYm5Y4p'
+                title: 'Панель администрирования сайта',
+                src: 'https://sun9-15.userapi.com/c855128/v855128726/18345/SsZtDyWOt6Y.jpg'
               },
               {
-                title: 'Главная страница',
-                src: 'https://ibb.co/xYm5Y4p'
+                title: 'Панель администрирования сайта',
+                src: 'https://sun9-15.userapi.com/c855128/v855128726/18345/SsZtDyWOt6Y.jpg'
               },
-              {
-                title: 'Главная страница',
-                src: 'https://ibb.co/xYm5Y4p'
-              },
-              {
-                title: 'Главная страница',
-                src: 'https://ibb.co/xYm5Y4p'
-              }
             ],
             links: [
               {
@@ -119,8 +111,8 @@ class ProjectPage extends React.Component{
         <div className={style.imageItem}
              title={image.title}
              key={image.title}>
-          <img width="100" src={IMAGE} alt={image.title}/>
-          {/*<Img src={image.src} />*/}
+          {/*<img width="100" src={image.src} alt={image.title}/>*/}
+          <Img src={image.src} alt={image.title} loader={<Preloader/>}/>
         </div>
         )}
       )
