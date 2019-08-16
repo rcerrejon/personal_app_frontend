@@ -4,12 +4,16 @@ import style from './style.module.scss';
 import Img from 'react-image'
 import RightPanel from '../RightPanel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { OpenInNewRounded } from '@material-ui/icons';
 import Preloader from '../Preloader';
+import PopupGalary from '../PopupGalary';
 
 class ProjectPage extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+          isOpenPopupGalary: false,
+          selectedImageId: null,
           project: {
             id: 1,
             parent_id: 3,
@@ -24,39 +28,38 @@ class ProjectPage extends React.Component{
                 icon: 'https://png.pngtree.com/svg/20170719/1217a8a69e.svg'
               },
               {
-                name: 'ExpressJS',
-                icon: 'https://www.pngfind.com/pngs/m/136-1363736_express-js-icon-png-transparent-png.png'
-              },
-              {
                 name: 'PostgreSQL',
                 icon: 'https://user-images.githubusercontent.com/24623425/36042969-f87531d4-0d8a-11e8-9dee-e87ab8c6a9e3.png'
               },
               {
                 name: 'Node.js',
                 icon: 'https://cdn2.iconfinder.com/data/icons/nodejs-1/512/nodejs-512.png'
-              },
+              }
             ],
             images: [
               {
+                id: 1,
                 title: 'Панель администрирования сайта',
-                src: 'https://sun9-15.userapi.com/c855128/v855128726/18345/SsZtDyWOt6Y.jpg'
+                src: 'https://sun9-27.userapi.com/c856016/v856016513/c113f/KDdbBZnEzx8.jpg'
               },
               {
+                id: 2,
                 title: 'Панель администрирования сайта',
-                src: 'https://sun9-15.userapi.com/c855128/v855128726/18345/SsZtDyWOt6Y.jpg'
+                src: 'https://pp.userapi.com/c856016/v856016513/c1149/4iqOKkzBDtY.jpg'
               },
               {
+                id: 3,
                 title: 'Панель администрирования сайта',
-                src: 'https://sun9-15.userapi.com/c855128/v855128726/18345/SsZtDyWOt6Y.jpg'
+                src: 'https://sun9-27.userapi.com/c856016/v856016513/c113f/KDdbBZnEzx8.jpg'
               },
             ],
             links: [
               {
-                name: 'Backend на гитхабе',
+                name: 'Backend репозиторий',
                 url: 'https://ibb.co/xYm5Y4p',
               },
               {
-                name: 'Frontend на гитхабе',
+                name: 'Frontend репозиторий',
                 url: 'https://ibb.co/xYm5Y4p'
               }
             ]
@@ -69,28 +72,35 @@ class ProjectPage extends React.Component{
     componentWillUnmount() {}
 
     render() {
-        const { main, name, nameRightPanel, images, role, skills, desc, links, linkItem } = style;
+        const { main, name, spanWrapper, nameRightPanel, images, role, skills, desc, links, linkItem } = style;
         const project = this.state.project
 
         return(
             <div className={style.ProjectPageContainer}>
+              {this.state.isOpenPopupGalary ? <PopupGalary arrayImages={project.images} currentImageId={this.state.selectedImageId} closePopup={this._switchPopupGalery}/> : null}
               <div className={main}>
-                <div className={name}
-                     onClick={() => this._openInNewTab(project.linkToSite)}
-                >{project.name}</div>
+                <div className={spanWrapper}>
+                  <span className={name}
+                        onClick={() => this._openInNewTab(project.linkToSite)}
+                  >{project.name} <OpenInNewRounded/></span>
+                </div>
                 <div className={images}>
                   {this.renderImages()}
                 </div>
               </div>
 
               <RightPanel>
-                <div className={[name, nameRightPanel].join(" ")}
-                     onClick={() => this._openInNewTab(project.linkToSite)}
-                >{project.name}</div>
+                <div className={spanWrapper}>
+                  <span className={[name, nameRightPanel].join(" ")}
+                       onClick={() => this._openInNewTab(project.linkToSite)}
+                  >{project.name} <OpenInNewRounded/></span>
+                </div>
+                <div className={spanWrapper}>
+                  <span className={role}>Роль: {project.role}</span>
+                </div>
                 <div className={skills}>
                   {this.renderSkills()}
                 </div>
-                <div className={role}>Роль: {project.role}</div>
                 <div className={desc}>{project.desc}</div>
                 <div className={links}>
                   {this.renderLinks()}
@@ -98,6 +108,15 @@ class ProjectPage extends React.Component{
               </RightPanel>
             </div>
         )
+    }
+
+    _switchPopupGalery = () => {
+      this.setState({isOpenPopupGalary: !this.state.isOpenPopupGalary})
+    }
+
+    _openImageInPopup = (id) => {
+      this.setState({selectedImageId: id})
+      this._switchPopupGalery()
     }
 
     _openInNewTab = (url) => {
@@ -110,7 +129,9 @@ class ProjectPage extends React.Component{
         return (
         <div className={style.imageItem}
              title={image.title}
-             key={image.title}>
+             key={image.id}
+             onClick={() => this._openImageInPopup(image.id)}
+        >
           {/*<img width="100" src={image.src} alt={image.title}/>*/}
           <Img src={image.src} alt={image.title} loader={<Preloader/>}/>
         </div>
@@ -130,13 +151,11 @@ class ProjectPage extends React.Component{
     }
     renderLinks = () => {
       return this.state.project.links.map(link =>
-        <>
-          <div className={style.linkItem}
-               onClick={() => {this._openInNewTab(link.url)}}
-               key={link.name}>
-            <FontAwesomeIcon icon={['fab', 'github']}/> {link.name}</div>
-          <br/>
-        </>
+        <div className={style.linkWrap} key={link.name} title={link.name}>
+          <span className={style.linkItem}
+               onClick={() => {this._openInNewTab(link.url)}}>
+            <FontAwesomeIcon icon={['fab', 'github']}/> {link.name}</span>
+        </div>
       )
     }
 }

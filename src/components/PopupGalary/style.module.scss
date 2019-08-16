@@ -1,0 +1,80 @@
+@import '../../config/scss/index';
+.PopupGalaryContainer{
+  position: fixed;
+  z-index: 11;
+  top: 100px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 150px 100px $dark;
+  width: 100vw;
+  height: $heightMainContent;
+  @include mobile{
+    height: $heightMainContentMobile;
+  }
+
+  .image{
+    position: relative;
+    width: 70%;
+    //height: 70%;
+    min-width: 300px;
+    min-height: 200px;
+    height: 80%;
+    //border: 1px solid red;
+
+    @include mobile{
+      width: 100%;
+      height: 50%;
+    }
+
+    img{
+      position: absolute;
+      top: 0;
+      width: 100%;
+      border-radius: 15px;
+
+      @include mobile{
+        border-radius: 0;
+      }
+    }
+
+    .btn{
+      position: absolute;
+      z-index: 12;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $primary;
+
+      &:hover{
+        background-color: $primary;
+        color: #ffffff;
+      }
+
+      svg {
+        font-size: 50px;
+      }
+    }
+    .close{
+      top: -50px;
+      right: -50px;
+
+      @include mobile{
+        right: 0;
+      }
+    }
+    .right{
+      top: calc(50% - 25px);
+      right: 0px;
+    }
+    .left{
+      top: calc(50% - 25px);
+      left: 0px;
+    }
+  }
+}
+        

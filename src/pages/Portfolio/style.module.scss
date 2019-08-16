@@ -47,8 +47,8 @@
 
   .leftNavbar{
     padding: 10px 0 0 30px;
-    overflow-x: hidden;
-    //overflow: hidden;
+    //overflow-x: hidden;
+    overflow: auto;
     border-right: 2px solid $router-bg;
     background-color: $dark;
 
