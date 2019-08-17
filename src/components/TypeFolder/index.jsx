@@ -2,9 +2,11 @@ import React from 'react';
 import propTypes from 'prop-types'
 import style from './style.module.scss';
 import history from '../../history';
+import Img from 'react-image';
 import { DeveloperBoard } from '@material-ui/icons/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router';
+import Preloader from '../Preloader';
 
 class TypeFolder extends React.Component{
     constructor(props){
@@ -39,7 +41,7 @@ class TypeFolder extends React.Component{
       return projects.map((project) =>
         <div key={project.id} className={projectItem} onClick={() => history.push(`${this.props.location.pathname}/${project.id}`)}>
           <FontAwesomeIcon className={indicator} icon="file"/>
-          <img className={projectIcon} src={project.icon} height="100%" alt="icon"/>
+          <Img className={projectIcon} src={project.icon} height="100%" loader={<Preloader/>}/>
           <div className={projectName} title={project.name}>{project.name}</div>
         </div>
       )

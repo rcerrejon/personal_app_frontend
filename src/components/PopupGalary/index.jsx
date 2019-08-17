@@ -18,6 +18,8 @@ function PopupGalary(props) {
     })
     if (currentIndex !== arrayImages.length - 1) {
       setCurrentImage(arrayImages[currentIndex + 1])
+    } else {
+      setCurrentImage(arrayImages[0])
     }
   }
 
@@ -30,6 +32,8 @@ function PopupGalary(props) {
     })
     if (currentIndex !== 0) {
       setCurrentImage(arrayImages[currentIndex - 1])
+    } else {
+      setCurrentImage(arrayImages[arrayImages.length - 1])
     }
   }
 

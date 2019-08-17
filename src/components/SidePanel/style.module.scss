@@ -1,22 +1,22 @@
 @import '../../config/scss/index';
-.RightPanelContainer{
+.SidePanelContainer{
   background-color: $dark;
   overflow-x: hidden;
   overflow-y: auto;
-  //display: none;//TEST mobile
+  //display: none; //TEST mobile
 
   @include pc{
     height: $heightMainContent;
-    width: 30%;
+    width: 100%;
     padding: 20px;
   }
   @include mobile{
-    height: $heightMainContentMobile;
-    padding: 10px;
-    position: absolute;
     z-index: 10;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: $heightMainContentMobile;
+    padding: 10px;
   }
 }

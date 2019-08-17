@@ -83,4 +83,6 @@ else
 
         echo "INCORRECT INPUT, TRY AGAIN"
     fi
+    open src/components/$name/index.jsx
+    open src/components/$name/style.module.scss
 fi

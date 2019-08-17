@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types'
 import style from './style.module.scss';
 import Img from 'react-image'
-import RightPanel from '../RightPanel';
+import SidePanel from '../SidePanel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OpenInNewRounded } from '@material-ui/icons';
 import Preloader from '../Preloader';
@@ -72,7 +72,18 @@ class ProjectPage extends React.Component{
     componentWillUnmount() {}
 
     render() {
-        const { main, name, spanWrapper, nameRightPanel, images, role, skills, desc, links, linkItem } = style;
+        const {
+          main,
+          name,
+          spanWrapper,
+          nameSidePanel,
+          images,
+          role,
+          skills,
+          desc,
+          links,
+          sidePanelWrapper
+        } = style;
         const project = this.state.project
 
         return(
@@ -89,23 +100,25 @@ class ProjectPage extends React.Component{
                 </div>
               </div>
 
-              <RightPanel>
-                <div className={spanWrapper}>
-                  <span className={[name, nameRightPanel].join(" ")}
-                       onClick={() => this._openInNewTab(project.linkToSite)}
-                  >{project.name} <OpenInNewRounded/></span>
-                </div>
-                <div className={spanWrapper}>
-                  <span className={role}>Роль: {project.role}</span>
-                </div>
-                <div className={skills}>
-                  {this.renderSkills()}
-                </div>
-                <div className={desc}>{project.desc}</div>
-                <div className={links}>
-                  {this.renderLinks()}
-                </div>
-              </RightPanel>
+              <div className={sidePanelWrapper}>
+                <SidePanel>
+                  <div className={spanWrapper}>
+                    <span className={[name, nameSidePanel].join(" ")}
+                         onClick={() => this._openInNewTab(project.linkToSite)}
+                    >{project.name} <OpenInNewRounded/></span>
+                  </div>
+                  <div className={spanWrapper}>
+                    <span className={role}>Моя роль: {project.role}</span>
+                  </div>
+                  <div className={skills}>
+                    {this.renderSkills()}
+                  </div>
+                  <div className={desc}>{project.desc}</div>
+                  <div className={links}>
+                    {this.renderLinks()}
+                  </div>
+                </SidePanel>
+              </div>
             </div>
         )
     }
@@ -120,7 +133,9 @@ class ProjectPage extends React.Component{
     }
 
     _openInNewTab = (url) => {
-      window.open(url, '_blank');
+      if (url) {
+        window.open(url, '_blank');
+      }
     }
 
     renderImages = () => {
