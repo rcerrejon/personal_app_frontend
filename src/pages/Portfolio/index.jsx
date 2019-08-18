@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types'
 import style from './style.module.scss';
-import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note } from '@material-ui/icons/index';
+import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note } from '@material-ui/icons';
 import { Route, Switch, withRouter } from 'react-router';
 import history from '../../history';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -64,31 +64,24 @@ class Portfolio extends React.Component{
                           parent_id: 2,
                           type: 'proj',
                           name: 'teams.mospolytech.ru',
-                          url: '/projects/teams-mospolytech'
+                          url: '/projects/backend/teams-mospolytech'
                         },
                         {
                           id: 2,
                           parent_id: 2,
                           type: 'proj',
                           name: 'my.homepage.com',
-                          url: '/projects/my-homepage'
+                          url: '/projects/backend/my-homepage'
                         },
                       ]
                     },
                   ]
                 },
                 {
-                  id: 5,
-                  parent_id: 1,
-                  type: 'file',
-                  name: 'Education',
-                  url: '/education'
-                },
-                {
                   id: 6,
                   parent_id: 1,
                   type: 'file',
-                  name: 'About_me',
+                  name: 'About me',
                   url: '/about'
                 }
               ]

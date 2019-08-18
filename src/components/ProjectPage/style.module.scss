@@ -86,9 +86,11 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
-      overflow-x: hidden;
-      overflow-y: auto;
-      //scrollbar-color: $primary $router-bg;
+      overflow: auto;
+
+      &:hover{
+        overflow-y: scroll;
+      }
 
       .imageItem{
         width: calc(calc(100% - 20px) / 2);
@@ -121,9 +123,12 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    overflow-y: hidden;
-    overflow-x: auto;
     margin: 0 0 10px 0;
+    overflow: auto;
+
+    &:hover{
+      overflow-y: scroll;
+    }
 
     .skillItem{
       width: 30px;
@@ -139,10 +144,14 @@
     width: 100%;
     height: 200px;
     text-align: justify;
-    overflow-y: scroll;
     margin: 20px 0 10px 0;
+    overflow: auto;
     @include pc{
       height: 50%;
+    }
+
+    &:hover{
+      overflow-y: scroll;
     }
   }
   .links{

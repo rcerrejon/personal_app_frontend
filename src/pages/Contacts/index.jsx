@@ -94,7 +94,7 @@ class Contacts extends React.Component{
         return (
           <div key={el.url} className={linkItem} onClick={() => this._openInNewTab(el.url)}>
             {el.icon && <FontAwesomeIcon icon={['fab', el.icon]}/>}
-            {el.icon && '__'}
+            {el.icon && ' '}
             {el.name}
           </div>
         )

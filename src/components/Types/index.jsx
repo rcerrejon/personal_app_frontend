@@ -3,6 +3,7 @@ import propTypes from 'prop-types'
 import history from '../../history'
 import { withRouter } from 'react-router';
 import style from './style.module.scss';
+import Img from 'react-image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Types extends React.Component{
@@ -52,7 +53,7 @@ class Types extends React.Component{
       return types.map(({id, name, icon, url}) =>
         <div key={id} className={folderItem} onClick={() => history.push(`${this.props.location.pathname}/${url}`)}>
           <FontAwesomeIcon className={indicator} icon="folder"/>
-          <img className={folderIcon} src={icon} height="100%" alt="icon"/>
+          <Img className={folderIcon} src={icon} alt="icon"/>
           <div className={folderName}>{name}</div>
         </div>
       )
