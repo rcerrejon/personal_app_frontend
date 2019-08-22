@@ -7,12 +7,12 @@ export const Btn = styled.div`
   height: 100%;
   padding: 0px 10px;
   margin: 0 0 0 2px;
-  background-color: ${props => props.theme.dark};
+  background-color: ${props => props.active ? props.theme.primary : props.theme.dark};
   cursor: pointer;
   
-  @media ${device.mobile} {
-    display: none;
-  }
+  // @media ${device.pc} {
+  //   display: none;
+  // }
 
   &:hover{
     background-color: ${props => props.theme.primary};

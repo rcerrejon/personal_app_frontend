@@ -57,7 +57,6 @@
     width: 30%;
 
     @include mobile{
-      display: none;
       position: absolute;
       top: 0;
       left: 30px;
@@ -81,12 +80,13 @@
       height: $height-main-content;
       width: 70%;
       padding: 20px;
+      padding-left: 40px;
     }
     @include mobile{
       height: $height-main-content-mobile;
-      width: calc(100vw - 30px);
-      margin: 0 0 0 30px;
+      width: 100%;
       padding: 10px;
+      padding-left: 40px;
     }
 
     .images{
@@ -96,11 +96,7 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
-      overflow: auto;
-
-      &:hover{
-        overflow-y: scroll;
-      }
+      overflow: scroll;
 
       .imageItem{
         width: calc(calc(100% - 20px) / 2);
@@ -155,13 +151,10 @@
     height: 200px;
     text-align: justify;
     margin: 20px 0 10px 0;
-    overflow: auto;
+    overflow-y: scroll;
+
     @include pc{
       height: 50%;
-    }
-
-    &:hover{
-      overflow-y: scroll;
     }
   }
   .links{

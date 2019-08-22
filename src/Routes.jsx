@@ -39,7 +39,7 @@ function Routes() {
         <Route key={path} exact={exact} path={path}>
           {({ match }) => (
             <div className={style.page}>
-              <Component>
+              <Component >
                 {children && (
                   <Switch>
                     {children.map( ({path, exact, Component}) => (

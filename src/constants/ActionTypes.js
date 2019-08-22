@@ -1,3 +1,3 @@
-export const ADD_NOTE = 'ADD_NOTE';
-export const DELETE_NOTE = 'DELETE_NOTE';
-export const GET_USER_NOTES = 'GET_USER_NOTES';
+// portfolio
+export const SWITCH_LEFTNAV = 'SWITCH_LEFTNAV';
+export const SWITCH_INFO = 'SWITCH_INFO';

@@ -6,13 +6,15 @@ import { Route, Switch, withRouter } from 'react-router';
 import history from '../../history';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Btn } from './styled'
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
+import * as PortfolioActions from '../../actions/PortfolioActions';
 
 class Portfolio extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-          isOpenLeftNavbar: false,
-          isOpenInfo: false,
+          isMobile: false,
           dirs: [{
               id: 1,
               type : 'folder',
@@ -75,6 +77,30 @@ class Portfolio extends React.Component{
                           name: 'my.homepage.com',
                           url: '/projects/backend/my-homepage'
                         },
+                        {
+                          id: 5,
+                          parent_id: 4,
+                          type: 'folder',
+                          open: false,
+                          name: 'Backend',
+                          url: '/projects/backend',
+                          childs: [
+                            {
+                              id: 11,
+                              parent_id: 5,
+                              type: 'proj',
+                              name: 'teams.mospolytech.ru',
+                              url: '/projects/backend/teams-mospolytech'
+                            },
+                            {
+                              id: 12,
+                              parent_id: 5,
+                              type: 'proj',
+                              name: 'my.homepage.com',
+                              url: '/projects/backend/my-homepage'
+                            },
+                          ]
+                        },
                       ]
                     },
                   ]
@@ -91,6 +117,7 @@ class Portfolio extends React.Component{
           }]
         }
     }
+    actions = bindActionCreators(PortfolioActions, this.props.dispatch);
 
     render() {
       const {
@@ -105,18 +132,29 @@ class Portfolio extends React.Component{
         return(
             <div className={PortfolioContainer}>
               <div className={hidebar}>
-                <Btn>3: Zhopa</Btn>
-                <div className={button}
-                     onClick={() => this._switchLeftNavbar()}
-                >2: Info</div>
-                <div className={button}
-                     onClick={() => this._switchLeftNavbar()}
-                >1: Navbar</div>
+                {
+                  this.state.isMobile
+                  &&
+                  <Btn active={this.props.portfolio.isOpenInfo}
+                       onClick={() => this._switchInfo()}
+                  >2: Info</Btn>
+                }
+                {
+                  this.state.isMobile
+                  &&
+                  <Btn active={this.props.portfolio.isOpenLeftnav}
+                       onClick={() => this._switchLeftnav()}
+                  >1: Navbar</Btn>
+                }
                 <div className={disabled_btn}>Portfolio</div>
               </div>
-              <div className={leftNavbar}>
-                {this.renderNavlist()}
-              </div>
+              {
+                this.props.portfolio.isOpenLeftnav
+                &&
+                <div className={leftNavbar}>
+                  {this.renderNavlist()}
+                </div>
+              }
             {/*<div className={[style.loader, style.center].join(" ")}><span>!</span></div>*/}
               <div className={mainContent}>
                 <Switch>
@@ -126,19 +164,38 @@ class Portfolio extends React.Component{
             </div>
         )
     }
-    componentDidMount() {}
-    componentWillUnmount() {}
 
-    _switchLeftNavbar = () => {
-      this.setState({
-        isOpenLeftNavbar: !this.state.isOpenLeftNavbar
-      })
+    updateWidth = () => {
+      this.setState({isMobile: window.innerWidth <= 999})
+      if (this.state.isMobile ){
+        if (this.props.portfolio.isOpenLeftnav){
+          this._switchLeftnav()
+        }
+      } else {
+        if (!this.props.portfolio.isOpenLeftnav){
+          this._switchLeftnav()
+        }
+        if (!this.props.portfolio.isOpenInfo){
+          this._switchInfo()
+        }
+      }
+    }
+    componentDidMount() {
+      window.addEventListener('resize', this.updateWidth)
+    }
+    componentWillMount() {
+      this.updateWidth()
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWidth)
+    }
+
+    _switchLeftnav = () => {
+      this.actions.switchLeftnav()
     }
 
     _switchInfo = () => {
-      this.setState({
-        isOpenInfo: !this.state.isOpenInfo
-      })
+      this.actions.switchInfo()
     }
 
     _makeObjToTree = (array, prefix) => {
@@ -214,4 +271,12 @@ class Portfolio extends React.Component{
 }
 
 Portfolio.propTypes = {  };
-export default withRouter(Portfolio);
+
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(Portfolio);

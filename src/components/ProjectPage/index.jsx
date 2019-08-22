@@ -7,6 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OpenInNewRounded } from '@material-ui/icons';
 import Preloader from '../Preloader';
 import PopupGalary from '../PopupGalary';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as PortfolioActions from '../../actions/PortfolioActions';
 
 class ProjectPage extends React.Component{
     constructor(props){
@@ -66,6 +69,7 @@ class ProjectPage extends React.Component{
           }
         }
     }
+    actions = bindActionCreators(PortfolioActions, this.props.dispatch);
 
     componentDidMount() {}
 
@@ -100,25 +104,29 @@ class ProjectPage extends React.Component{
                 </div>
               </div>
 
-              <div className={sidePanelWrapper}>
-                <SidePanel>
-                  <div className={spanWrapper}>
+              {
+                this.props.portfolio.isOpenInfo
+                &&
+                <div className={sidePanelWrapper}>
+                  <SidePanel>
+                    <div className={spanWrapper}>
                     <span className={[name, nameSidePanel].join(" ")}
-                         onClick={() => this._openInNewTab(project.linkToSite)}
+                          onClick={() => this._openInNewTab(project.linkToSite)}
                     >{project.name} <OpenInNewRounded/></span>
-                  </div>
-                  <div className={spanWrapper}>
-                    <span className={role}>Моя роль: {project.role}</span>
-                  </div>
-                  <div className={skills}>
-                    {this.renderSkills()}
-                  </div>
-                  <div className={desc}>{project.desc}</div>
-                  <div className={links}>
-                    {this.renderLinks()}
-                  </div>
-                </SidePanel>
-              </div>
+                    </div>
+                    <div className={spanWrapper}>
+                      <span className={role}>Моя роль: {project.role}</span>
+                    </div>
+                    <div className={skills}>
+                      {this.renderSkills()}
+                    </div>
+                    <div className={desc}>{project.desc}</div>
+                    <div className={links}>
+                      {this.renderLinks()}
+                    </div>
+                  </SidePanel>
+                </div>
+              }
             </div>
         )
     }
@@ -176,4 +184,8 @@ class ProjectPage extends React.Component{
 }
 
 ProjectPage.propTypes = {  };
-export default ProjectPage;
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+export default connect(mapStateToProps)(ProjectPage);

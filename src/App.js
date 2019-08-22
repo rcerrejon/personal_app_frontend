@@ -1,11 +1,14 @@
 import React from 'react';
 import style from './App.module.scss';
+
 import Routes from "./Routes";
 import { Router } from "react-router-dom";
 import history from './history';
+
 import { library } from '@fortawesome/fontawesome-svg-core/index'
 import { faCheckSquare, faCoffee, faArrowRight, faArrowLeft, faEnvelopeOpenText, faTimes, faLanguage, faWindowClose, faFile, faFolder, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons/index'
 import { fab, faGithub, faGitlab, faGoogle } from '@fortawesome/free-brands-svg-icons'
+
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk';
@@ -20,7 +23,6 @@ import NavbarMain from './components/NavbarMain';
 const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./config/scss/index.scss');
 
 library.add(faCheckSquare, faCoffee, faArrowRight, faArrowLeft, faEnvelopeOpenText, faTimes, faLanguage, faWindowClose, faGithub, fab, faFile, faFolder, faExternalLinkAlt, faGitlab, faGoogle )
-
 
 const reducer = combineReducers(reducers);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -39,9 +41,9 @@ function App() {
         <Router history={history}>
             <Header />
             <NavbarMain />
-              <div className={style.AppContainer} >
-                <Routes/>
-              </div>
+            <div className={style.AppContainer}>
+              <Routes/>
+            </div>
             <Console />
         </Router>
       </ThemeProvider>
