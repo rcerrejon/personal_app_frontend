@@ -5,12 +5,14 @@ import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note } from '@mate
 import { Route, Switch, withRouter } from 'react-router';
 import history from '../../history';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Btn } from './styled'
 
 class Portfolio extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-          isOpenDirs: ['beginFromFirstIndex', true],
+          isOpenLeftNavbar: false,
+          isOpenInfo: false,
           dirs: [{
               id: 1,
               type : 'folder',
@@ -91,13 +93,26 @@ class Portfolio extends React.Component{
     }
 
     render() {
-      const {PortfolioContainer, leftNavbar, mainContent, hidebar, button} = style;
+      const {
+        PortfolioContainer,
+        leftNavbar,
+        mainContent,
+        hidebar,
+        button,
+        disabled_btn
+      } = style;
 
         return(
             <div className={PortfolioContainer}>
               <div className={hidebar}>
-                <div className={button}>2: Info</div>
-                <div className={button}>1: Portfolio</div>
+                <Btn>3: Zhopa</Btn>
+                <div className={button}
+                     onClick={() => this._switchLeftNavbar()}
+                >2: Info</div>
+                <div className={button}
+                     onClick={() => this._switchLeftNavbar()}
+                >1: Navbar</div>
+                <div className={disabled_btn}>Portfolio</div>
               </div>
               <div className={leftNavbar}>
                 {this.renderNavlist()}
@@ -106,7 +121,6 @@ class Portfolio extends React.Component{
               <div className={mainContent}>
                 <Switch>
                   {this.props.children}
-                  {/*<Route exact path="/portfolio/zhopa"><div>zhopa</div></Route>*/}
                 </Switch>
               </div>
             </div>
@@ -114,6 +128,18 @@ class Portfolio extends React.Component{
     }
     componentDidMount() {}
     componentWillUnmount() {}
+
+    _switchLeftNavbar = () => {
+      this.setState({
+        isOpenLeftNavbar: !this.state.isOpenLeftNavbar
+      })
+    }
+
+    _switchInfo = () => {
+      this.setState({
+        isOpenInfo: !this.state.isOpenInfo
+      })
+    }
 
     _makeObjToTree = (array, prefix) => {
       const { treeItem, folderInner, folderInnerClosed, fileIcon } = style;

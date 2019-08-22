@@ -2,7 +2,9 @@
   <dictionary name="udachin_vadim">
     <words>
       <w>fullstack</w>
+      <w>hidebar</w>
       <w>mospolytech</w>
+      <w>navbar</w>
     </words>
   </dictionary>
 </component>

@@ -6,7 +6,7 @@
   //display: none; //TEST mobile
 
   @include pc{
-    height: $heightMainContent;
+    height: $height-main-content;
     width: 100%;
     padding: 20px;
   }
@@ -16,7 +16,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: $heightMainContentMobile;
+    height: $height-main-content-mobile;
     padding: 10px;
   }
 }

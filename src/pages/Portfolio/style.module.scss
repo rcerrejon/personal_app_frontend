@@ -13,20 +13,21 @@
   }
 
   .hidebar{
+    z-index: 14;
     position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     top: calc((100vh - 330px) / 2); left: calc((100vh - 330px) / -2);
     transform: rotate(-90deg);
-    width: $heightMainContent;
+    width: $height-main-content;
     background-color: $black;
     border-bottom: 2px solid $router-bg;
     height: 30px;
     transition: all ease .3s;
 
     @include mobile{
-      width: $heightMainContentMobile;
+      width: $height-main-content-mobile;
       top: calc((100vh - 230px) / 2); left: calc((100vh - 230px) / -2);
     }
 
@@ -43,14 +44,32 @@
         background-color: $primary;
       }
     }
+
+    .disabled_btn{
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0px 10px;
+      margin: 0 0 0 2px;
+      cursor: default;
+    }
   }
 
   .leftNavbar{
+    z-index: 13;
     padding: 10px 0 0 30px;
-    //overflow-x: hidden;
     border-right: 2px solid $router-bg;
     background-color: $dark;
     overflow: auto;
+
+    @include mobile{
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: calc(100vw - 30px);
+      height: $height-main-content-mobile;
+    }
 
     &:hover{
       overflow-x: scroll;

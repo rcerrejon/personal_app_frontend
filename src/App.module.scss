@@ -30,14 +30,14 @@ ul {
 .AppContainer {
   position: relative;
   width: 100%;
-  height: $heightMainContent;
+  height: $height-main-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: all ease-in 0.5s;
 
   @include mobile{
-    height: $heightMainContentMobile;
+    height: $height-main-content-mobile;
   }
 }
 ////

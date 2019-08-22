@@ -16,12 +16,12 @@
 
 
     @include pc{
-      height: $heightMainContent;
+      height: $height-main-content;
       width: 70%;
       padding: 20px;
     }
     @include mobile{
-      height: $heightMainContentMobile;
+      height: $height-main-content-mobile;
       width: 100%;
       padding: 10px;
     }
@@ -29,11 +29,11 @@
 
   .sidePanelWrapper{
     position: relative;
-    height: $heightMainContent;
+    height: $height-main-content;
     width: 30%;
 
     @include mobile{
-      height: $heightMainContentMobile;
+      height: $height-main-content-mobile;
     }
   }
 
@@ -48,50 +48,59 @@
     margin: 0 0 30px 0;
   }
 
-  .workPathTitle{
-    font-weight: bold;
-    color: $secondary;
-    font-size: 25px;
-    border-left: 2px solid $secondary;
-    padding: 0 0 10px 10px;
-  }
-
-  .workPath{
-    border-left: 2px solid $secondary;
+  @mixin pathItem($color) {
+    border-left: 2px solid $color;
     background-color: $black;
     padding: 10px 30px;
 
-    .workItem{
+    .item{
+      padding: 0 0 10px 0;
       font-size: 20px;
 
       .count{}
-      .company{}
-      .date{}
-      .period{}
-      .note{}
+      .name{
+        font-size: 18px;
+        display: flex;
+        flex-direction: row;
+
+        @include mobile{
+          flex-direction: column;
+        }
+
+        span{
+          border-bottom: 2px solid $color;
+        }
+      }
+      .date{
+        padding: 0 10px;
+        opacity: .6;
+      }
+      .note{
+        padding: 0 0 0 10px;
+        opacity: .8;
+      }
     }
+  }
+
+  @mixin pathTitle($color){
+    font-weight: bold;
+    color: $color;
+    font-size: 25px;
+    //border-left: 2px solid $color;
+    padding: 0 0 10px 0px;
+  }
+  .workPathTitle{
+    @include pathTitle($secondary)
   }
 
   .educationTitle{
-    font-weight: bold;
-    color: $primary;
-    font-size: 25px;
     margin: 30px 0 0px 0;
-    padding: 0 0 10px 10px;
-    border-left: 2px solid $primary;
+    @include pathTitle($primary)
+  }
+  .workPath{
+    @include pathItem($secondary)
   }
   .educationPath{
-    border-left: 2px solid $primary;
-    font-size: 20px;
-    padding: 10px 30px;
-    background-color: $black;
-
-    .eduItem{
-
-      .count{}
-      .name{}
-      .date{}
-      .note{}
-    }
+    @include pathItem($primary)
   }
 }

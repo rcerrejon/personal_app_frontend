@@ -12,11 +12,17 @@ class AboutPage extends React.Component{
           works: [
             {
               id: 1,
-              company: 'WNM.Digital',
+              name: 'WNM.Digital',
               linkToSite: 'www.wnm.digital',
-              date: 'February 2019',
-              period: 3.5,
-              note: 'Два месяца стажировался, затем 1.5 месяца работа на должности'
+              date: 'Feb - May, 2019',
+              note: 'Будучи junior-программистом занимался front-end разработкой на Vue.js .'
+            },
+            {
+              id: 2,
+              name: 'Qiwi',
+              linkToSite: 'www.wnm.digital',
+              date: 'Aug 2019 - Aug 2020',
+              note: 'Будучи middle-программистом занимался front-end разработкой на React.js .'
             }
           ],
           educations: [
@@ -53,7 +59,7 @@ class AboutPage extends React.Component{
                 <div className={title}>About me</div>
                 <div className={shortInfo}>{this.state.shortInfo}</div>
                 <div className={workPathTitle}>Work path</div>
-                <div className={[workPath, noMobile].join(" ")}>
+                <div className={workPath}>
                   {this.renderWorkPath()}
                 </div>
                 <div className={educationTitle}>Education</div>
@@ -62,7 +68,7 @@ class AboutPage extends React.Component{
                 </div>
               </div>
 
-              <div className={sidePanelWrapper}>
+              <div className={[sidePanelWrapper, noMobile].join(" ")}>
                 <SidePanel>
                   график
                 </SidePanel>
@@ -73,7 +79,7 @@ class AboutPage extends React.Component{
 
   renderEducations = () => {
     const {
-      eduItem,
+      item,
       count,
       name,
       date,
@@ -82,10 +88,12 @@ class AboutPage extends React.Component{
 
       return this.state.educations.map((el, index) => {
         return (
-          <div className={eduItem}>
-            <div className={count}>{index + 1}</div>
-            <div className={name}>{el.name}</div>
-            <div className={date}>{el.date}</div>
+          <div className={item}>
+            {/*<div className={count}>{index + 1}</div>*/}
+            <div className={name}>
+              <span>{el.name}</span>
+              <div className={date}>{el.date}</div>
+            </div>
             <div className={note}>{el.note}</div>
           </div>
         )
@@ -94,21 +102,21 @@ class AboutPage extends React.Component{
 
     renderWorkPath = () => {
       const {
-        workItem,
+        item,
         count,
-        company,
+        name,
         date,
-        period,
         note
       } = style;
 
       return this.state.works.map((el, index) => {
         return (
-          <div className={workItem}>
-            <div className={count}>{index + 1}</div>
-            <div className={company}>{el.company}</div>
-            <div className={date}>{el.date}</div>
-            <div className={period}>{el.period}</div>
+          <div className={item}>
+            {/*<div className={count}>{index + 1}</div>*/}
+            <div className={name}>
+              <span>{el.name}</span>
+              <div className={date}>{el.date}</div>
+            </div>
             <div className={note}>{el.note}</div>
           </div>
         )

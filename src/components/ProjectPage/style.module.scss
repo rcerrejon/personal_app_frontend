@@ -55,6 +55,15 @@
 
   .sidePanelWrapper{
     width: 30%;
+
+    @include mobile{
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 30px;
+      width: calc(100vw - 30px);
+      height: $height-main-content-mobile;
+    }
   }
 
   .nameSidePanel{
@@ -69,13 +78,14 @@
     //overflow-y: scroll;
 
     @include pc{
-      height: $heightMainContent;
+      height: $height-main-content;
       width: 70%;
       padding: 20px;
     }
     @include mobile{
-      height: $heightMainContentMobile;
-      width: 100%;
+      height: $height-main-content-mobile;
+      width: calc(100vw - 30px);
+      margin: 0 0 0 30px;
       padding: 10px;
     }
 
