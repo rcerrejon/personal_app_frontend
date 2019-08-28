@@ -41,6 +41,17 @@
         background-color: $primary;
         transition: all ease .3s;
       }
+      &:before{
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        opacity: 0.6;
+        background-color: $primary;
+        transition: all ease .3s;
+      }
 
       svg {
         font-size: 25px;

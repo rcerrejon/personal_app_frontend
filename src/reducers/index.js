@@ -1,1 +1,2 @@
-export { default as portfolio } from './portfolio';
+export { default as portfolio } from './portfolioReducer';
+export { default as blog } from './blogReducer';

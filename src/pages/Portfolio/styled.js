@@ -5,7 +5,7 @@ export const Btn = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0px 10px;
+  padding-left: 10px;
   margin: 0 0 0 2px;
   background-color: ${props => props.active ? props.theme.primary : props.theme.dark};
   cursor: pointer;

@@ -6,7 +6,7 @@ const initialState = {
 }
 
 
-export default function portfolio(state = initialState, action) {
+export default function portfolioReducer(state = initialState, action) {
   switch (action.type) {
 
     case types.SWITCH_LEFTNAV:

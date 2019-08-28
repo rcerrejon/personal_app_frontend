@@ -1,3 +1,28 @@
 @import "../../config/scss/index";
 
-.BlogContainer{}
+.BlogContainer{
+  position: relative;
+  width: 100%;
+  height: $height-main-content;
+  display: flex;
+  flex-direction: row;
+
+  @include mobile{
+    height: $height-main-content-mobile;
+  }
+
+  .main{
+    width: 60%;
+    height: 100%;
+    padding: 20px;
+  }
+
+  .wrapSearch{
+    width: 20%;
+    height: 100%;
+  }
+  .wrapTag{
+    width: 20%;
+    height: 100%;
+  }
+}

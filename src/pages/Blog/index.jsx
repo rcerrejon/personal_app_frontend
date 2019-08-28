@@ -1,6 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types'
 import style from './style.module.scss';
+import SearchPanel from '../../components/SearchPanel';
+import TagPanel from '../../components/TagPanel';
+import Hidebar from '../../components/Hidebar';
+import {connect} from 'react-redux'
 
 class Blog extends React.Component{
     constructor(props){
@@ -8,18 +12,34 @@ class Blog extends React.Component{
         this.state = {}
     }
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
     render() {
-        return(
-            <div className={style.BlogContainer}>
-                Blog
+      const {
+        main,
+        wrapSearch,
+        wrapTag
+      } = style;
+
+      return(
+          <div className={style.BlogContainer}>
+            <Hidebar>
+              Hidebar
+            </Hidebar>
+            <div className={wrapSearch}><SearchPanel/></div>
+            <div className={main}>
+              Main
             </div>
-        )
+            <div className={wrapTag}><TagPanel/></div>
+          </div>
+      )
     }
+
+    componentDidMount() {}
+    componentWillUnmount() {}
 }
 
 Blog.propTypes = {  };
-export default Blog;
+
+const mapStateToProps = (state) => ({
+  ...state
+})
+export default connect(mapStateToProps)(Blog);

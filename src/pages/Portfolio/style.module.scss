@@ -12,47 +12,27 @@
     grid-template-columns: 1fr 2fr;
   }
 
-  .hidebar{
-    z-index: 14;
-    position: absolute;
+  .button{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    top: calc((100vh - 330px) / 2); left: calc((100vh - 330px) / -2);
-    transform: rotate(-90deg);
-    width: $height-main-content;
-    background-color: $black;
-    border-bottom: 2px solid $router-bg;
-    height: 30px;
-    transition: all ease .3s;
+    align-items: center;
+    height: 100%;
+    padding: 0px 10px;
+    margin: 0 0 0 2px;
+    background-color: $dark;
+    cursor: pointer;
 
-    @include mobile{
-      width: $height-main-content-mobile;
-      top: calc((100vh - 230px) / 2); left: calc((100vh - 230px) / -2);
+    &:hover{
+      background-color: $primary;
     }
+  }
 
-    .button{
-      display: flex;
-      align-items: center;
-      height: 100%;
-      padding: 0px 10px;
-      margin: 0 0 0 2px;
-      background-color: $dark;
-      cursor: pointer;
-
-      &:hover{
-        background-color: $primary;
-      }
-    }
-
-    .disabled_btn{
-      display: flex;
-      align-items: center;
-      height: 100%;
-      padding: 0px 10px;
-      margin: 0 0 0 2px;
-      cursor: default;
-    }
+  .disabled_btn{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 10px;
+    margin: 0 0 0 2px;
+    cursor: default;
   }
 
   .leftNavbar{

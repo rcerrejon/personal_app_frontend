@@ -9,6 +9,7 @@ import { Btn } from './styled'
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as PortfolioActions from '../../actions/PortfolioActions';
+import Hidebar from '../../components/Hidebar';
 
 class Portfolio extends React.Component{
     constructor(props){
@@ -124,14 +125,12 @@ class Portfolio extends React.Component{
         PortfolioContainer,
         leftNavbar,
         mainContent,
-        hidebar,
-        button,
         disabled_btn
       } = style;
 
         return(
             <div className={PortfolioContainer}>
-              <div className={hidebar}>
+              <Hidebar>
                 {
                   this.state.isMobile
                   &&
@@ -147,7 +146,7 @@ class Portfolio extends React.Component{
                   >1: Navbar</Btn>
                 }
                 <div className={disabled_btn}>Portfolio</div>
-              </div>
+              </Hidebar>
               {
                 this.props.portfolio.isOpenLeftnav
                 &&
@@ -182,6 +181,7 @@ class Portfolio extends React.Component{
     }
     componentDidMount() {
       window.addEventListener('resize', this.updateWidth)
+      this.updateWidth()
     }
     componentWillMount() {
       this.updateWidth()
