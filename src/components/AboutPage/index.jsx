@@ -86,9 +86,9 @@ class AboutPage extends React.Component{
       note
     } = style;
 
-      return this.state.educations.map((el, index) => {
+      return this.state.educations.map((el) => {
         return (
-          <div className={item}>
+          <div className={item} key={el.id}>
             {/*<div className={count}>{index + 1}</div>*/}
             <div className={name}>
               <span>{el.name}</span>
@@ -109,9 +109,9 @@ class AboutPage extends React.Component{
         note
       } = style;
 
-      return this.state.works.map((el, index) => {
+      return this.state.works.map((el) => {
         return (
-          <div className={item}>
+          <div className={item} key={el.id}>
             {/*<div className={count}>{index + 1}</div>*/}
             <div className={name}>
               <span>{el.name}</span>
