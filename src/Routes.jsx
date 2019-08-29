@@ -10,6 +10,8 @@ import Types from './components/Types';
 import TypeFolder from './components/TypeFolder';
 import ProjectPage from './components/ProjectPage';
 import AboutPage from './components/AboutPage';
+import Articles from './components/Articles';
+import ArticlePage from './components/ArticlePage';
 
 const Page404 = () => {
   return <div>not found</div>
@@ -24,10 +26,15 @@ const routes = [
       {path: '/portfolio/projects', name: 'Projects', exact: true, Component: Types},
       {path: '/portfolio/projects/:type', name: 'Type', exact: true, Component: TypeFolder},
       {path: '/portfolio/projects/:type/:id', name: 'ProjectPage', exact: true, Component: ProjectPage},
-      {path: '/portfolio/:filePath', name: '', exact: false, Component: ProjectPage},
+      {path: '/portfolio/*', name: '', exact: false, Component: Page404},
     ]
   },
-  {path: '/blog', name: 'Blog', exact: true, Component: Blog},
+  {path: '/blog', name: 'Blog', exact: false, Component: Blog,
+    children: [
+      {path: '/blog', name: 'Articles', exact: true, Component: Articles},
+      {path: '/blog/:id', name: 'Article', exact: true, Component: ArticlePage}
+    ]
+  },
   {path: '/contacts', name: 'Contacts', exact: true, Component: Contacts},
   {path: '*', name: 'page404', exact: true, Component: Page404},
 ]

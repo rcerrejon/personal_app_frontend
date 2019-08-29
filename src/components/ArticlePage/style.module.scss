@@ -1,0 +1,167 @@
+@import '../../config/scss/index';
+.ArticlePageContainer{
+  position: relative;
+  margin: 0 0 40px 0;
+  padding-right: 10px;
+  height: 100%;
+  overflow: auto;
+
+  .btn_back{
+    margin: 0 0 10px 0;
+    vertical-align: middle;
+    cursor: pointer;
+    border-left: 2px solid $primary;
+    background-color: $dark;
+    transition: all ease .3s;
+    color: $primary;
+
+    &:hover{
+      background-color: $primary;
+      color: #ffffff;
+    }
+
+    svg{
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  .header{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex: auto;
+
+    .name{
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .date{
+      opacity: 0.7;
+    }
+  }
+
+
+  .tags{
+    display: flex;
+    flex-direction: row;
+
+    .tag{
+      margin: 0 5px 0 0;
+      opacity: 0.7;
+      transition: all ease .3s;
+      cursor: pointer;
+
+      &:hover{
+        opacity: 1;
+      }
+
+      .hash{
+        color: $secondary;
+      }
+
+    }
+  }
+
+  .text{
+    margin: 10px 0 0 0;
+    font-size: 22px;
+    line-height: 1.5;
+    //letter-spacing: 1px;
+    word-spacing: 2px;
+  }
+
+  .comments{
+    margin: 20px 0;
+
+    .title{
+      margin: 0 0 20px 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      color: $secondary;
+      font-size: 27px;
+
+      span{
+        display: flex;
+        align-items: center;
+
+        svg{
+          margin: 0 4px 0 10px;
+        }
+      }
+
+      .btn_comment{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        color: $yellow;
+        transition: all ease .3s;
+
+        &:hover{
+          background-color: $primary;
+        }
+      }
+    }
+
+    .comment{
+      margin: 0 0 15px 0;
+
+      .comment_header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .comment_author{
+          font-weight: bold;
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .comment_date{
+          opacity: 0.7;
+        }
+      }
+      .comment_text{}
+    }
+  }
+
+  .action_panel{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0 0 0;
+
+    .stats{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      .stat{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        color: $secondary;
+        font-weight: bold;
+
+        svg {
+          margin: 0 3px 0 0;
+        }
+      }
+    }
+
+
+  }
+}

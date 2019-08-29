@@ -9,3 +9,19 @@
     @content;
   }
 }
+
+@mixin popup {
+  position: fixed;
+  z-index: 100;
+  top: 100px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 130px 50px $dark;
+  width: 100vw;
+  height: $height-main-content;
+  @include mobile{
+    height: $height-main-content-mobile;
+  }
+}

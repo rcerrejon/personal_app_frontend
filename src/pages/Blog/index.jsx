@@ -5,18 +5,22 @@ import SearchPanel from '../../components/SearchPanel';
 import TagPanel from '../../components/TagPanel';
 import Hidebar from '../../components/Hidebar';
 import {connect} from 'react-redux'
+import ArticleCard from '../../components/ArticleCard';
 
 class Blog extends React.Component{
     constructor(props){
         super(props)
-        this.state = {}
+        this.state = {
+
+        }
     }
 
     render() {
       const {
         main,
         wrapSearch,
-        wrapTag
+        wrapTag,
+        articlesBlock
       } = style;
 
       return(
@@ -26,7 +30,7 @@ class Blog extends React.Component{
             </Hidebar>
             <div className={wrapSearch}><SearchPanel/></div>
             <div className={main}>
-              Main
+              {this.props.children}
             </div>
             <div className={wrapTag}><TagPanel/></div>
           </div>
@@ -35,6 +39,8 @@ class Blog extends React.Component{
 
     componentDidMount() {}
     componentWillUnmount() {}
+
+
 }
 
 Blog.propTypes = {  };
