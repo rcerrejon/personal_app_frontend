@@ -11,19 +11,50 @@
     height: $height-main-content-mobile;
   }
 
+  .disabled_btn{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 10px;
+    margin: 0 0 0 2px;
+    cursor: default;
+  }
+
   .main{
     width: 60%;
     height: 100%;
     padding: 20px;
 
+    @include mobile{
+      width: 100vw;
+      padding-left: 40px;
+      padding-right: 10px;
+    }
   }
 
   .wrapSearch{
     width: 20%;
     height: 100%;
+
+    @include mobile{
+      position: absolute;
+      z-index: 13;
+      width: 100vw;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
   }
   .wrapTag{
     width: 20%;
     height: 100%;
+
+    @include mobile{
+      position: absolute;
+      width: 100vw;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
   }
 }

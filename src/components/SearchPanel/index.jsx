@@ -15,6 +15,7 @@ class SearchPanel extends React.Component{
     }
 
     componentDidMount() {
+        // localStorage.setItem('history', JSON.stringify(this.state.history))
         this.setState({history: JSON.parse(localStorage.getItem('history')) || []})
     }
 
@@ -54,6 +55,7 @@ class SearchPanel extends React.Component{
         return this.state.history.map(el => {
             return (
             <div className={listItem}
+                 key={el.id}
                  onClick={() => this.props.history.push(el.link)}
             >
                 <span>{el.name}</span>

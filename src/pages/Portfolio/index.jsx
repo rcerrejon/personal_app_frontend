@@ -5,7 +5,7 @@ import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note } from '@mate
 import { Route, Switch, withRouter } from 'react-router';
 import history from '../../history';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Btn } from './styled'
+import { Btn } from './styled';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as PortfolioActions from '../../actions/PortfolioActions';

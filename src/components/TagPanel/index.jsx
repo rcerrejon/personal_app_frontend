@@ -57,6 +57,7 @@ class TagPanel extends React.Component{
       return this.state.tags.map(el => {
         return (
           <div className={tag}
+               key={el.id}
                style={{padding: !el.chosen ? '0 0 0 50%' : '0 50% 0 0', textAlign: !el.chosen ? 'left' : 'right'}}
           >
             <span onClick={() => this.chooseTag(el.id)}>

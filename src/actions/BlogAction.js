@@ -1,8 +1,13 @@
 import * as types from '../constants/ActionTypes';
 
-export function getTags() {
-  const tags = []
+export function switchSearch() {
   return {
-    type: types.GET_TAGS
+    type: types.SWITCH_SEARCH
+  }
+}
+
+export function switchTags() {
+  return {
+    type: types.SWITCH_TAGS
   }
 }

@@ -1,6 +1,8 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
+  isOpenSearch: true,
+  isOpenTags: true,
   tags: [
     {
       id: 1,
@@ -10,12 +12,19 @@ const initialState = {
 }
 
 
-export default function portfolioReducer(state = initialState, action) {
+export default function blogReducer(state = initialState, action) {
   switch (action.type) {
 
-    case types.GET_TAGS:
+    case types.SWITCH_SEARCH:
       return {
+        ...state,
+        isOpenSearch: !state.isOpenSearch
+      }
 
+    case types.SWITCH_TAGS:
+      return {
+        ...state,
+        isOpenTags: !state.isOpenTags
       }
 
     default:
