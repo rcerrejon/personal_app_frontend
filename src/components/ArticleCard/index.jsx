@@ -37,17 +37,18 @@ function ArticleCard(props) {
   ]
 
   const renderTags = () => {
-    return article.tags.map((el, index) => {
+    return article.tags.map((el) => {
       return (
-        <div className={tag} key={index}>
+        <div className={tag} key={el.id}>
           <span className={hash}>#</span>
-          {el}
+          {el.name}
         </div>
       )
     })
   }
 
-  const getDate = (date) => {
+  const getDate = (dateProp) => {
+    let date = new Date(dateProp)
     return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
   }
 
@@ -58,21 +59,21 @@ function ArticleCard(props) {
   return (
       <div className={style.ArticleCardContainer} >
         <div className={header}>
-          <div className={name}>{article.name}</div>
+          <div className={name}>{article.name_RU}</div>
           <div className={spacer} />
           <div className={date}>{getDate(article.date)}</div>
         </div>
         <div className={tags}>
           {renderTags()}
         </div>
-        <div className={text}>{sliceText(article.text)}</div>
+        <div className={text}>{sliceText(article.text_RU)}</div>
         <div className={action_panel}>
           <div className={btn_open}
                onClick={() => {props.history.push(`blog/${article.id}`)}}
           >Read</div>
           <div className={stats}>
             <div className={stat}><Visibility/> {article.views}</div>
-            <div className={stat}><Comment/> {article.comments.length}</div>
+            <div className={stat}><Comment/> {/*{article.comments.length}*/}0</div> {/*TODO*/}
           </div>
         </div>
       </div>

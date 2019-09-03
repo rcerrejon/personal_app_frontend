@@ -1,14 +1,12 @@
 import * as types from '../constants/ActionTypes'
+import { setLoadingData } from '../actions/CommonAction'
 
 const initialState = {
   isOpenSearch: true,
   isOpenTags: true,
-  tags: [
-    {
-      id: 1,
-      name: 'Frontend'
-    }
-  ]
+  tags: [],
+  articles: [],
+  article: {}
 }
 
 
@@ -25,6 +23,16 @@ export default function blogReducer(state = initialState, action) {
       return {
         ...state,
         isOpenTags: !state.isOpenTags
+      }
+    case types.GET_BLOG:
+      return {
+        ...state,
+        articles: action.articles
+      }
+    case types.GET_ARTICLE:
+      return {
+        ...state,
+        article: action.article
       }
 
     default:

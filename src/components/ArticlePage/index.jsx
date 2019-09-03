@@ -4,6 +4,11 @@ import style from './style.module.scss';
 import { Comment, Visibility, NavigateBefore, AddComment } from '@material-ui/icons';
 import {withRouter} from 'react-router';
 import PopupCommentCreate from '../PopupCommentCreate';
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
+import * as BlogActions from '../../actions/BlogAction'
+import * as CommonActions from '../../actions/CommonAction'
+import Preloader from '../Preloader';
 
 class ArticlePage extends React.Component{
     constructor(props){
@@ -34,6 +39,9 @@ class ArticlePage extends React.Component{
           }
         }
     }
+
+    actionsBlog = bindActionCreators(BlogActions, this.props.dispatch);
+    actionsCommon = bindActionCreators(CommonActions, this.props.dispatch);
 
      months = [
       'Января',
@@ -67,8 +75,9 @@ class ArticlePage extends React.Component{
         header
       } = style
 
-      const {article} = this.state;
+      const {article} = this.props.blog;
 
+      if (this.props.common.isDataLoaded)
         return(
             <div className={style.ArticlePageContainer}>
               {this.state.isOpenPopupComment && <PopupCommentCreate closePopup={this.switchPopupComment}/>}
@@ -82,26 +91,35 @@ class ArticlePage extends React.Component{
                 </div>
               </div>
               <div className={header}>
-                <div className={name}>{article.name}</div>
+                <div className={name}>{article.name_RU}</div>
                 <div className={spacer}/>
                 <div className={date}>{this.getDate(article.date)}</div>
               </div>
               <div className={tags}>
-                {this.renderTags()}
+                {article.tags && this.renderTags(article.tags)}
               </div>
-              <div className={text}>{article.text}</div>
+              <div className={text}>{article.text_RU}</div>
               <div className={comments}>
                 <div className={title}>
-                  <span>Комментарии <Comment/> {article.comments.length}</span>
+                  <span>Комментарии <Comment/> {/*{article.comments.length}*/}</span>{/*TODO*/}
                   <div className={btn_comment} onClick={() => {this.switchPopupComment()}}><AddComment/></div>
                 </div>
-                {this.renderComments()}
+                {/*{this.renderComments()}*/}
               </div>
             </div>
         )
+      else
+        return <Preloader/>
     }
 
-    componentDidMount() {}
+    componentWillMount() {
+      this.actionsCommon.setLoadingData(false)
+      this.actionsBlog.getArticle(this.props.match.params.id)
+    }
+
+  componentDidMount() {
+
+    }
     componentWillUnmount() {}
 
     switchPopupComment = () => {
@@ -118,7 +136,7 @@ class ArticlePage extends React.Component{
         spacer
       } = style;
 
-      return this.state.article.comments.map(el => {
+      return this.props.blog.article.comments.map(el => {
         return (
           <div className={comment} key={el.id}>
             <div className={comment_header}>
@@ -132,26 +150,35 @@ class ArticlePage extends React.Component{
       })
     }
 
-    renderTags = () => {
+    renderTags = (tags) => {
       const {
         tag,
         hash
       } = style;
 
-      return this.state.article.tags.map((el, index) => {
+      return tags.map((el) => {
         return (
-          <div className={tag} key={index}>
+          <div className={tag} key={el.id}>
             <span className={hash}>#</span>
-            {el}
+            {el.name}
           </div>
         )
       })
     }
 
-    getDate = (date) => {
-      return `${date.getDate()} ${this.months[date.getMonth()]} ${date.getFullYear()}`
+    getDate = (dateProp) => {
+       const date = new Date(dateProp)
+       return `${date.getDate()} ${this.months[date.getMonth()]} ${date.getFullYear()}`
     }
 }
 
 ArticlePage.propTypes = {  };
-export default withRouter(ArticlePage);
+
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(ArticlePage);

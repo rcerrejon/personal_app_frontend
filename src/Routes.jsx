@@ -12,6 +12,7 @@ import ProjectPage from './components/ProjectPage';
 import AboutPage from './components/AboutPage';
 import Articles from './components/Articles';
 import ArticlePage from './components/ArticlePage';
+import CanvasTest from './components/CanvasTest';
 
 const Page404 = () => {
   return <div>not found</div>
@@ -36,6 +37,7 @@ const routes = [
     ]
   },
   {path: '/contacts', name: 'Contacts', exact: true, Component: Contacts},
+  {path: '/test', name: 'Test', exact: true, Component: CanvasTest},
   {path: '*', name: 'page404', exact: true, Component: Page404},
 ]
 

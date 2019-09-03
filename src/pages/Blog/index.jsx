@@ -8,6 +8,7 @@ import Hidebar from '../../components/Hidebar';
 import {connect} from 'react-redux'
 import { bindActionCreators, compose } from 'redux';
 import * as BlogAction from '../../actions/BlogAction';
+import * as CommonAction from '../../actions/CommonAction';
 
 class Blog extends React.Component{
     constructor(props){
@@ -17,7 +18,8 @@ class Blog extends React.Component{
         }
     }
 
-    actions = bindActionCreators(BlogAction, this.props.dispatch);
+    actionsBlog = bindActionCreators(BlogAction, this.props.dispatch);
+    actionsCommon = bindActionCreators(CommonAction, this.props.dispatch);
 
     render() {
       const {
@@ -82,6 +84,7 @@ class Blog extends React.Component{
       }
     }
     componentDidMount() {
+
       window.addEventListener('resize', this.updateWidth)
       this.updateWidth()
     }
@@ -93,11 +96,11 @@ class Blog extends React.Component{
     }
 
     _switchSearch = () => {
-      this.actions.switchSearch()
+      this.actionsBlog.switchSearch()
     }
 
     _switchTags = () => {
-      this.actions.switchTags()
+      this.actionsBlog.switchTags()
     }
 
 

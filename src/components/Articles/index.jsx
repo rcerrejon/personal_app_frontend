@@ -2,6 +2,11 @@ import React from 'react';
 import propTypes from 'prop-types'
 import style from './style.module.scss';
 import ArticleCard from '../ArticleCard';
+import {connect} from 'react-redux'
+import { bindActionCreators, compose } from 'redux';
+import * as BlogAction from '../../actions/BlogAction';
+import * as CommonAction from '../../actions/CommonAction';
+import Preloader from '../Preloader';
 
 class Articles extends React.Component{
     constructor(props){
@@ -110,7 +115,13 @@ class Articles extends React.Component{
         }
     }
 
-    componentDidMount() {}
+    actionsBlog = bindActionCreators(BlogAction, this.props.dispatch);
+    actionsCommon = bindActionCreators(CommonAction, this.props.dispatch);
+
+    componentDidMount() {
+      this.actionsCommon.setLoadingData(false);
+      this.actionsBlog.getBlog();
+    }
 
     componentWillUnmount() {}
 
@@ -123,7 +134,10 @@ class Articles extends React.Component{
           <div className={style.ArticlesContainer}>
             {this.renderFilter()}
             <div className={articlesBlock}>
-              {this.renderArticles()}
+              {this.props.common.isDataLoaded
+                ? this.renderArticles()
+                : <Preloader/>
+              }
             </div>
           </div>
       )
@@ -164,11 +178,15 @@ class Articles extends React.Component{
     }
 
     renderArticles = () => {
-      return this.state.articles.map(el => {
+      return this.props.blog.articles.map(el => {
         return <div key={el.id}><ArticleCard article={el}/></div>
       })
     }
 }
 
 Articles.propTypes = {  };
-export default Articles;
+
+const mapStateToProps = (state) => ({
+  ...state
+})
+export default connect(mapStateToProps)(Articles);
