@@ -4,6 +4,7 @@ const initialState = {
   isOpenSearch: true,
   isOpenTags: true,
   tags: [],
+  articlesAmount: 0,
   search: '',
   page: 1,
   filters: [
@@ -50,6 +51,11 @@ export default function blogReducer(state = initialState, action) {
       return {
         ...state,
         currentFilter: action.filter
+      }
+    case types.SET_SEARCH:
+      return {
+        ...state,
+        search: action.search
       }
     case types.CHOOSE_TAGS:
       return {

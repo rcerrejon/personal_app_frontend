@@ -9,34 +9,14 @@ import { connect } from 'react-redux';
 import * as BlogActions from '../../actions/BlogAction'
 import * as CommonActions from '../../actions/CommonAction'
 import Preloader from '../Preloader';
+import axios from 'axios'
+import * as types from '../../constants/ActionTypes';
 
 class ArticlePage extends React.Component{
     constructor(props){
         super(props)
         this.state = {
           isOpenPopupComment: false,
-          article: {
-            id: 2,
-            date: new Date(2019, 7, 3),
-            name: 'А потом выплюнула',
-            tags: ['Vue', 'Nuxt'],
-            text: 'Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны',
-            views: 134,
-            comments: [
-              {
-                id: 1,
-                date: new Date(),
-                author: 'Tama-tama',
-                text: 'Реально жопа какая-то'
-              },
-              {
-                id: 2,
-                date: new Date(2019, 8, 15),
-                author: 'Чикунов',
-                text: 'Сочувствую вам чуваки, земля вам стекловатой'
-              },
-            ]
-          }
         }
     }
 
@@ -117,8 +97,37 @@ class ArticlePage extends React.Component{
       this.actionsBlog.getArticle(this.props.match.params.id)
     }
 
-  componentDidMount() {
+    setHistory = (article) => {
+      let history = JSON.parse(localStorage.getItem('history'))
 
+      if(history) {
+        if (!history.find(el => el.id === article.id)) {
+          history = [...history, {
+            id: article.id,
+            link: '/blog/' + article.id,
+            name: article.name_RU
+          }]
+
+          localStorage.setItem('history', JSON.stringify(history))
+        }
+      }else {
+        history = [{
+          id: article.id,
+          link: '/blog/' + article.id,
+          name: article.name_RU
+        }]
+        localStorage.setItem('history', JSON.stringify(history))
+      }
+    }
+
+    componentDidMount() {
+      axios.get(`${process.env.REACT_APP_SERVERURL}/blog` + `/${this.props.match.params.id}`)
+        .then(res => {
+          this.setHistory(res.data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
     componentWillUnmount() {}
 

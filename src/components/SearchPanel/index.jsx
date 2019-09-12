@@ -3,23 +3,32 @@ import propTypes from 'prop-types'
 import style from './style.module.scss';
 import {withRouter} from 'react-router'
 import { Search, Clear } from '@material-ui/icons';
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
+import * as BlogAction from '../../actions/BlogAction';
 
 class SearchPanel extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            history: [
-
-            ]
+            history: [],
+            isTyping: false
         }
     }
+    actionsBlog = bindActionCreators(BlogAction, this.props.dispatch);
 
     componentDidMount() {
         // localStorage.setItem('history', JSON.stringify(this.state.history))
+        document.addEventListener('click', this.checkHistory);
+        this.checkHistory()
+    }
+    checkHistory = () => {
         this.setState({history: JSON.parse(localStorage.getItem('history')) || []})
     }
 
-    componentWillUnmount() {}
+    componentWillUnmount() {
+        document.removeEventListener('click', this.checkHistory);
+    }
 
     render() {
         const {
@@ -36,7 +45,9 @@ class SearchPanel extends React.Component{
             <div className={style.SearchPanelContainer}>
                 <div className={search}>
                     <div className={icon}><Search/></div>
-                    <input/>
+                    <input
+                      onChange={this.changeSearch}
+                    />
                     <div className={clear_btn}><Clear/></div>
                 </div>
                 <div className={history}>
@@ -47,6 +58,11 @@ class SearchPanel extends React.Component{
                 </div>
             </div>
         )
+    }
+
+    changeSearch = (e) => {
+        this.actionsBlog.setSearch(e.target.value)
+        this.actionsBlog.getBlog()
     }
 
     renderHistory = (  ) => {
@@ -66,4 +82,12 @@ class SearchPanel extends React.Component{
 }
 
 SearchPanel.propTypes = {  };
-export default withRouter(SearchPanel);
+
+const mapStateToProps = (state) => ({
+    ...state
+})
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(SearchPanel);

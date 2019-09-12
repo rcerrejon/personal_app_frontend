@@ -77,7 +77,6 @@ class Contacts extends React.Component{
     _openInNewTab = (url) => {
       if (url) {
         if (url.indexOf('http') != -1) {
-          console.log('Find http')
           window.open(url, '_blank');
         } else {
           window.open(url, '_self');
