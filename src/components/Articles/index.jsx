@@ -11,108 +11,7 @@ import Preloader from '../Preloader';
 class Articles extends React.Component{
     constructor(props){
         super(props)
-        this.state = {
-          filters: [
-            {
-              name: 'All',
-              width: 40,
-              left: '0'
-            },
-            {
-              name: 'Recent',
-              width: 70,
-              left: '40px'
-            },
-            {
-              name: 'the Best',
-              width: 80,
-              left: '110px'
-            }
-          ],
-          currentFilter: 1,
-          articles: [
-            {
-              id: 1,
-              date: new Date(2019, 7, 3),
-              name: 'Жопа съела трусы',
-              tags: ['Vue', 'Nuxt'],
-              text: 'Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны',
-              views: 0,
-              comments: [
-                {
-                  id: 1,
-                  author: 'Tama-tama',
-                  text: 'Реально жопа какая-то'
-                },
-                {
-                  id: 2,
-                  author: 'Чикунов',
-                  text: 'Сочувствую вам чуваки, земля вам стекловатой'
-                },
-              ]
-            },
-            {
-              id: 2,
-              date: new Date(2019, 7, 3),
-              name: 'А потом выплюнула',
-              tags: ['Vue', 'Nuxt'],
-              text: 'Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны',
-              views: 0,
-              comments: [
-                {
-                  id: 1,
-                  author: 'Tama-tama',
-                  text: 'Реально жопа какая-то'
-                },
-                {
-                  id: 2,
-                  author: 'Чикунов',
-                  text: 'Сочувствую вам чуваки, земля вам стекловатой'
-                },
-              ]
-            },
-            {
-              id: 3,
-              date: new Date(2019, 7, 3),
-              name: 'Понюхала и облизала',
-              tags: ['Vue', 'Nuxt'],
-              text: 'Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны',
-              views: 0,
-              comments: [
-                {
-                  id: 1,
-                  author: 'Tama-tama',
-                  text: 'Реально жопа какая-то'
-                },
-                {
-                  id: 2,
-                  author: 'Чикунов',
-                  text: 'Сочувствую вам чуваки, земля вам стекловатой'
-                },
-              ]
-            },
-            {
-              id: 4,
-              date: new Date(2019, 7, 3),
-              name: 'И все-таки решила съесть',
-              tags: ['Vue', 'Nuxt'],
-              text: 'Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны... Это просто полная жопа пацаны, не кодите на Vue - вы матерям еще нужны',
-              views: 0,
-              comments: [
-                {
-                  id: 1,
-                  author: 'Tama-tama',
-                  text: 'Реально жопа какая-то'
-                },
-                {
-                  id: 2,
-                  author: 'Чикунов',
-                  text: 'Сочувствую вам чуваки, земля вам стекловатой'
-                },
-              ]
-            },
-          ]
-        }
+        this.state = {}
     }
 
     actionsBlog = bindActionCreators(BlogAction, this.props.dispatch);
@@ -154,12 +53,12 @@ class Articles extends React.Component{
         <div className={filters} style={{ width: `190px` }}>
           <div className={filterCursor}
                style={{
-                 width: this.state.filters[this.state.currentFilter].width + 'px',
-                 left: this.state.filters[this.state.currentFilter].left
+                 width: this.props.blog.filters[this.props.blog.currentFilter].width + 'px',
+                 left: this.props.blog.filters[this.props.blog.currentFilter].left
                }}
           />
           {
-            this.state.filters.map((el, index) => {
+            this.props.blog.filters.map((el, index) => {
               return (
                 <div className={filter}
                      onClick={() => {this.chooseFilter(index)}}
@@ -174,7 +73,8 @@ class Articles extends React.Component{
     }
 
     chooseFilter = (index) => {
-      this.setState({currentFilter: index})
+      this.actionsBlog.currentFilter(index)
+      this.actionsBlog.getBlog()
     }
 
     renderArticles = () => {

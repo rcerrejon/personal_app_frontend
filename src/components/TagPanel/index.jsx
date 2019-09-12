@@ -1,6 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types'
 import style from './style.module.scss';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import * as BlogAction from '../../actions/BlogAction';
 
 class TagPanel extends React.Component{
     constructor(props){
@@ -30,6 +33,7 @@ class TagPanel extends React.Component{
           ]
         }
     }
+    actionsBlog = bindActionCreators(BlogAction, this.props.dispatch);
 
     componentDidMount() {}
 
@@ -45,7 +49,7 @@ class TagPanel extends React.Component{
             <div className={style.TagPanelContainer}>
               <div className={title}># Tags</div>
               <div className={taglist}>
-                {this.renderTags()}
+                {this.props.blog.tags && this.renderTags()}
               </div>
             </div>
         )
@@ -54,7 +58,7 @@ class TagPanel extends React.Component{
     renderTags = () => {
       const { tag, hash } = style;
 
-      return this.state.tags.map(el => {
+      return this.props.blog.tags.map(el => {
         return (
           <div className={tag}
                key={el.id}
@@ -70,15 +74,20 @@ class TagPanel extends React.Component{
     }
 
     chooseTag = (id) => {
-      let tags = [...this.state.tags]
+      let tags = [...this.props.blog.tags]
       tags.forEach(item => {
         if (item.id === id) {
           item.chosen = !item.chosen;
         }
       })
-      this.setState({tags})
+      this.actionsBlog.chooseTags(tags)
+      this.actionsBlog.getBlog();
     }
 }
 
-TagPanel.propTypes = {  };
-export default TagPanel;
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+export default connect(mapStateToProps)(TagPanel);

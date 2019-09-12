@@ -101,10 +101,10 @@ class ArticlePage extends React.Component{
               <div className={text}>{article.text_RU}</div>
               <div className={comments}>
                 <div className={title}>
-                  <span>Комментарии <Comment/> {/*{article.comments.length}*/}</span>{/*TODO*/}
+                  <span>Комментарии <Comment/> {article.comments && article.comments.length}</span>
                   <div className={btn_comment} onClick={() => {this.switchPopupComment()}}><AddComment/></div>
                 </div>
-                {/*{this.renderComments()}*/}
+                {article.comments && this.renderComments()}
               </div>
             </div>
         )
@@ -137,6 +137,7 @@ class ArticlePage extends React.Component{
       } = style;
 
       return this.props.blog.article.comments.map(el => {
+        el.date = new Date(el.date)
         return (
           <div className={comment} key={el.id}>
             <div className={comment_header}>
