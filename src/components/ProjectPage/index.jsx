@@ -10,6 +10,7 @@ import PopupGalary from '../PopupGalary';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as PortfolioActions from '../../actions/PortfolioActions';
+import * as axios from 'axios';
 
 class ProjectPage extends React.Component{
     constructor(props){
@@ -71,7 +72,10 @@ class ProjectPage extends React.Component{
     }
     actions = bindActionCreators(PortfolioActions, this.props.dispatch);
 
-    componentDidMount() {}
+    async componentDidMount() {
+      let project = await this.findProjectByUrl()
+      this.actions.getProjectPage(project.id)
+    }
 
     componentWillUnmount() {}
 
@@ -88,7 +92,7 @@ class ProjectPage extends React.Component{
           links,
           sidePanelWrapper
         } = style;
-        const project = this.state.project
+        const project = this.props.portfolio.project;
 
         return(
             <div className={style.ProjectPageContainer}>
@@ -97,39 +101,70 @@ class ProjectPage extends React.Component{
                 <div className={spanWrapper}>
                   <span className={name}
                         onClick={() => this._openInNewTab(project.linkToSite)}
-                  >{project.name} <OpenInNewRounded/></span>
+                  >{project.name_ru} <OpenInNewRounded/></span>
                 </div>
                 <div className={images}>
-                  {this.renderImages()}
+                  {project.images && this.renderImages(project.images)}
                 </div>
               </div>
 
               {
                 this.props.portfolio.isOpenInfo
                 &&
-                <div className={sidePanelWrapper}>
-                  <SidePanel>
-                    <div className={spanWrapper}>
+                (
+                  this.props.portfolio.project
+                    ?
+                    <div className={sidePanelWrapper}>
+                      <SidePanel>
+                        <div className={spanWrapper}>
                     <span className={[name, nameSidePanel].join(" ")}
                           onClick={() => this._openInNewTab(project.linkToSite)}
-                    >{project.name} <OpenInNewRounded/></span>
+                    >{project.name_ru} <OpenInNewRounded/></span>
+                        </div>
+                        <div className={spanWrapper}>
+                          <span className={role}>Моя роль: {project.role_ru}</span>
+                        </div>
+                        <div className={skills}>
+                          {project.skills && this.renderSkills(project.skills)}
+                        </div>
+                        <div className={desc}>{project.desc_ru}</div>
+                        <div className={links}>
+                          {project.links && this.renderLinks(project.links)}
+                        </div>
+                      </SidePanel>
                     </div>
-                    <div className={spanWrapper}>
-                      <span className={role}>Моя роль: {project.role}</span>
-                    </div>
-                    <div className={skills}>
-                      {this.renderSkills()}
-                    </div>
-                    <div className={desc}>{project.desc}</div>
-                    <div className={links}>
-                      {this.renderLinks()}
-                    </div>
-                  </SidePanel>
-                </div>
+                    :
+                    <Preloader/>
+                )
               }
             </div>
         )
     }
+
+  findProjectByUrl = async () => {
+
+    let folders = [];
+    let project = {};
+    let url = this.props.location.pathname.replace('/portfolio', '')
+
+    await axios.get(`${process.env.REACT_APP_SERVERURL}/portfolio`)
+      .then(res => {
+        folders = res.data
+      })
+      .catch(error => console.error(error))
+
+    let openEach = (arr) => arr.forEach(item => {
+      if (item.type === 'project' && item.url === url) {
+        project = item;
+        return;
+      } else if (item.type === 'folder' && item.childs) {
+        openEach(item.childs)
+      }
+    })
+    openEach(folders)
+
+    return project;
+  }
 
     _switchPopupGalery = () => {
       this.setState({isOpenPopupGalary: !this.state.isOpenPopupGalary})
@@ -146,8 +181,8 @@ class ProjectPage extends React.Component{
       }
     }
 
-    renderImages = () => {
-      return this.state.project.images.map(image => {
+    renderImages = (images) => {
+      return images.map(image => {
         // let img = require(`${image.src}`)
         return (
         <div className={style.imageItem}
@@ -162,19 +197,20 @@ class ProjectPage extends React.Component{
       )
     }
 
-    renderSkills = () => {
-      return this.state.project.skills.map(skill => (
+    renderSkills = (skills) => {
+      return skills.map(skill => (
           <div className={style.skillItem}
                title={skill.name}
-               key={skill.name}>
+               key={skill.id}>
             <img width="100" src={skill.icon} alt={skill.name}/>
           </div>
         )
       )
     }
-    renderLinks = () => {
-      return this.state.project.links.map(link =>
-        <div className={style.linkWrap} key={link.name} title={link.name}>
+
+    renderLinks = (links) => {
+      return links.map(link =>
+        <div className={style.linkWrap} key={link.id} title={link.name}>
           <span className={style.linkItem}
                onClick={() => {this._openInNewTab(link.url)}}>
             <FontAwesomeIcon icon={['fab', 'github']}/> {link.name}</span>

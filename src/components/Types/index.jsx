@@ -5,6 +5,9 @@ import { withRouter } from 'react-router';
 import style from './style.module.scss';
 import Img from 'react-image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
+import * as PortfolioActions from '../../actions/PortfolioActions';
 
 class Types extends React.Component{
     constructor(props){
@@ -34,6 +37,7 @@ class Types extends React.Component{
         }
     }
 
+    actions = bindActionCreators(PortfolioActions, this.props.dispatch);
 
     render() {
         return(
@@ -48,17 +52,25 @@ class Types extends React.Component{
 
     renderTypes = () => {
       const { folderItem, folderIcon, folderName, indicator } = style;
-      let types = [...this.state.types]
+      let types = [...this.props.portfolio.folders]
 
-      return types.map(({id, name, icon, url}) =>
+      return types.map(({id, name_ru, name_en, icon, url}) =>
         <div key={id} className={folderItem} onClick={() => history.push(`${this.props.location.pathname}/${url}`)}>
           <FontAwesomeIcon className={indicator} icon="folder"/>
-          <Img className={folderIcon} src={icon} alt="icon"/>
-          <div className={folderName}>{name}</div>
+          {icon && <Img className={folderIcon} src={icon} alt="icon"/>}
+          <div className={folderName}>{name_ru}</div>
         </div>
       )
     }
 }
 
 Types.propTypes = {  };
-export default withRouter(Types);
+
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(Types);

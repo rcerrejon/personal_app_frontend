@@ -7,7 +7,7 @@ import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import Contacts from './pages/Contacts';
 import Types from './components/Types';
-import TypeFolder from './components/TypeFolder';
+import FoldersAndFiles from './components/FoldersAndFiles';
 import ProjectPage from './components/ProjectPage';
 import AboutPage from './components/AboutPage';
 import Articles from './components/Articles';
@@ -23,10 +23,11 @@ const routes = [
   {path: '/portfolio', name: 'Portfolio', exact: false, Component: Portfolio,
     children: [
       //TODO: Попробовать сделать пути динамически состовляемыми из пришедшей инфы о проектах
+      {path: '/portfolio/', name: 'Root', exact: true, Component: FoldersAndFiles},
       {path: '/portfolio/about', name: 'About', exact: true, Component: AboutPage},
-      {path: '/portfolio/projects', name: 'Projects', exact: true, Component: Types},
-      {path: '/portfolio/projects/:type', name: 'Type', exact: true, Component: TypeFolder},
-      {path: '/portfolio/projects/:type/:id', name: 'ProjectPage', exact: true, Component: ProjectPage},
+      {path: '/portfolio/projects', name: 'Projects', exact: true, Component: FoldersAndFiles},
+      {path: '/portfolio/projects/:folder', name: 'Type', exact: true, Component: FoldersAndFiles},
+      {path: '/portfolio/projects/:folder/:id', name: 'ProjectPage', exact: true, Component: ProjectPage},
       {path: '/portfolio/*', name: '', exact: false, Component: Page404},
     ]
   },

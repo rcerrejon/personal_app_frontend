@@ -4,6 +4,8 @@ export const SWITCH_LOADEDDATA = 'SWITCH_LOADEDDATA';
 // portfolio
 export const SWITCH_LEFTNAV = 'SWITCH_LEFTNAV';
 export const SWITCH_INFO = 'SWITCH_INFO';
+export const GET_FOLDERS = 'GET_FOLDERS';
+export const GET_PROJECT = 'GET_PROJECT';
 
 // blog
 export const SWITCH_TAGS = 'SWITCH_TAGS';

@@ -3,20 +3,16 @@ import { setLoadingData } from './CommonAction'
 import axios from 'axios'
 const url = `${process.env.REACT_APP_SERVERURL}/blog`;
 
-/**
- * @param search {string}
- * @param tags {array}
- * @param filter {string}
- * @param page {number}
- */
-export function getBlog(search = '', tags = [], filter = 'recent', page = 1) {
+export function getBlog() {
 
   return (dispatch, getState) => {
+    const stateBlog = getState().blog;
+
     const params = {
-      tags: getState().blog.tags.filter(el => el.chosen).map(el => el.id).join(','),
-      filter: getState().blog.filters[getState().blog.currentFilter].value,
-      page: getState().blog.page,
-      search: getState().blog.search.toLowerCase()
+      tags: stateBlog.tags.filter(el => el.chosen).map(el => el.id).join(','),
+      filter: stateBlog.filters[getState().blog.currentFilter].value,
+      page: stateBlog.page,
+      search: stateBlog.search.toLowerCase()
     }
 
     axios.get(url, { params })

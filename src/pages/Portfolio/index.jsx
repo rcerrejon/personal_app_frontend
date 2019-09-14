@@ -179,13 +179,17 @@ class Portfolio extends React.Component{
         }
       }
     }
+
     componentDidMount() {
       window.addEventListener('resize', this.updateWidth)
       this.updateWidth()
+      this.actions.getFolders()
     }
+
     componentWillMount() {
       this.updateWidth()
     }
+
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateWidth)
     }
@@ -208,21 +212,21 @@ class Portfolio extends React.Component{
           folderInnerClass = folderInner;
         }
         return (
-        <div key={item.name}>
+        <div key={item.name_en}>
           {item.type === 'folder'
             ?
             <div className={treeItem}
                  style={{paddingLeft: `${prefix - 25}px`}}
                  >
               {item.open ? <KeyboardArrowDownRounded onClick={() => {this.openFolder(item.id)}}/> : <KeyboardArrowRightRounded onClick={() => {this.openFolder(item.id)}}/>}
-              <div onClick={() => this.moveToFolder(item)}>{item.name}</div>
+              <div onClick={() => this.moveToFolder(item)}>{item.name_ru}</div>
             </div>
             :
             <div className={treeItem}
                  style={{paddingLeft: `${prefix - 25}px`}}
                  onClick={() => this.moveToFile(item.url)}>
               <FontAwesomeIcon icon="file" className={fileIcon}/>
-              { item.name }
+              { item.name_ru }
             </div>
           }
           {item.childs &&
@@ -237,7 +241,7 @@ class Portfolio extends React.Component{
     };
 
     openFolder = (id) => {
-      let dirs = [...this.state.dirs]
+      let dirs = [...this.props.portfolio.folders]
       let openEach = (arr) => arr.forEach(item => {
         if (item.type === 'folder' && item.id === id) {
           item.open = !item.open;
@@ -264,7 +268,7 @@ class Portfolio extends React.Component{
     renderNavlist = () => {
       return (
         <div>
-          {this._makeObjToTree(this.state.dirs, 0)}
+          {this._makeObjToTree(this.props.portfolio.folders, 0)}
         </div>
       )
     }
