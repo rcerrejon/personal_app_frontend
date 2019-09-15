@@ -26,9 +26,9 @@
     "styled-components": "^4.3.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "create-component": "bash create.component.sh"
   },
   "eslintConfig": {

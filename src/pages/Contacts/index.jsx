@@ -150,7 +150,7 @@ class Contacts extends React.Component{
       return(
         <div className={style.sidePanelWrapper}>
           <SidePanel>
-            panel
+            {/*TODO panel*/}
           </SidePanel>
         </div>
       )

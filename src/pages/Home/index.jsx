@@ -25,7 +25,7 @@ class Home extends React.Component{
                 <div className={skills}>Full stack / ReactJS / ExpressJS </div>
               </div>
               <div className={empty2}></div>
-              <div className={coolThing}>крутая штука <br/>вращается.</div>
+              <div className={coolThing}>{/*TODO крутая штука <br/>вращается.*/}</div>
             </div>
         )
     }

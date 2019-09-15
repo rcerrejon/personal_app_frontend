@@ -70,7 +70,7 @@ class AboutPage extends React.Component{
 
               <div className={[sidePanelWrapper, noMobile].join(" ")}>
                 <SidePanel>
-                  график
+                  {/*TODO график*/}
                 </SidePanel>
               </div>
           </div>
