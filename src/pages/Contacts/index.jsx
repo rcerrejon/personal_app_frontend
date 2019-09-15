@@ -3,36 +3,27 @@ import propTypes from 'prop-types'
 import style from './style.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SidePanel from '../../components/SidePanel';
+import { bindActionCreators, compose } from 'redux';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import * as ContactsActions from '../../actions/ContactsAction';
 
 class Contacts extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-          links: [
-            {
-              name: 'Github',
-              icon: 'github',
-              url: 'https://github.com/Imlerix'
-            },
-            {
-              name: 'Gitlab',
-              icon: 'gitlab',
-              url: 'https://gitlab.com/Imlerith'
-            },
-            {
-              name: 'Gmail',
-              icon: 'google',
-              url: 'mailto:udachin.vadim@gmail.com'
-            },
-            {
-              name: 'Vkontakte',
-              url: 'https://vk.com/imlerix'
-            }
-          ]
+          isAbleSendBtn: false,
+          email: '',
+          name: '',
+          subject: '',
+          message: ''
         }
     }
+    actionsContacts = bindActionCreators(ContactsActions, this.props.dispatch);
 
-    componentDidMount() {}
+    componentDidMount() {
+      this.actionsContacts.getLinks()
+    }
 
     componentWillUnmount() {}
 
@@ -46,6 +37,7 @@ class Contacts extends React.Component{
         header,
         form,
         btn_send,
+        btn_send__disable,
         inputArea
       } = style;
 
@@ -56,22 +48,76 @@ class Contacts extends React.Component{
               <div className={contactMe}>
                 <div className={header}>Contact me</div>
                 <div className={form}>
-                  <input className={inputArea} placeholder="E-mail"/>
-                  <input className={inputArea} placeholder="Name"/>
-                  <input className={inputArea} placeholder="Subject"/>
-                  <textarea className={inputArea} placeholder="Message"/>
-                  <div className={btn_send}>{'Send'}</div>
+                  <input className={inputArea}
+                         name="email"
+                         value={this.state.email}
+                         placeholder="E-mail"
+                         onChange={this.onChangeForm}/>
+                  <input className={inputArea}
+                         name="name"
+                         value={this.state.name}
+                         placeholder="Name"
+                         onChange={this.onChangeForm}/>
+                  <input className={inputArea}
+                         name="subject"
+                         value={this.state.subject}
+                         placeholder="Subject"
+                         onChange={this.onChangeForm}/>
+                  <textarea className={inputArea}
+                            name="message"
+                            value={this.state.message}
+                            placeholder="Message"
+                            onChange={this.onChangeForm}/>
+                  <div className={this.checkFullForm() ? btn_send : btn_send__disable}
+                       onClick={() => this.sendMail()}
+                  >{'Send'}</div>
                 </div>
               </div>
               <div className={separator}/>
               <div className={links}>
                 <div className={header}>Links</div>
-                {this.renderLinks()}
+                {this.props.contacts.links && this.renderLinks(this.props.contacts.links)}
               </div>
             </div>
             {this.renderCanvasPanel()}
           </div>
       )
+    }
+
+    sendMail = async () => {
+      let res;
+      if (this.checkFullForm()) {
+        const {
+          email,
+          name,
+          subject,
+          message
+        } = this.state;
+
+        res = await this.actionsContacts.postMail({
+          email,
+          name,
+          subject,
+          message
+        })
+      } else {
+        console.log('pls full form')
+      }
+
+      console.log(res) // TODO обработка действия после отправки сообщения
+    }
+
+    checkFullForm = () => {
+      return this.state.email !== '' && this.state.name !== '' && this.state.subject !== '' && this.state.message !== ''
+    }
+
+    onChangeForm = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+
+      this.setState({
+        [name]: value
+      })
     }
 
     _openInNewTab = (url) => {
@@ -84,12 +130,12 @@ class Contacts extends React.Component{
       }
     }
 
-    renderLinks = () => {
+    renderLinks = (links) => {
       const {
         linkItem
       } = style;
 
-      return this.state.links.map(el => {
+      return links.map(el => {
         return (
           <div key={el.url} className={linkItem} onClick={() => this._openInNewTab(el.url)}>
             {el.icon && <FontAwesomeIcon icon={['fab', el.icon]}/>}
@@ -112,4 +158,11 @@ class Contacts extends React.Component{
 }
 
 Contacts.propTypes = {  };
-export default Contacts;
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(Contacts);

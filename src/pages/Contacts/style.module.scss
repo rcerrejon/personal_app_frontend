@@ -103,6 +103,17 @@
           background-color: $primary;
         }
       }
+      .btn_send__disable{
+        font-weight: bold;
+        cursor: not-allowed;
+        text-align: center;
+        padding: 10px;
+        color: rgba(97, 97, 97, 0.56);
+        border-left: 2px solid rgba(97, 97, 97, 0.56);
+        background-color: $black;
+        //border-radius: 15px;
+        transition: all ease .3s;
+      }
     }
 
     .links{

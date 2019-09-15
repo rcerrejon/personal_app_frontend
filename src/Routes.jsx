@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import Contacts from './pages/Contacts';
-import Types from './components/Types';
 import FoldersAndFiles from './components/FoldersAndFiles';
 import ProjectPage from './components/ProjectPage';
 import AboutPage from './components/AboutPage';

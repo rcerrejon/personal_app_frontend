@@ -15,3 +15,7 @@ export const GET_ARTICLE = 'GET_ARTICLE';
 export const CHOOSE_TAGS = 'CHOOSE_TAGS';
 export const CURRENT_FILTER = 'CURRENT_FILTER';
 export const SET_SEARCH = 'SET_SEARCH';
+
+// contacts
+export const GET_LINKS = 'GET_LINKS';
+
