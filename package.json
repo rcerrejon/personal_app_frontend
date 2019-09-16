@@ -27,12 +27,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node --max-old-space-size=2048 node_modules/.bin/react-scripts build",
     "test": "react-scripts test",
     "create-component": "bash create.component.sh"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
