@@ -1,8 +1,7 @@
 import React from 'react';
-import propTypes from 'prop-types'
 import style from './style.module.scss';
 import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note } from '@material-ui/icons';
-import { Route, Switch, withRouter } from 'react-router';
+import { Switch, withRouter } from 'react-router';
 import history from '../../history';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Btn } from './styled';
@@ -273,8 +272,6 @@ class Portfolio extends React.Component{
       )
     }
 }
-
-Portfolio.propTypes = {  };
 
 const mapStateToProps = (state) => ({
   ...state

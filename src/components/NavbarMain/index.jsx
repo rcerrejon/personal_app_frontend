@@ -1,6 +1,5 @@
 import React from 'react';
-import {  AppsRounded, Work, EventNote, Home, Email } from '@material-ui/icons/index';
-import propTypes from 'prop-types'
+import { Work, EventNote, Home, Email } from '@material-ui/icons/index';
 import style from './style.module.scss';
 import { NavLink } from 'react-router-dom';
 
@@ -28,5 +27,4 @@ class NavbarMain extends React.Component{
     }
 }
 
-NavbarMain.propTypes = {  };
 export default NavbarMain;

@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk';
 import * as reducers from './reducers';
+
 import { ThemeProvider } from 'styled-components';
 
 import Console from './components/Console';

@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+
 import style from './style.module.scss';
 import SidePanel from '../SidePanel';
 import { OpenInNewRounded } from '@material-ui/icons/index';
@@ -16,13 +16,6 @@ class AboutPage extends React.Component{
               linkToSite: 'www.wnm.digital',
               date: 'Feb - May, 2019',
               note: 'Будучи junior-программистом занимался front-end разработкой на Vue.js .'
-            },
-            {
-              id: 2,
-              name: 'Qiwi',
-              linkToSite: 'www.wnm.digital',
-              date: 'Aug 2019 - Aug 2020',
-              note: 'Будучи middle-программистом занимался front-end разработкой на React.js .'
             }
           ],
           educations: [
@@ -124,5 +117,4 @@ class AboutPage extends React.Component{
     }
 }
 
-AboutPage.propTypes = {  };
 export default AboutPage;

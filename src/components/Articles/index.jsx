@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+
 import style from './style.module.scss';
 import ArticleCard from '../ArticleCard';
 import {connect} from 'react-redux'
@@ -83,8 +83,6 @@ class Articles extends React.Component{
       })
     }
 }
-
-Articles.propTypes = {  };
 
 const mapStateToProps = (state) => ({
   ...state

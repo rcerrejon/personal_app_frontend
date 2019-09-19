@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+
 import style from './style.module.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';

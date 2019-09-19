@@ -46,7 +46,7 @@ else
         touch src/components/$name/style.module.scss
 
         echo -e "import React from 'react';
-        import propTypes from 'prop-types'
+
         import style from './style.module.scss';
 
         class $name extends React.Component{
@@ -68,7 +68,6 @@ else
             }
         }
 
-        $name.propTypes = {  };
         export default $name;">> src/components/$name/index.jsx
 
         echo -e "@import '../../config/scss/index';

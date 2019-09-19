@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types'
 import style from './style.module.scss';
 import {withRouter} from 'react-router'
 import { Search, Clear } from '@material-ui/icons';
@@ -80,8 +79,6 @@ class SearchPanel extends React.Component{
         })
     }
 }
-
-SearchPanel.propTypes = {  };
 
 const mapStateToProps = (state) => ({
     ...state

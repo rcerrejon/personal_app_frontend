@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+
 import style from './style.module.scss';
 import Konva from 'konva'
 import { Stage, Text, Star, Layer } from 'react-konva'
@@ -64,5 +64,4 @@ class CanvasTest extends React.Component{
   }
 }
 
-CanvasTest.propTypes = {  };
 export default CanvasTest;

@@ -1,25 +1,23 @@
 import React from 'react';
-        import propTypes from 'prop-types'
-        import style from './style.module.scss';
+import style from './style.module.scss';
 
-        class Console extends React.Component{
-            constructor(props){
-                super(props)
-                this.state = {}
-            }
+class Console extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {}
+    }
 
-            componentDidMount() {}
+    componentDidMount() {}
 
-            componentWillUnmount() {}
+    componentWillUnmount() {}
 
-            render() {
-                return(
-                    <div className={style.ConsoleContainer}>
-                        $console
-                    </div>
-                )
-            }
-        }
+    render() {
+        return(
+            <div className={style.ConsoleContainer}>
+                $console
+            </div>
+        )
+    }
+}
 
-        Console.propTypes = {  };
-        export default Console;
+export default Console;

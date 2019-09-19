@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types'
 import style from './style.module.scss';
 
 function SidePanel(props) {
@@ -10,5 +9,4 @@ function SidePanel(props) {
     );
 }
 
-SidePanel.propTypes = {  };
 export default (SidePanel);

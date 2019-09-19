@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+
 import style from './style.module.scss';
 import history from '../../history';
 import Img from 'react-image';
@@ -92,7 +92,6 @@ class FoldersAndFiles extends React.Component{
     }
 }
 
-FoldersAndFiles.propTypes = {  };
 const mapStateToProps = (state) => ({
   ...state
 })

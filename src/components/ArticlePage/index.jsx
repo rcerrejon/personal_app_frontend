@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+
 import style from './style.module.scss';
 import { Comment, Visibility, NavigateBefore, AddComment } from '@material-ui/icons';
 import {withRouter} from 'react-router';
@@ -181,8 +181,6 @@ class ArticlePage extends React.Component{
        return `${date.getDate()} ${this.months[date.getMonth()]} ${date.getFullYear()}`
     }
 }
-
-ArticlePage.propTypes = {  };
 
 const mapStateToProps = (state) => ({
   ...state

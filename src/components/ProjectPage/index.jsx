@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+
 import style from './style.module.scss';
 import Img from 'react-image'
 import SidePanel from '../SidePanel';
@@ -219,7 +219,7 @@ class ProjectPage extends React.Component{
     }
 }
 
-ProjectPage.propTypes = {  };
+
 const mapStateToProps = (state) => ({
   ...state
 })

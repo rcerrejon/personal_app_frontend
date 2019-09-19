@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types'
 import style from './style.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SidePanel from '../../components/SidePanel';
@@ -7,6 +6,7 @@ import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import * as ContactsActions from '../../actions/ContactsAction';
+import { _openInNewTab } from '../../utils/commonFunctions'
 
 class Contacts extends React.Component{
     constructor(props){
@@ -120,15 +120,7 @@ class Contacts extends React.Component{
       })
     }
 
-    _openInNewTab = (url) => {
-      if (url) {
-        if (url.indexOf('http') != -1) {
-          window.open(url, '_blank');
-        } else {
-          window.open(url, '_self');
-        }
-      }
-    }
+
 
     renderLinks = (links) => {
       const {
@@ -137,7 +129,7 @@ class Contacts extends React.Component{
 
       return links.map(el => {
         return (
-          <div key={el.url} className={linkItem} onClick={() => this._openInNewTab(el.url)}>
+          <div key={el.url} className={linkItem} onClick={() => _openInNewTab(el.url)}>
             {el.icon && <FontAwesomeIcon icon={['fab', el.icon]}/>}
             {el.icon && ' '}
             {el.name}
@@ -157,7 +149,6 @@ class Contacts extends React.Component{
     }
 }
 
-Contacts.propTypes = {  };
 const mapStateToProps = (state) => ({
   ...state
 })

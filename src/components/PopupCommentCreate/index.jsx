@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+
 import style from './style.module.scss';
 import {Close} from '@material-ui/icons';
 
@@ -39,5 +39,4 @@ class PopupCommentCreate extends React.Component{
     }
 }
 
-PopupCommentCreate.propTypes = {  };
 export default PopupCommentCreate;

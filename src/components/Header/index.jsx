@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { WbSunny, WbSunnyOutlined } from '@material-ui/icons/index';
-import propTypes from 'prop-types'
+import { WbSunnyOutlined } from '@material-ui/icons/index';
 import { withRouter } from "react-router";
 import style from './style.module.scss';
 
@@ -39,5 +38,4 @@ class Header extends React.Component{
     }
 }
 
-Header.propTypes = {  };
 export default withRouter(Header);

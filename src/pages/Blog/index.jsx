@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types'
 import style from './style.module.scss';
 import { Btn } from '../Portfolio/styled';
 import SearchPanel from '../../components/SearchPanel';
@@ -105,8 +104,6 @@ class Blog extends React.Component{
 
 
 }
-
-Blog.propTypes = {  };
 
 const mapStateToProps = (state) => ({
   ...state
