@@ -1,6 +1,8 @@
 @import '../../config/scss/index';
 .SidePanelContainer{
   background-color: $dark;
+  border-left: 2px solid $dark;
+  border-right: 2px solid $dark;
   overflow-x: hidden;
   overflow-y: auto;
   //display: none; //TEST mobile

@@ -7,16 +7,17 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import * as ContactsActions from '../../actions/ContactsAction';
 import { _openInNewTab } from '../../utils/commonFunctions'
+import color from '../../constants/colors'
 
 class Contacts extends React.Component{
     constructor(props){
         super(props)
         this.state = {
           isAbleSendBtn: false,
-          email: '',
-          name: '',
-          subject: '',
-          message: ''
+          Email: '',
+          Name: '',
+          Subject: '',
+          Message: ''
         }
     }
     actionsContacts = bindActionCreators(ContactsActions, this.props.dispatch);
@@ -48,26 +49,7 @@ class Contacts extends React.Component{
               <div className={contactMe}>
                 <div className={header}>Contact me</div>
                 <div className={form}>
-                  <input className={inputArea}
-                         name="email"
-                         value={this.state.email}
-                         placeholder="E-mail"
-                         onChange={this.onChangeForm}/>
-                  <input className={inputArea}
-                         name="name"
-                         value={this.state.name}
-                         placeholder="Name"
-                         onChange={this.onChangeForm}/>
-                  <input className={inputArea}
-                         name="subject"
-                         value={this.state.subject}
-                         placeholder="Subject"
-                         onChange={this.onChangeForm}/>
-                  <textarea className={inputArea}
-                            name="message"
-                            value={this.state.message}
-                            placeholder="Message"
-                            onChange={this.onChangeForm}/>
+                  {this.renderInputs(['Email', 'Name', 'Subject', 'Message'])}
                   <div className={this.checkFullForm() ? btn_send : btn_send__disable}
                        onClick={() => this.sendMail()}
                   >{'Send'}</div>
@@ -81,6 +63,41 @@ class Contacts extends React.Component{
             </div>
             {this.renderCanvasPanel()}
           </div>
+      )
+    }
+
+    renderInputs = (arr) => {
+      const {
+        inputArea
+      } = style;
+
+      return arr.map((el) =>
+        <div>
+          {el === 'Message'
+            ?
+            <textarea className={inputArea}
+                      name={el}
+                      style={{
+                        background: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
+                        color: this.props.common.theme === 'dark' ? color.primary : color.text_secondary,
+                        borderColor: this.props.common.theme === 'dark' ? color.primary : color.text_secondary,
+                      }}
+                      value={this.state[el]}
+                      placeholder={el}
+                      onChange={this.onChangeForm}/>
+            :
+            <input className={inputArea}
+                   name={el}
+                   style={{
+                     background: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
+                     color: this.props.common.theme === 'dark' ? color.primary : color.text_secondary,
+                     borderColor: this.props.common.theme === 'dark' ? color.primary : color.text_secondary,
+                   }}
+                   value={this.state[el]}
+                   placeholder={el}
+                   onChange={this.onChangeForm}/>
+          }
+        </div>
       )
     }
 

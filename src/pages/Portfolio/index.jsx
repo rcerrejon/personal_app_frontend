@@ -9,6 +9,9 @@ import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as PortfolioActions from '../../actions/PortfolioActions';
 import Hidebar from '../../components/Hidebar';
+import { mdiInformationVariant, mdiFileTree } from '@mdi/js';
+import Icon, { Stack } from '@mdi/react';
+import color from '../../constants/colors'
 
 class Portfolio extends React.Component{
     constructor(props){
@@ -130,26 +133,24 @@ class Portfolio extends React.Component{
         return(
             <div className={PortfolioContainer}>
               <Hidebar>
-                {
-                  this.state.isMobile
+                {this.state.isMobile
                   &&
-                  <Btn active={this.props.portfolio.isOpenInfo}
-                       onClick={() => this._switchInfo()}
-                  >2: Info</Btn>
-                }
-                {
-                  this.state.isMobile
-                  &&
-                  <Btn active={this.props.portfolio.isOpenLeftnav}
-                       onClick={() => this._switchLeftnav()}
-                  >1: Navbar</Btn>
+                  <>
+                    <Btn onClick={() => this._switchInfo()}
+                    ><Icon path={mdiInformationVariant} color={color.secondary} rotate={90}/></Btn>
+                    <Btn onClick={() => this._switchLeftnav()}
+                    ><Icon path={mdiFileTree} color={color.primary} rotate={90}/></Btn>
+                  </>
                 }
                 <div className={disabled_btn}>Portfolio</div>
               </Hidebar>
-              {
-                this.props.portfolio.isOpenLeftnav
+              {this.props.portfolio.isOpenLeftnav
                 &&
-                <div className={leftNavbar}>
+                <div className={leftNavbar}
+                     style={{
+                       backgroundColor: this.props.common.theme === 'dark' ? color.black : color.grey2C_light,
+                     }}
+                >
                   {this.renderNavlist()}
                 </div>
               }
@@ -202,7 +203,13 @@ class Portfolio extends React.Component{
     }
 
     _makeObjToTree = (array, prefix) => {
-      const { treeItem, folderInner, folderInnerClosed, fileIcon } = style;
+      const {
+        treeItem,
+        folderInner,
+        folderInnerClosed,
+        fileIcon
+      } = style;
+
       prefix += 25;
       return array.map(item =>
       {
@@ -211,21 +218,29 @@ class Portfolio extends React.Component{
           folderInnerClass = folderInner;
         }
         return (
-        <div key={item.name_en}>
+        <div key={this.props.common.lang === 'en' ? item.name_en : item.name_ru}>
           {item.type === 'folder'
             ?
             <div className={treeItem}
-                 style={{paddingLeft: `${prefix - 25}px`}}
+                 style={{
+                   paddingLeft: `${prefix - 25}px`,
+                   backgroundColor: this.props.common.theme === 'dark' ? color.black : color.grey2C_light,
+                 }}
                  >
               {item.open ? <KeyboardArrowDownRounded onClick={() => {this.openFolder(item.id)}}/> : <KeyboardArrowRightRounded onClick={() => {this.openFolder(item.id)}}/>}
-              <div onClick={() => this.moveToFolder(item)}>{item.name_ru}</div>
+              <div onClick={() => this.moveToFolder(item)}>
+                {this.props.common.lang === 'en' ? item.name_en : item.name_ru}
+              </div>
             </div>
             :
             <div className={treeItem}
-                 style={{paddingLeft: `${prefix - 25}px`}}
+                 style={{
+                   paddingLeft: `${prefix - 25}px`,
+                   backgroundColor: this.props.common.theme === 'dark' ? color.black : color.grey2C_light
+                 }}
                  onClick={() => this.moveToFile(item.url)}>
               <FontAwesomeIcon icon="file" className={fileIcon}/>
-              { item.name_ru }
+              {this.props.common.lang === 'en' ? item.name_en : item.name_ru}
             </div>
           }
           {item.childs &&

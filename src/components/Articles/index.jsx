@@ -62,8 +62,8 @@ class Articles extends React.Component{
               return (
                 <div className={filter}
                      onClick={() => {this.chooseFilter(index)}}
-                     key={el.name}>
-                  {el.name}
+                     key={el.name_en}>
+                  {this.props.common.lang === 'en' ? el.name_en : el.name_ru}
                 </div>
               )
             })

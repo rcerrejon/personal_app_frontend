@@ -37,6 +37,20 @@ class ArticlePage extends React.Component{
       'Ноября',
       'Декабря',
     ]
+    months_en = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'Augusta',
+      'September',
+      'October',
+      'November',
+      'December',
+    ]
 
     render() {
       const {
@@ -71,17 +85,25 @@ class ArticlePage extends React.Component{
                 </div>
               </div>
               <div className={header}>
-                <div className={name}>{article.name_RU}</div>
+                <div className={name}>
+                  { this.props.common.lang === 'en' ?  article.name_EN : article.name_RU }
+                </div>
                 <div className={spacer}/>
                 <div className={date}>{this.getDate(article.date)}</div>
               </div>
               <div className={tags}>
                 {article.tags && this.renderTags(article.tags)}
               </div>
-              <div className={text}>{article.text_RU}</div>
+              <div className={text}>
+                {this.props.common.lang === 'en' ?  article.text_EN : article.text_RU}
+              </div>
               <div className={comments}>
                 <div className={title}>
-                  <span>Комментарии <Comment/> {article.comments && article.comments.length}</span>
+                  <span>
+                    {this.props.common.lang === 'en' ?  'Comments' : 'Комментарии'}
+                    <Comment/>
+                    {article.comments && article.comments.length}
+                  </span>
                   <div className={btn_comment} onClick={() => {this.switchPopupComment()}}><AddComment/></div>
                 </div>
                 {article.comments && this.renderComments()}
@@ -105,7 +127,7 @@ class ArticlePage extends React.Component{
           history = [...history, {
             id: article.id,
             link: '/blog/' + article.id,
-            name: article.name_RU
+            name: this.props.common.lang === 'en' ?  article.name_RU : article.name_EN
           }]
 
           localStorage.setItem('history', JSON.stringify(history))
@@ -114,7 +136,7 @@ class ArticlePage extends React.Component{
         history = [{
           id: article.id,
           link: '/blog/' + article.id,
-          name: article.name_RU
+          name: this.props.common.lang === 'en' ?  article.name_RU : article.name_EN
         }]
         localStorage.setItem('history', JSON.stringify(history))
       }
@@ -177,8 +199,10 @@ class ArticlePage extends React.Component{
     }
 
     getDate = (dateProp) => {
+       let months = this.props.common.lang === 'en' ?  this.months_en : this.months
        const date = new Date(dateProp)
-       return `${date.getDate()} ${this.months[date.getMonth()]} ${date.getFullYear()}`
+
+       return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
     }
 }
 

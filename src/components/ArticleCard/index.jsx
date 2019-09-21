@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style.module.scss';
-import { Visibility, Comment } from '@material-ui/icons';
+import { Visibility, Comment, ArrowForward } from '@material-ui/icons';
 import { bindActionCreators, compose } from 'redux';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router';
@@ -94,18 +94,23 @@ class ArticleCard extends React.Component{
     return (
       <div className={style.ArticleCardContainer} >
         <div className={header}>
-          <div className={name}>{article.name_RU}</div>
+          <div className={name}>
+            {this.props.common.lang === 'en' ? article.name_EN : article.name_RU}
+          </div>
           <div className={spacer} />
           <div className={date}>{this.getDate(article.date)}</div>
         </div>
         <div className={tags}>
           {this.renderTags()}
         </div>
-        <div className={text}>{this.sliceText(article.text_RU)}</div>
+        <div className={text}>{this.sliceText(this.props.common.lang === 'en' ? article.text_EN : article.text_RU)}</div>
         <div className={action_panel}>
           <div className={btn_open}
                onClick={() => { this.props.history.push(`blog/${article.id}`); this.incrementViews(article.id) }}
-          >Read</div>
+          >
+            <div>{this.props.common.lang === 'en' ? 'Continue read' : 'Продолжить читать'}</div>
+            <ArrowForward/>
+          </div>
           <div className={stats}>
             <div className={stat}><Visibility/> {article.views}</div>
             <div className={stat}><Comment/> {article.commentsCount}</div>

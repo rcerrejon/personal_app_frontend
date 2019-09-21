@@ -7,3 +7,15 @@ export function setLoadingData(value) {
     value
   }
 }
+
+export function switchTheme() {
+  return {
+    type: types.SWITCH_THEME
+  }
+}
+
+export function switchLang() {
+  return {
+    type: types.SWITCH_LANG
+  }
+}

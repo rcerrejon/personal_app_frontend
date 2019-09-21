@@ -9,19 +9,22 @@ const initialState = {
   page: 1,
   filters: [
     {
-      name: 'All',
+      name_ru: 'Все',
+      name_en: 'All',
       value: 'all',
       width: 40,
       left: '0'
     },
     {
-      name: 'Recent',
+      name_ru: 'Ранее',
+      name_en: 'Recent',
       value: 'recent',
       width: 70,
       left: '40px'
     },
     {
-      name: 'the Best',
+      name_ru: 'Лучшее',
+      name_en: 'The best',
       value: 'best',
       width: 80,
       left: '110px'

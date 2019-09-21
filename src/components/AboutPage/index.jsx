@@ -1,37 +1,68 @@
 import React from 'react';
-
+import Icon from '@mdi/react';
 import style from './style.module.scss';
 import SidePanel from '../SidePanel';
-import { OpenInNewRounded } from '@material-ui/icons/index';
+import { mdiMedal, mdiSchool, mdiBriefcase } from '@mdi/js';
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import color from '../../constants/colors'
+
+const icons = {
+  award: {
+    name: mdiMedal,
+    color: color.yellow
+  },
+  work: {
+    name: mdiBriefcase,
+    color: color.secondary
+  },
+  education: {
+    name: mdiSchool,
+    color: color.primary
+  }
+}
 
 class AboutPage extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-          shortInfo: 'Привет, я Голенко Вадим (Удачин - псевдоним), родился в Волгограде и в 2017 году поступил в МосПолитех на "Веб-разработку". В настоящий момент ищу работу направленности Full-stack или Front-end разработчика.',
+          info_ru: 'Привет, я Голенко Вадим (Удачин - псевдоним), родился в Волгограде и в 2017 году поступил в МосПолитех на "Веб-разработку". В настоящий момент ищу работу направленности Full-stack или Front-end разработчика.',
+          info_en: 'Hi, I’m Vadim Golenko (Udachin is a pseudonym), was born in Volgograd and in 2017 I entered MosPolitech for Web Development. At the moment, I am looking for a job focus Full-stack or Front-end developer.',
           works: [
             {
               id: 1,
               name: 'WNM.Digital',
               linkToSite: 'www.wnm.digital',
+              type: 'work',
               date: 'Feb - May, 2019',
               note: 'Будучи junior-программистом занимался front-end разработкой на Vue.js .'
+            },
+            {
+              id: 2,
+              name: 'МосПолитех',
+              date: '2017 - 2021',
+              type: 'education',
+              note: 'Факультет информационных технологий (ФИТ), направление Веб-разработка'
+            },
+            {
+              id: 3,
+              name: 'Wordskills Russia',
+              date: '2020',
+              type: 'award',
+              note: 'Направление Веб-разработка'
             }
           ],
           educations: [
             {
               id: 2,
-              name: 'Московский Политехнический Университет',
+              name: 'МосПолитех',
               date: '2017 - 2021',
               note: 'Факультет информационных технологий (ФИТ), направление Веб-разработка'
             }
           ]
         }
     }
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
 
     render() {
       const {
@@ -49,16 +80,26 @@ class AboutPage extends React.Component{
       return(
           <div className={style.AboutPageContainer}>
               <div className={main}>
-                <div className={title}>About me</div>
-                <div className={shortInfo}>{this.state.shortInfo}</div>
-                <div className={workPathTitle}>Work path</div>
-                <div className={workPath}>
+                <div className={title}>
+                  {this.props.common.lang === 'en' ? 'About me' : 'Обо мне'}
+                </div>
+                <div className={shortInfo}>
+                  {this.props.common.lang === 'en' ? this.state.info_en : this.state.info_ru}
+                </div>
+                <div className={workPathTitle}>
+                  {this.props.common.lang === 'en' ? 'My path' : 'Мой путь'}
+                </div>
+                <div className={workPath}
+                     style={{
+                       backgroundColor: this.props.common.theme === 'dark' ? color.black : color.greySelect_light
+                     }}
+                >
                   {this.renderWorkPath()}
                 </div>
-                <div className={educationTitle}>Education</div>
-                <div className={educationPath}>
-                  {this.renderEducations()}
-                </div>
+                {/*<div className={educationTitle}>Education</div>*/}
+                {/*<div className={educationPath}>*/}
+                {/*  {this.renderEducations()}*/}
+                {/*</div>*/}
               </div>
 
               <div className={[sidePanelWrapper, noMobile].join(" ")}>
@@ -70,28 +111,27 @@ class AboutPage extends React.Component{
       )
     }
 
-  renderEducations = () => {
-    const {
-      item,
-      count,
-      name,
-      date,
-      note
-    } = style;
-
-      return this.state.educations.map((el) => {
-        return (
-          <div className={item} key={el.id}>
-            {/*<div className={count}>{index + 1}</div>*/}
-            <div className={name}>
-              <span>{el.name}</span>
-              <div className={date}>{el.date}</div>
-            </div>
-            <div className={note}>{el.note}</div>
-          </div>
-        )
-      })
-  }
+  // renderEducations = () => {
+  //   const {
+  //     item,
+  //     count,
+  //     name,
+  //     date,
+  //     note
+  //   } = style;
+  //
+  //     return this.state.educations.map((el) => {
+  //       return (
+  //         <div className={item} key={el.id}>
+  //           <div className={name}>
+  //             <span>{el.name}</span>
+  //             <div className={date}>{el.date}</div>
+  //           </div>
+  //           <div className={note}>{el.note}</div>
+  //         </div>
+  //       )
+  //     })
+  // }
 
     renderWorkPath = () => {
       const {
@@ -99,7 +139,8 @@ class AboutPage extends React.Component{
         count,
         name,
         date,
-        note
+        note,
+        icon
       } = style;
 
       return this.state.works.map((el) => {
@@ -107,7 +148,9 @@ class AboutPage extends React.Component{
           <div className={item} key={el.id}>
             {/*<div className={count}>{index + 1}</div>*/}
             <div className={name}>
+              <div className={icon}><Icon path={icons[el.type].name} color={icons[el.type].color}/></div>
               <span>{el.name}</span>
+              <div className={style.spacer} />
               <div className={date}>{el.date}</div>
             </div>
             <div className={note}>{el.note}</div>
@@ -117,4 +160,8 @@ class AboutPage extends React.Component{
     }
 }
 
-export default AboutPage;
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+export default connect(mapStateToProps)(AboutPage);

@@ -1,5 +1,7 @@
 //common
 export const SWITCH_LOADEDDATA = 'SWITCH_LOADEDDATA';
+export const SWITCH_THEME = 'SWITCH_THEME';
+export const SWITCH_LANG = 'SWITCH_LANG';
 
 // portfolio
 export const SWITCH_LEFTNAV = 'SWITCH_LEFTNAV';

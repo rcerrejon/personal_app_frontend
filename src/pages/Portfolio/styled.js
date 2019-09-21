@@ -4,17 +4,24 @@ import { device } from '../../config/styled.components'
 export const Btn = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
-  padding-left: 10px;
+  padding: 0 10px;
   margin: 0 0 0 2px;
-  background-color: ${props => props.active ? props.theme.primary : props.theme.dark};
   cursor: pointer;
   
   // @media ${device.pc} {
   //   display: none;
   // }
 
-  &:hover{
-    background-color: ${props => props.theme.primary};
+  // &:hover{
+  //   background-color: ${props => props.theme.primary};
+  //   @media ${device.pc} {
+  //     background-color: ${props => props.active ? props.theme.primary : props.theme.dark};
+  //   }
+  // }
+  //
+  svg {
+    max-height: 25px;
   }
 `

@@ -5,6 +5,7 @@ import { Search, Clear } from '@material-ui/icons';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as BlogAction from '../../actions/BlogAction';
+import color from '../../constants/colors';
 
 class SearchPanel extends React.Component{
     constructor(props){
@@ -41,11 +42,18 @@ class SearchPanel extends React.Component{
         } = style;
 
         return(
-            <div className={style.SearchPanelContainer}>
+            <div className={style.SearchPanelContainer}
+                 style={{
+                     backgroundColor: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
+                     color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
+                 }}
+            >
                 <div className={search}>
                     <div className={icon}><Search/></div>
-                    <input
-                      onChange={this.changeSearch}
+                    <input onChange={this.changeSearch}
+                           style={{
+                               backgroundColor: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
+                           }}
                     />
                     <div className={clear_btn}><Clear/></div>
                 </div>

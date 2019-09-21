@@ -12,6 +12,8 @@ import AboutPage from './components/AboutPage';
 import Articles from './components/Articles';
 import ArticlePage from './components/ArticlePage';
 import CanvasTest from './components/CanvasTest';
+import color from './constants/colors';
+import { connect } from 'react-redux';
 
 const Page404 = () => {
   return <div>not found</div>
@@ -41,13 +43,18 @@ const routes = [
   {path: '*', name: 'page404', exact: true, Component: Page404},
 ]
 
-function Routes() {
+function Routes(props) {
   return (
     <Switch>
       {routes.map(({ path, Component, children, exact }) => (
         <Route key={path} exact={exact} path={path}>
           {({ match }) => (
-            <div className={style.page}>
+            <div className={style.page}
+                 style={{
+                   backgroundColor: props.common.theme === 'dark' ? color.routerBg : color.light,
+                   color: props.common.theme === 'dark' ? color.light : color.text_secondary,
+                 }}
+            >
               <Component >
                 {children && (
                   <Switch>
@@ -66,4 +73,9 @@ function Routes() {
 }
 
 
-export default Routes;
+const mapStateToProps = (state) => {
+  return {
+    ...state
+  }
+}
+export default connect(mapStateToProps)(Routes);

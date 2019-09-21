@@ -11,6 +11,8 @@
   color: #ffffff;
 
   .button{
+    width: 40px;
+    height: 40px;
     position: relative;
     margin-right: 10px;
     border-radius: 50%;
@@ -19,22 +21,22 @@
     align-items: center;
     justify-content: center;
 
-    svg {
-
-    }
-    &:hover{
-      background-color: $primary;
+    @include pc{
+      &:hover{
+        background-color: $primary;
+      }
     }
   }
 
   .home{
-    color: #C4E791;
+    color: #9CCC65;
   }
   .portfolio{
-    color: #6ca5dd;
+    color: $secondary;
   }
   .blog{
     color: $yellow;
+    padding: -3px;
   }
   .contacts{
     color: #D18DF0;

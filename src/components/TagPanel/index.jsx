@@ -4,6 +4,7 @@ import style from './style.module.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import * as BlogAction from '../../actions/BlogAction';
+import color from '../../constants/colors';
 
 class TagPanel extends React.Component{
     constructor(props){
@@ -46,7 +47,12 @@ class TagPanel extends React.Component{
         } = style;
 
           return(
-            <div className={style.TagPanelContainer}>
+            <div className={style.TagPanelContainer}
+                 style={{
+                   backgroundColor: this.props.common.theme === 'dark' ? color.black : color.grey2C_light,
+                   color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
+                 }}
+            >
               <div className={title}># Tags</div>
               <div className={taglist}>
                 {this.props.blog.tags && this.renderTags()}

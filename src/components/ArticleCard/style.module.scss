@@ -78,16 +78,24 @@
       //margin-left: auto;
       //width: 50px;
       //height: 20px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
       padding: 5px 10px;
       cursor: pointer;
-      border-left: 2px solid $primary;
+      border-left: 2px solid $yellow;
       background-color: $dark;
       transition: all ease .3s;
-      color: $primary;
+      color: $yellow;
 
       &:hover{
-        background-color: $primary;
-        color: #ffffff;
+        background-color: $yellow;
+        color: #0f0f0f;
+      }
+
+      svg{
+        font-size: 15px;
       }
     }
   }
