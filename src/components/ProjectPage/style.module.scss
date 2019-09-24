@@ -10,6 +10,10 @@
   width: 100%;
 
   .spanWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     margin: 0 0 10px 0;
   }
   .name {
@@ -142,10 +146,7 @@
     flex-wrap: nowrap;
     margin: 0 0 10px 0;
     overflow: auto;
-
-    &:hover{
-      overflow-y: scroll;
-    }
+    overflow-y: hidden;
 
     .skillItem{
       width: 30px;
@@ -175,9 +176,8 @@
 
     .linkWrap{
       margin: 10px 0 0 0;
-      border-radius: 15px;
       color: $github;
-      border: 2px solid $github;
+      border-left: 4px solid $github;
       background-color: transparent;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -185,6 +185,8 @@
       transition: all ease .3s;
       cursor: pointer;
       text-align: justify;
+      min-width: 100px;
+      max-width: 100%;
 
       &:hover{
         background-color: $github;

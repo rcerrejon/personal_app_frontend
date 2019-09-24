@@ -73,7 +73,9 @@ class SearchPanel extends React.Component{
     }
 
     renderHistory = (  ) => {
-        const {listItem} = style;
+        const {
+            listItem
+        } = style;
 
         return this.state.history.map(el => {
             return (

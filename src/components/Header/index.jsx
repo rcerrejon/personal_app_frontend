@@ -1,5 +1,6 @@
 import React from 'react';
 import { mdiLightbulbOutline,  mdiLightbulb, mdiClose, mdiMinus, mdiFullscreen } from '@mdi/js';
+import { Tonality } from '@material-ui/icons';
 import Icon, { Stack } from '@mdi/react';
 import color from '../../constants/colors'
 import { withRouter } from "react-router";
@@ -33,7 +34,7 @@ class Header extends React.Component{
         return(
             <div className={HeaderContainer}
                  style={{
-                   backgroundColor: this.props.common.theme === 'dark' ? color.grey2C : color.light,
+                   backgroundColor: this.props.common.theme === 'dark' ? color.grey2C : color.greyHeader,
                    color: this.props.common.theme === 'dark' ? color.light : color.black,
                  }}
             >
@@ -55,12 +56,12 @@ class Header extends React.Component{
                    onClick={() => {this.props.history.push('/')}}
               />
               <div className={HeaderRightButtons}>
-                <div className={[button].join(" ")}
+                <div className={button}
                      onClick={() => this.actionsCommon.switchTheme()}
                 >
-                  <Stack color={this.props.common.theme === 'dark' ? '#ffffff' : '#000000'}>
-                    <Icon path={mdiLightbulb}/>
-                  </Stack>
+                  <Tonality style={{
+                    color: this.props.common.theme === 'dark' ? color.light : color.dark
+                  }}/>
                 </div>
                 <div className={[button].join(" ")}
                      onClick={() => this.actionsCommon.switchLang()}

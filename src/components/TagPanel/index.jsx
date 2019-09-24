@@ -68,7 +68,7 @@ class TagPanel extends React.Component{
         return (
           <div className={tag}
                key={el.id}
-               style={{padding: !el.chosen ? '0 0 0 50%' : '0 50% 0 0', textAlign: !el.chosen ? 'left' : 'right'}}
+               style={{textAlign: !el.chosen ? 'left' : 'right', padding: !el.chosen ? '0 0 0 50%' : '0 50% 0 0', }}
           >
             <span onClick={() => this.chooseTag(el.id)}>
               <div className={hash}>#</div>

@@ -39,7 +39,8 @@ class Contacts extends React.Component{
         form,
         btn_send,
         btn_send__disable,
-        inputArea
+        btn_send_light,
+        btn_send_light__disable
       } = style;
 
       return(
@@ -50,12 +51,22 @@ class Contacts extends React.Component{
                 <div className={header}>Contact me</div>
                 <div className={form}>
                   {this.renderInputs(['Email', 'Name', 'Subject', 'Message'])}
-                  <div className={this.checkFullForm() ? btn_send : btn_send__disable}
-                       onClick={() => this.sendMail()}
+                  <div onClick={() => this.sendMail()}
+                       className={
+                         this.props.common.theme === 'dark'
+                         ?
+                         this.checkFullForm() ? btn_send : btn_send__disable
+                         :
+                         this.checkFullForm() ? btn_send_light : btn_send_light__disable
+                       }
                   >{'Send'}</div>
                 </div>
               </div>
-              <div className={separator}/>
+              <div className={separator}
+                   style={{
+                     backgroundColor: this.props.common.theme === 'dark' ? color.black : color.grey2C_light,
+                   }}
+              />
               <div className={links}>
                 <div className={header}>Links</div>
                 {this.props.contacts.links && this.renderLinks(this.props.contacts.links)}
@@ -77,21 +88,23 @@ class Contacts extends React.Component{
             ?
             <textarea className={inputArea}
                       name={el}
+                      key={el}
                       style={{
                         background: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
-                        color: this.props.common.theme === 'dark' ? color.primary : color.text_secondary,
-                        borderColor: this.props.common.theme === 'dark' ? color.primary : color.text_secondary,
+                        color: this.props.common.theme === 'dark' ? color.primary : color.secondary,
+                        borderColor: this.props.common.theme === 'dark' ? color.primary : color.secondary,
                       }}
                       value={this.state[el]}
                       placeholder={el}
                       onChange={this.onChangeForm}/>
             :
             <input className={inputArea}
+                   key={el}
                    name={el}
                    style={{
                      background: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
-                     color: this.props.common.theme === 'dark' ? color.primary : color.text_secondary,
-                     borderColor: this.props.common.theme === 'dark' ? color.primary : color.text_secondary,
+                     color: this.props.common.theme === 'dark' ? color.primary : color.secondary,
+                     borderColor: this.props.common.theme === 'dark' ? color.primary : color.secondary,
                    }}
                    value={this.state[el]}
                    placeholder={el}
@@ -117,6 +130,13 @@ class Contacts extends React.Component{
           subject,
           message
         })
+
+        this.setState({
+          Name: '',
+          Subject: '',
+          Message: '',
+          Email: ''
+        })
       } else {
         console.log('pls full form')
       }
@@ -125,12 +145,13 @@ class Contacts extends React.Component{
     }
 
     checkFullForm = () => {
-      return this.state.email !== '' && this.state.name !== '' && this.state.subject !== '' && this.state.message !== ''
+      return this.state.Email !== '' && this.state.Name !== '' && this.state.Subject !== '' && this.state.Message !== ''
     }
 
     onChangeForm = (e) => {
       const name = e.target.name;
       const value = e.target.value;
+      console.log(name, value)
 
       this.setState({
         [name]: value

@@ -5,6 +5,7 @@ import { bindActionCreators, compose } from 'redux';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router';
 import * as BlogAction from '../../actions/BlogAction';
+import color from '../../constants/colors'
 
 class ArticleCard extends React.Component{
   constructor(props){
@@ -108,8 +109,8 @@ class ArticleCard extends React.Component{
           <div className={btn_open}
                onClick={() => { this.props.history.push(`blog/${article.id}`); this.incrementViews(article.id) }}
           >
-            <div>{this.props.common.lang === 'en' ? 'Continue read' : 'Продолжить читать'}</div>
-            <ArrowForward/>
+            <div>{this.props.common.lang === 'en' ? 'Continue read ' : 'Продолжить читать '}</div>
+             <ArrowForward/>
           </div>
           <div className={stats}>
             <div className={stat}><Visibility/> {article.views}</div>

@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import color from '../../constants/colors'
+import BreadPath from '../BreadPath';
 
 const icons = {
   award: {
@@ -80,6 +81,7 @@ class AboutPage extends React.Component{
       return(
           <div className={style.AboutPageContainer}>
               <div className={main}>
+                <BreadPath/>
                 <div className={title}>
                   {this.props.common.lang === 'en' ? 'About me' : 'Обо мне'}
                 </div>

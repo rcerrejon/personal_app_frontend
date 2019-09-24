@@ -1,7 +1,6 @@
 import React from 'react';
-
 import style from './style.module.scss';
-import { Comment, Visibility, NavigateBefore, AddComment } from '@material-ui/icons';
+import { Comment, Visibility, NavigateBefore, AddComment, Edit } from '@material-ui/icons';
 import {withRouter} from 'react-router';
 import PopupCommentCreate from '../PopupCommentCreate';
 import { bindActionCreators, compose } from 'redux';
@@ -100,11 +99,16 @@ class ArticlePage extends React.Component{
               <div className={comments}>
                 <div className={title}>
                   <span>
-                    {this.props.common.lang === 'en' ?  'Comments' : 'Комментарии'}
                     <Comment/>
                     {article.comments && article.comments.length}
+                    {this.props.common.lang === 'en' ?  'Comments' : 'Комментарии'}
                   </span>
-                  <div className={btn_comment} onClick={() => {this.switchPopupComment()}}><AddComment/></div>
+                  <div className={btn_comment}
+                       onClick={() => {this.switchPopupComment()}}
+                  >
+                    <Edit/>
+                    {/*{this.props.common.lang === 'en' ?  'Write' : 'Написать'}*/}
+                  </div>
                 </div>
                 {article.comments && this.renderComments()}
               </div>
@@ -117,6 +121,7 @@ class ArticlePage extends React.Component{
     componentWillMount() {
       this.actionsCommon.setLoadingData(false)
       this.actionsBlog.getArticle(this.props.match.params.id)
+      this.actionsBlog.getBlog();
     }
 
     setHistory = (article) => {

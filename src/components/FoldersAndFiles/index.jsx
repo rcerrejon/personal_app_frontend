@@ -1,5 +1,4 @@
 import React from 'react';
-
 import style from './style.module.scss';
 import history from '../../history';
 import Img from 'react-image';
@@ -11,6 +10,7 @@ import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as PortfolioActions from '../../actions/PortfolioActions';
 import color from '../../constants/colors';
+import BreadPath from '../BreadPath';
 
 class FoldersAndFiles extends React.Component{
     constructor(props){
@@ -21,51 +21,15 @@ class FoldersAndFiles extends React.Component{
 
     render() {
       const {
-        path,
-        btn_back,
-        history
+
       } = style;
 
         return(
             <div className={style.FoldersAndFilesContainer}>
-              <div className={history}>
-                {this.props.location.pathname.split('/').slice(1).length > 1
-                  &&
-                  <div className={btn_back}
-                       onClick={() => this.props.history.goBack()}
-                  >
-                    <ArrowBackIos/>
-                    <span>{this.props.common.lang === 'en' ? 'back' : 'назад'}</span>
-                  </div>
-                }
-                <div className={path}>
-                  <Img style={{
-                    height: '15px',
-                    width: '15px',
-                    marginRight: '4px'
-                  }}
-                       src="https://cdn1.savepice.ru/uploads/2019/9/19/22693186150623c85e17e2ab6311c481-full.png"
-                  />
-                  {this.renderPath(this.props.location.pathname)}
-                </div>
-              </div>
+              <BreadPath/>
               {this.renderItems()}
             </div>
         )
-    }
-
-    renderPath = (str) => {
-      let arr = str.split('/').slice(1);
-      return arr.map((el, index, array) => {
-        return (
-          <span className={style.pathItem} key={el}>
-            <span onClick={ () => this.props.history.push('/' + array.filter((el, i) => i <= index).join('/') ) }>
-              {el}
-            </span>
-            { index + 1 !== arr.length && <ArrowForwardIos/> }
-          </span>
-        )
-      })
     }
 
     renderItems = () => {

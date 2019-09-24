@@ -1,5 +1,5 @@
 import React from 'react';
-import { Work, EventNote, Home, Email } from '@material-ui/icons/index';
+import { Work, Home, Email, MenuBook } from '@material-ui/icons';
 import style from './style.module.scss';
 import { mdiNewspaper } from '@mdi/js';
 import Icon from '@mdi/react';
@@ -18,7 +18,15 @@ class NavbarMain extends React.Component{
     componentWillUnmount() {}
 
     render() {
-      const {NavbarMainContainer, button, home, portfolio, activeNavlink, blog, contacts} = style;
+      const {
+        NavbarMainContainer,
+        button,
+        home,
+        portfolio,
+        activeNavlink,
+        blog,
+        contacts
+      } = style;
 
         return(
             <div className={NavbarMainContainer}
@@ -29,7 +37,7 @@ class NavbarMain extends React.Component{
             >
               <NavLink exact to="/" className={[button, home].join(" ")} activeClassName={activeNavlink}><Home /></NavLink>
               <NavLink to="/portfolio" className={[button, portfolio].join(" ")} activeClassName={activeNavlink}><Work /></NavLink>
-              <NavLink to="/blog" className={[button, blog].join(" ")} activeClassName={activeNavlink}><Icon path={mdiNewspaper} color="#FFA500"/></NavLink>
+              <NavLink to="/blog" className={[button, blog].join(" ")} activeClassName={activeNavlink}><MenuBook color="#FFA500"/></NavLink>
               <NavLink to="/contacts" className={[button, contacts].join(" ")} activeClassName={activeNavlink}><Email /></NavLink>
             </div>
         )

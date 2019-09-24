@@ -4,6 +4,7 @@ import style from './style.module.scss';
 import {_openInNewTab} from '../../utils/commonFunctions';
 import color from '../../constants/colors';
 import { connect } from 'react-redux';
+import { BtnLink } from '../../styled';
 
 class Home extends React.Component{
     constructor(props){
@@ -39,15 +40,10 @@ class Home extends React.Component{
                        borderColor: this.props.common.theme === 'dark' ? color.primary : color.secondary,
                      }}
                 />
-                <div className={btn_action} onClick={() => _openInNewTab("https://github.com/Imlerix")}>
+                <BtnLink onClick={() => _openInNewTab("https://github.com/Imlerix")} currTheme={this.props.common.theme}>
                   <FontAwesomeIcon icon={['fab', 'github']}/>
-                  {this.props.common.lang === 'en'
-                    ?
-                    ' Github'
-                    :
-                    ' Гитхаб'
-                  }
-                </div>
+                  {' Github'}
+                </BtnLink>
               </div>
               <div className={infoContainer}>
                 <div className={greetText}>

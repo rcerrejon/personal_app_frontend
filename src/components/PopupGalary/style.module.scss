@@ -54,7 +54,7 @@
       top: -50px;
       right: -50px;
       background-color: $grey-select;
-      box-shadow: 0 10px 10px 10px $dark;
+      box-shadow: 0 5px 10px 5px $dark;
 
       @include mobile{
         right: 0;

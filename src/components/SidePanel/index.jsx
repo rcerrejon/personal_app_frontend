@@ -7,7 +7,7 @@ function SidePanel(props) {
     return (
       <div className={style.SidePanelContainer}
            style={{
-             backgroundColor: props.common.theme === 'dark' ? color.dark : color.grey2C_light,
+             backgroundColor: props.common.theme === 'dark' ? color.black : color.grey2C_light,
            }}
       >
           {props.children}

@@ -1,17 +1,19 @@
 import React from 'react';
-
 import style from './style.module.scss';
 import {Close} from '@material-ui/icons';
+import { connect } from 'react-redux';
+import color from '../../constants/colors'
 
 class PopupCommentCreate extends React.Component{
     constructor(props){
         super(props)
-        this.state = {}
+        this.state = {
+          isAbleSendBtn: false,
+          Email: '',
+          Name: '',
+          Message: ''
+        }
     }
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
 
     render() {
       const {
@@ -24,19 +26,49 @@ class PopupCommentCreate extends React.Component{
 
         return(
             <div className={style.PopupCommentCreateContainer}>
-              <div className={form}>
-                <div className={title}>Оставьте комментарий</div>
+              <div className={form}
+                   style={{
+                     backgroundColor: this.props.common.theme === 'dark' ? color.greySelect : color.grey2C_light,
+                     color: this.props.common.theme === 'dark' ? '#ffffff' : color.text_secondary,
+                     boxShadow: this.props.common.theme === 'dark' ? `0 5px 10px 5px ${color.dark}` : `0 5px 10px 5px ${color.text_secondary}`,
+                   }}
+              >
+                <div className={title}>
+                  {this.props.common.lang === 'ru'
+                    ? 'Оставьте комментарий'
+                    : 'Send comment'
+                  }
+                </div>
                 <div className={btn_close}
                      onClick={() => this.props.closePopup()}
                 ><Close/></div>
-                <input className={inputArea} placeholder="Name"/>
+                <input className={inputArea}
+                       placeholder={this.props.common.lang === 'ru' ? 'Ваше Имя' : 'Your Name'}
+                />
                 <input className={inputArea} placeholder="E-mail"/>
-                <textarea className={inputArea} placeholder="Comment"/>
-                <div className={btn_send}>{'Send'}</div>
+                <textarea className={inputArea}
+                          placeholder={this.props.common.lang === 'ru' ? 'Комментарий' : 'Comment'}
+                />
+                <div className={btn_send}>{this.props.common.lang === 'ru' ? 'Отправить' : 'Send'}</div>
               </div>
             </div>
         )
     }
+
+    renderInputs = (arrayOfInputs) => {
+      return arrayOfInputs.map(el => {
+        return (
+          <div>
+
+          </div>
+        )
+      })
+    }
 }
 
-export default PopupCommentCreate;
+const mapStateToProps = (state) => {
+  return {
+    ...state
+  }
+}
+export default connect(mapStateToProps)(PopupCommentCreate);

@@ -23,18 +23,17 @@
 
     .tag{
       margin: 5px 0;
-      text-align: center;
-      transition: all ease .3s;
       width: 100%;
       height: 22px;
       overflow-x: hidden;
-      //text-overflow: ellipsis;
+      transition: padding ease .3s !important;
+      padding: 0 0 0 50%;
+      text-align: left;
 
       span{
         position: relative;
         cursor: pointer;
         white-space: nowrap;
-
 
         &:hover:after{
           width: 100%;

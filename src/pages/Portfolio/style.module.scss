@@ -63,7 +63,6 @@
       font-size: 20px;
       user-select: none;
       white-space: nowrap;
-      cursor: pointer;
       border-left: 2px solid transparent;
 
       @include mobile{
@@ -74,6 +73,10 @@
       &:hover{
         background-color: $grey-select;
         border-left: 2px solid $primary;
+      }
+
+      .treeItemText{
+        cursor: pointer;
       }
 
       .fileIcon{

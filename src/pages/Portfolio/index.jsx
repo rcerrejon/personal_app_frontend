@@ -18,106 +18,6 @@ class Portfolio extends React.Component{
         super(props)
         this.state = {
           isMobile: false,
-          dirs: [{
-              id: 1,
-              type : 'folder',
-              root: true,
-              open: true,
-              name: 'Portfolio',
-              url: '',
-              childs: [
-                {
-                  id: 2,
-                  type: 'folder',
-                  open: false,
-                  name: 'Projects',
-                  url: '/projects',
-                  childs: [
-
-                    {
-                      id: 3,
-                      parent_id: 2,
-                      type: 'folder',
-                      open: false,
-                      name: 'Frontend',
-                      url: '/projects/frontend',
-                      childs: [
-                        {
-                          id: 3,
-                          parent_id: 3,
-                          type: 'proj',
-                          name: 'www.zhopa.ru',
-                          url: '/projects/frontend/1',
-                        },
-                        {
-                          id: 4,
-                          parent_id: 3,
-                          type: 'proj',
-                          name: 'my.heartBrent.com',
-                          url: '/projects/frontend/2',
-                        }
-                      ]
-                    },
-                    {
-                      id: 4,
-                      parent_id: 2,
-                      type: 'folder',
-                      open: false,
-                      name: 'Backend',
-                      url: '/projects/backend',
-                      childs: [
-                        {
-                          id: 1,
-                          parent_id: 2,
-                          type: 'proj',
-                          name: 'teams.mospolytech.ru',
-                          url: '/projects/backend/teams-mospolytech'
-                        },
-                        {
-                          id: 2,
-                          parent_id: 2,
-                          type: 'proj',
-                          name: 'my.homepage.com',
-                          url: '/projects/backend/my-homepage'
-                        },
-                        {
-                          id: 5,
-                          parent_id: 4,
-                          type: 'folder',
-                          open: false,
-                          name: 'Backend',
-                          url: '/projects/backend',
-                          childs: [
-                            {
-                              id: 11,
-                              parent_id: 5,
-                              type: 'proj',
-                              name: 'teams.mospolytech.ru',
-                              url: '/projects/backend/teams-mospolytech'
-                            },
-                            {
-                              id: 12,
-                              parent_id: 5,
-                              type: 'proj',
-                              name: 'my.homepage.com',
-                              url: '/projects/backend/my-homepage'
-                            },
-                          ]
-                        },
-                      ]
-                    },
-                  ]
-                },
-                {
-                  id: 6,
-                  parent_id: 1,
-                  type: 'file',
-                  name: 'About me',
-                  url: '/about'
-                }
-              ]
-
-          }]
         }
     }
     actions = bindActionCreators(PortfolioActions, this.props.dispatch);
@@ -136,8 +36,8 @@ class Portfolio extends React.Component{
                 {this.state.isMobile
                   &&
                   <>
-                    <Btn onClick={() => this._switchInfo()}
-                    ><Icon path={mdiInformationVariant} color={color.secondary} rotate={90}/></Btn>
+                    {/*<Btn onClick={() => this._switchInfo()}*/}
+                    {/*><Icon path={mdiInformationVariant} color={color.secondary} rotate={90}/></Btn>*/}
                     <Btn onClick={() => this._switchLeftnav()}
                     ><Icon path={mdiFileTree} color={color.primary} rotate={90}/></Btn>
                   </>
@@ -205,6 +105,7 @@ class Portfolio extends React.Component{
     _makeObjToTree = (array, prefix) => {
       const {
         treeItem,
+        treeItemText,
         folderInner,
         folderInnerClosed,
         fileIcon
@@ -228,7 +129,9 @@ class Portfolio extends React.Component{
                  }}
                  >
               {item.open ? <KeyboardArrowDownRounded onClick={() => {this.openFolder(item.id)}}/> : <KeyboardArrowRightRounded onClick={() => {this.openFolder(item.id)}}/>}
-              <div onClick={() => this.moveToFolder(item)}>
+              <div onClick={() => this.moveToFolder(item)}
+                   className={treeItemText}
+              >
                 {this.props.common.lang === 'en' ? item.name_en : item.name_ru}
               </div>
             </div>
@@ -240,7 +143,9 @@ class Portfolio extends React.Component{
                  }}
                  onClick={() => this.moveToFile(item.url)}>
               <FontAwesomeIcon icon="file" className={fileIcon}/>
-              {this.props.common.lang === 'en' ? item.name_en : item.name_ru}
+              <div className={treeItemText}>
+                {this.props.common.lang === 'en' ? item.name_en : item.name_ru}
+              </div>
             </div>
           }
           {item.childs &&

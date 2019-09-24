@@ -51,10 +51,17 @@
 
       .listItem{
         margin: 5px 0;
+        position: relative;
+
         span{
+          display: block;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow-x: hidden;
           position: relative;
           cursor: pointer;
 
+        }
           &:hover:after{
             width: 100%;
           }
@@ -80,7 +87,6 @@
             background-color: $primary;
             transition: all ease .3s;
           }
-        }
       }
     }
   }
