@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes'
 const initialState = {
   isDataLoaded: false,
   theme: 'dark',
-  lang: 'en'
+  lang: 'ru'
 }
 
 

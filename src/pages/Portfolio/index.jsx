@@ -8,7 +8,7 @@ import { Btn } from './styled';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as PortfolioActions from '../../actions/PortfolioActions';
-import Hidebar from '../../components/Hidebar';
+import Hidebar from '../../components/Common/Hidebar';
 import { mdiInformationVariant, mdiFileTree } from '@mdi/js';
 import Icon, { Stack } from '@mdi/react';
 import color from '../../constants/colors'

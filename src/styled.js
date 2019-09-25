@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { device } from './config/styled.components'
 import color from './constants/colors'
 
-export const BtnLink = styled.div`
+export const BtnYellow = styled.div`
   cursor: pointer;
   transition: all ease 0.3s;
   padding: 10px 20px;

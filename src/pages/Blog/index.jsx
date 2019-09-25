@@ -2,9 +2,9 @@ import React from 'react';
 import style from './style.module.scss';
 import { Btn } from '../Portfolio/styled';
 import { Search } from '@material-ui/icons';
-import SearchPanel from '../../components/SearchPanel';
-import TagPanel from '../../components/TagPanel';
-import Hidebar from '../../components/Hidebar';
+import SearchPanel from '../../components/Blog/SearchPanel';
+import TagPanel from '../../components/Blog/TagPanel';
+import Hidebar from '../../components/Common/Hidebar';
 import {connect} from 'react-redux'
 import { bindActionCreators, compose } from 'redux';
 import * as BlogAction from '../../actions/BlogAction';
@@ -60,7 +60,7 @@ class Blog extends React.Component{
             {
               this.props.blog.isOpenSearch
               &&
-              <div className={wrapSearch}><SearchPanel/></div>
+              <div className={wrapSearch}><SearchPanel isMobile={this.state.isMobile}/></div>
             }
             <div className={main}>
               {this.props.children}

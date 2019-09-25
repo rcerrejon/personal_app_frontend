@@ -1,0 +1,110 @@
+@import '../../../config/scss/index';
+.ArticleCardContainer{
+  margin: 0 0 40px 0;
+
+
+  .header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex: auto;
+
+    .name{
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+  }
+  .date{
+    opacity: 0.7;
+  }
+  .noPC{
+    @include pc{
+      display: none;
+    }
+  }
+  .noMobile{
+    @include mobile{
+      display: none;
+    }
+  }
+
+  .tags{
+    display: flex;
+    flex-direction: row;
+
+    .tag{
+      margin: 0 5px 0 0;
+      //opacity: 0.7;
+      transition: all ease .3s;
+      cursor: pointer;
+
+      &:hover{
+        opacity: 1;
+      }
+
+      .hash{
+        color: $secondary;
+      }
+
+    }
+  }
+
+  .text{
+    margin: 10px 0 0 0;
+  }
+
+  .action_panel{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0 0 0;
+
+    .stats{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 100px;
+
+      .stat{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        margin: 0 15px 0 0;
+        color: $secondary;
+        font-weight: bold;
+
+        svg {
+          margin: 0 3px 0 0;
+        }
+      }
+    }
+
+    .btn_open{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-left: 2px solid $yellow;
+      background-color: transparent;
+      transition: all ease .3s;
+      color: $yellow;
+
+      &:hover{
+        background-color: $yellow;
+        color: #0f0f0f;
+      }
+
+      svg{
+        font-size: 15px;
+      }
+    }
+  }
+}
+        
