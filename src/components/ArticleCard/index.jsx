@@ -124,7 +124,8 @@ class ArticleCard extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  common: state.common,
+  blog: state.blog
 })
 
 export default compose(

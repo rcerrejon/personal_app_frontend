@@ -91,7 +91,9 @@ class SearchPanel extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-    ...state
+    common: {
+        theme: state.common.theme
+    }
 })
 
 export default compose(

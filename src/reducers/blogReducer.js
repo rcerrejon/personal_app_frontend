@@ -42,13 +42,13 @@ export default function blogReducer(state = initialState, action) {
     case types.SWITCH_SEARCH:
       return {
         ...state,
-        isOpenSearch: !state.isOpenSearch
+        isOpenSearch: action.value
       }
 
     case types.SWITCH_TAGS:
       return {
         ...state,
-        isOpenTags: !state.isOpenTags
+        isOpenTags: action.value
       }
     case types.CURRENT_FILTER:
       return {

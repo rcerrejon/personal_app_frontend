@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './style.module.scss';
 import { Btn } from '../Portfolio/styled';
+import { Search } from '@material-ui/icons';
 import SearchPanel from '../../components/SearchPanel';
 import TagPanel from '../../components/TagPanel';
 import Hidebar from '../../components/Hidebar';
@@ -8,6 +9,7 @@ import {connect} from 'react-redux'
 import { bindActionCreators, compose } from 'redux';
 import * as BlogAction from '../../actions/BlogAction';
 import * as CommonAction from '../../actions/CommonAction';
+import color from '../../constants/colors';
 
 class Blog extends React.Component{
     constructor(props){
@@ -35,15 +37,23 @@ class Blog extends React.Component{
                 this.state.isMobile
                 &&
                 <Btn active={this.props.blog.isOpenTags}
-                     onClick={() => this._switchTags()}
-                >2: Tags</Btn>
+                     onClick={() => this._switchTags(null, true)}
+                >
+                  <b style={{
+                    transform: 'rotate(90deg)'
+                  }}>#</b>
+                </Btn>
               }
               {
                 this.state.isMobile
                 &&
                 <Btn active={this.props.blog.isOpenSearch}
-                     onClick={() => this._switchSearch()}
-                >1: Search</Btn>
+                     onClick={() => this._switchSearch(null, true)}
+                >
+                  <Search style={{
+                    transform: 'rotate(90deg)'
+                  }}/>
+                </Btn>
               }
               <div className={disabled_btn}>Blog</div>
             </Hidebar>
@@ -65,25 +75,26 @@ class Blog extends React.Component{
     }
 
     updateWidth = () => {
-      this.setState({isMobile: window.innerWidth <= 999})
-      if (this.state.isMobile ){
+      let isMobile = window.innerWidth <= 999;
+      this.setState({isMobile});
+
+      if ( isMobile ){
         if (this.props.blog.isOpenSearch){
-          this._switchSearch()
+          this._switchSearch(false)
         }
         if (this.props.blog.isOpenTags){
-          this._switchTags()
+          this._switchTags(false)
         }
       } else {
         if (!this.props.blog.isOpenSearch){
-          this._switchSearch()
+          this._switchSearch(true)
         }
         if (!this.props.blog.isOpenTags){
-          this._switchTags()
+          this._switchTags(true)
         }
       }
     }
     componentDidMount() {
-
       window.addEventListener('resize', this.updateWidth)
       this.updateWidth()
     }
@@ -94,18 +105,24 @@ class Blog extends React.Component{
       window.removeEventListener('resize', this.updateWidth)
     }
 
-    _switchSearch = () => {
-      this.actionsBlog.switchSearch()
+    _switchSearch = (value, isHandle) => {
+      if (isHandle){
+        this.actionsBlog.switchTags(false)
+      }
+      this.actionsBlog.switchSearch(value)
     }
 
-    _switchTags = () => {
-      this.actionsBlog.switchTags()
+    _switchTags = (value, isHandle) => {
+      if (isHandle){
+        this.actionsBlog.switchSearch(false)
+      }
+      this.actionsBlog.switchTags(value)
     }
 
 
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  blog: state.blog
 })
 export default connect(mapStateToProps)(Blog);

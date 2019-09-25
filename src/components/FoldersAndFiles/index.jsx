@@ -92,7 +92,12 @@ class FoldersAndFiles extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  common: {
+    lang: state.common.lang
+  },
+  portfolio: {
+    folders: state.portfolio.folders
+  }
 })
 
 export default compose(

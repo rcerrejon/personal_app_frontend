@@ -17,7 +17,9 @@ function SidePanel(props) {
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    common: {
+      theme: state.common.theme
+    }
   }
 }
 export default connect(mapStateToProps)(SidePanel);

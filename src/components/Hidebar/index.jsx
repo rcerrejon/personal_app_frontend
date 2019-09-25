@@ -15,7 +15,9 @@ function Hidebar(props) {
     );
 }
 const mapStateToProps = (state) => ({
-    ...state
+  common: {
+    theme: state.common.theme
+  }
 })
 export default connect(mapStateToProps)(Hidebar);
         

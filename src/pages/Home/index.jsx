@@ -79,7 +79,7 @@ class Home extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    common: state.common
   }
 }
 export default connect(mapStateToProps)(Home);

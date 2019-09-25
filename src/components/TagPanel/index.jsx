@@ -9,30 +9,6 @@ import color from '../../constants/colors';
 class TagPanel extends React.Component{
     constructor(props){
         super(props)
-        this.state = {
-          tags: [
-            {
-              id: 1,
-              name: 'Frontend',
-              chosen: false
-            },
-            {
-              id: 2,
-              name: 'Backend',
-              chosen: false
-            },
-            {
-              id: 3,
-              name: 'Unity',
-              chosen: false
-            },
-            {
-              id: 4,
-              name: 'ML',
-              chosen: false
-            },
-          ]
-        }
     }
     actionsBlog = bindActionCreators(BlogAction, this.props.dispatch);
 
@@ -49,7 +25,7 @@ class TagPanel extends React.Component{
           return(
             <div className={style.TagPanelContainer}
                  style={{
-                   backgroundColor: this.props.common.theme === 'dark' ? color.black : color.grey2C_light,
+                   backgroundColor: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
                    color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
                  }}
             >
@@ -93,7 +69,13 @@ class TagPanel extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    ...state
+    common: {
+      theme: state.common.theme,
+      lang: state.common.lang
+    },
+    blog: {
+      tags: state.blog.tags
+    }
   }
 }
 export default connect(mapStateToProps)(TagPanel);

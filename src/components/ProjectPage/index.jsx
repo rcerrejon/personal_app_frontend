@@ -207,7 +207,11 @@ class ProjectPage extends React.Component{
 
 
 const mapStateToProps = (state) => ({
-  ...state
+  common: {
+    lang: state.common.lang,
+    theme: state.common.theme,
+  },
+  portfolio: state.portfolio
 })
 
 export default connect(mapStateToProps)(ProjectPage);

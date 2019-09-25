@@ -34,25 +34,29 @@
 
   .wrapSearch{
     width: 20%;
-    height: 100%;
 
+    @include pc{
+      height: 100%;
+    }
     @include mobile{
       position: absolute;
       z-index: 13;
       width: 100vw;
-      height: 100%;
+      height: 50vh;
       top: 0;
       left: 0;
     }
   }
   .wrapTag{
     width: 20%;
-    height: 100%;
 
+    @include pc{
+      height: 100%;
+    }
     @include mobile{
       position: absolute;
       width: 100vw;
-      height: 100%;
+      height: 50vh;
       top: 0;
       left: 0;
     }

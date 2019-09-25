@@ -102,14 +102,36 @@ export function chooseTags(tags) {
   }
 }
 
-export function switchSearch() {
-  return {
-    type: types.SWITCH_SEARCH
+export function switchSearch(value) {
+  return (dispatch, getState) => {
+    if (value != null)
+      dispatch({
+        type: types.SWITCH_SEARCH,
+        value
+      })
+    else {
+      let valueFromStore = !getState().blog.isOpenSearch
+      dispatch({
+        type: types.SWITCH_SEARCH,
+        value: valueFromStore
+      })
+    }
   }
 }
 
-export function switchTags() {
-  return {
-    type: types.SWITCH_TAGS
+export function switchTags(value) {
+  return (dispatch, getState) => {
+    if (value != null)
+      dispatch({
+        type: types.SWITCH_TAGS,
+        value
+      })
+    else {
+      let valueFromStore = !getState().blog.isOpenTags
+      dispatch({
+        type: types.SWITCH_TAGS,
+        value: valueFromStore
+      })
+    }
   }
 }

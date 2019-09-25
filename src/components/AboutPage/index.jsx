@@ -3,8 +3,6 @@ import Icon from '@mdi/react';
 import style from './style.module.scss';
 import SidePanel from '../SidePanel';
 import { mdiMedal, mdiSchool, mdiBriefcase } from '@mdi/js';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import color from '../../constants/colors'
 import BreadPath from '../BreadPath';
@@ -27,42 +25,6 @@ const icons = {
 class AboutPage extends React.Component{
     constructor(props){
         super(props)
-        this.state = {
-          info_ru: 'Привет, я Голенко Вадим (Удачин - псевдоним), родился в Волгограде и в 2017 году поступил в МосПолитех на "Веб-разработку". В настоящий момент ищу работу направленности Full-stack или Front-end разработчика.',
-          info_en: 'Hi, I’m Vadim Golenko (Udachin is a pseudonym), was born in Volgograd and in 2017 I entered MosPolitech for Web Development. At the moment, I am looking for a job focus Full-stack or Front-end developer.',
-          works: [
-            {
-              id: 1,
-              name: 'WNM.Digital',
-              linkToSite: 'www.wnm.digital',
-              type: 'work',
-              date: 'Feb - May, 2019',
-              note: 'Будучи junior-программистом занимался front-end разработкой на Vue.js .'
-            },
-            {
-              id: 2,
-              name: 'МосПолитех',
-              date: '2017 - 2021',
-              type: 'education',
-              note: 'Факультет информационных технологий (ФИТ), направление Веб-разработка'
-            },
-            {
-              id: 3,
-              name: 'Wordskills Russia',
-              date: '2020',
-              type: 'award',
-              note: 'Направление Веб-разработка'
-            }
-          ],
-          educations: [
-            {
-              id: 2,
-              name: 'МосПолитех',
-              date: '2017 - 2021',
-              note: 'Факультет информационных технологий (ФИТ), направление Веб-разработка'
-            }
-          ]
-        }
     }
 
     render() {
@@ -98,10 +60,6 @@ class AboutPage extends React.Component{
                 >
                   {this.renderWorkPath()}
                 </div>
-                {/*<div className={educationTitle}>Education</div>*/}
-                {/*<div className={educationPath}>*/}
-                {/*  {this.renderEducations()}*/}
-                {/*</div>*/}
               </div>
 
               <div className={[sidePanelWrapper, noMobile].join(" ")}>
@@ -112,28 +70,6 @@ class AboutPage extends React.Component{
           </div>
       )
     }
-
-  // renderEducations = () => {
-  //   const {
-  //     item,
-  //     count,
-  //     name,
-  //     date,
-  //     note
-  //   } = style;
-  //
-  //     return this.state.educations.map((el) => {
-  //       return (
-  //         <div className={item} key={el.id}>
-  //           <div className={name}>
-  //             <span>{el.name}</span>
-  //             <div className={date}>{el.date}</div>
-  //           </div>
-  //           <div className={note}>{el.note}</div>
-  //         </div>
-  //       )
-  //     })
-  // }
 
     renderWorkPath = () => {
       const {
@@ -163,7 +99,7 @@ class AboutPage extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  common: state.common
 })
 
 export default connect(mapStateToProps)(AboutPage);

@@ -23,32 +23,32 @@ class ArticlePage extends React.Component{
     actionsCommon = bindActionCreators(CommonActions, this.props.dispatch);
 
      months = [
-      'Января',
-      'Февраля',
-      'Март',
-      'Апреля',
+      'Янв',
+      'Фев',
+      'Мар',
+      'Апр',
       'Мая',
-      'Июня',
-      'Июля',
-      'Августа',
-      'Сентября',
-      'Октября',
-      'Ноября',
-      'Декабря',
+      'Июн',
+      'Июл',
+      'Авг',
+      'Сен',
+      'Окт',
+      'Ноя',
+      'Дек',
     ]
     months_en = [
-      'January',
-      'February',
-      'March',
-      'April',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
       'May',
-      'June',
-      'July',
-      'Augusta',
-      'September',
-      'October',
-      'November',
-      'December',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ]
 
     render() {
@@ -99,9 +99,9 @@ class ArticlePage extends React.Component{
               <div className={comments}>
                 <div className={title}>
                   <span>
+                    {this.props.common.lang === 'en' ?  'Comments' : 'Комментарии'}
                     <Comment/>
                     {article.comments && article.comments.length}
-                    {this.props.common.lang === 'en' ?  'Comments' : 'Комментарии'}
                   </span>
                   <div className={btn_comment}
                        onClick={() => {this.switchPopupComment()}}
@@ -212,7 +212,8 @@ class ArticlePage extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  common: state.common,
+  blog: state.blog
 })
 
 export default compose(

@@ -85,6 +85,7 @@ class Articles extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  blog: state.blog,
+  common: state.common
 })
 export default connect(mapStateToProps)(Articles);

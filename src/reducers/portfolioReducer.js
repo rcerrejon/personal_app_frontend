@@ -27,13 +27,13 @@ export default function portfolioReducer(state = initialState, action) {
     case types.SWITCH_LEFTNAV:
       return {
         ...state,
-        isOpenLeftnav: !state.isOpenLeftnav
+        isOpenLeftnav: action.value
       }
 
     case types.SWITCH_INFO:
       return {
         ...state,
-        isOpenInfo: !state.isOpenInfo
+        isOpenInfo: action.value
       }
     default:
       return state;

@@ -2,15 +2,37 @@ import * as types from '../constants/ActionTypes';
 import axios from 'axios';
 const url = `${process.env.REACT_APP_SERVERURL}/portfolio`;
 
-export function switchLeftnav() {
-  return {
-    type: types.SWITCH_LEFTNAV
+export function switchLeftnav(value) {
+  return (dispatch, getState) => {
+    if (value != null)
+      dispatch({
+        type: types.SWITCH_LEFTNAV,
+        value
+      })
+    else {
+      let valueFromStore = !getState().portfolio.isOpenLeftnav
+      dispatch({
+        type: types.SWITCH_LEFTNAV,
+        value: valueFromStore
+      })
+    }
   }
 }
 
-export function switchInfo() {
-  return {
-    type: types.SWITCH_INFO
+export function switchInfo(value) {
+  return (dispatch, getState) => {
+    if (value != null)
+      dispatch({
+        type: types.SWITCH_INFO,
+        value
+      })
+    else {
+      let valueFromStore = !getState().portfolio.isOpenInfo
+      dispatch({
+        type: types.SWITCH_INFO,
+        value: valueFromStore
+      })
+    }
   }
 }
 

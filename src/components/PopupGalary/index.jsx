@@ -5,7 +5,14 @@ import { KeyboardArrowRightRounded, KeyboardArrowLeftRounded, Close } from '@mat
 import Preloader from '../Preloader';
 
 function PopupGalary(props) {
-  const { PopupGalaryContainer, image, btn, close, left, right } = style;
+  const {
+    PopupGalaryContainer,
+    image,
+    btn,
+    close,
+    left,
+    right
+  } = style;
   let arrayImages = props.arrayImages;
   const [currentImage, setCurrentImage] = useState(props.arrayImages.find(el => el.id === props.currentImageId));
 

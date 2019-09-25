@@ -79,7 +79,10 @@ class Header extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    common: {
+      theme: state.common.theme,
+      lang: state.common.lang
+    }
   }
 }
 export default compose(

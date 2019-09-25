@@ -188,7 +188,8 @@ class Contacts extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  contacts: state.contacts,
+  common: state.common,
 })
 
 export default compose(

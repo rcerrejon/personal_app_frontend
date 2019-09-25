@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style.module.scss';
-import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note } from '@material-ui/icons';
+import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note, Menu } from '@material-ui/icons';
 import { Switch, withRouter } from 'react-router';
 import history from '../../history';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,12 +35,12 @@ class Portfolio extends React.Component{
               <Hidebar>
                 {this.state.isMobile
                   &&
-                  <>
-                    {/*<Btn onClick={() => this._switchInfo()}*/}
-                    {/*><Icon path={mdiInformationVariant} color={color.secondary} rotate={90}/></Btn>*/}
-                    <Btn onClick={() => this._switchLeftnav()}
-                    ><Icon path={mdiFileTree} color={color.primary} rotate={90}/></Btn>
-                  </>
+                  <Btn onClick={() => this._switchLeftnav()} active={this.props.portfolio.isOpenLeftnav}>
+                    <Menu style={{
+                            transform: 'rotate(90deg)'
+                          }}
+                    />
+                  </Btn>
                 }
                 <div className={disabled_btn}>Portfolio</div>
               </Hidebar>
@@ -65,17 +65,18 @@ class Portfolio extends React.Component{
     }
 
     updateWidth = () => {
-      this.setState({isMobile: window.innerWidth <= 999})
-      if (this.state.isMobile ){
+      let isMobile = window.innerWidth <= 999
+      this.setState({isMobile})
+      if ( isMobile ){
         if (this.props.portfolio.isOpenLeftnav){
-          this._switchLeftnav()
+          this._switchLeftnav(false)
         }
       } else {
         if (!this.props.portfolio.isOpenLeftnav){
-          this._switchLeftnav()
+          this._switchLeftnav(true)
         }
         if (!this.props.portfolio.isOpenInfo){
-          this._switchInfo()
+          this._switchInfo(true)
         }
       }
     }
@@ -94,12 +95,12 @@ class Portfolio extends React.Component{
         window.removeEventListener('resize', this.updateWidth)
     }
 
-    _switchLeftnav = () => {
-      this.actions.switchLeftnav()
+    _switchLeftnav = (value) => {
+      this.actions.switchLeftnav(value)
     }
 
-    _switchInfo = () => {
-      this.actions.switchInfo()
+    _switchInfo = (value) => {
+      this.actions.switchInfo(value)
     }
 
     _makeObjToTree = (array, prefix) => {
@@ -194,7 +195,8 @@ class Portfolio extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  portfolio: state.portfolio,
+  common: state.common,
 })
 
 export default compose(

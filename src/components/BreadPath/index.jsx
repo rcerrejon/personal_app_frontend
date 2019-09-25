@@ -46,7 +46,9 @@ function BreadPath(props) {
 }
 
 const mapStateToProps = (state) => ({
-  ...state
+  common: {
+    lang: state.common.lang
+  }
 })
 
 export default compose(

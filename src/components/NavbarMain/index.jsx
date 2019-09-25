@@ -46,7 +46,9 @@ class NavbarMain extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    common: {
+      theme: state.common.theme
+    }
   }
 }
 export default connect(mapStateToProps)(NavbarMain);
