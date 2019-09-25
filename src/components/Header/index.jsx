@@ -1,6 +1,6 @@
 import React from 'react';
 import { mdiLightbulbOutline,  mdiLightbulb, mdiClose, mdiMinus, mdiFullscreen } from '@mdi/js';
-import { Tonality } from '@material-ui/icons';
+import { Tonality, Brightness6 } from '@material-ui/icons';
 import Icon, { Stack } from '@mdi/react';
 import color from '../../constants/colors'
 import { withRouter } from "react-router";
@@ -59,7 +59,7 @@ class Header extends React.Component{
                 <div className={button}
                      onClick={() => this.actionsCommon.switchTheme()}
                 >
-                  <Tonality style={{
+                  <Brightness6 style={{
                     color: this.props.common.theme === 'dark' ? color.light : color.dark
                   }}/>
                 </div>

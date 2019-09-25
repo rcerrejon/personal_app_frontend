@@ -51,6 +51,7 @@
 
     .contactMe{
       overflow: auto;
+      overflow-x: hidden;
       padding: 0 20px 0 0;
 
       @include mobile{
@@ -58,6 +59,7 @@
       }
 
       .form{
+        overflow-x: hidden;
 
         .inputArea{
           //border-radius: 0 10px 10px 0;
@@ -109,7 +111,7 @@
         padding: 10px;
         color: $secondary;
         border-left: 2px solid $secondary;
-        background-color: $greySelect-light;
+        background-color: $grey2C-light;
         //border-radius: 15px;
         transition: all ease .3s;
 

@@ -37,7 +37,7 @@ class NavbarMain extends React.Component{
             >
               <NavLink exact to="/" className={[button, home].join(" ")} activeClassName={activeNavlink}><Home /></NavLink>
               <NavLink to="/portfolio" className={[button, portfolio].join(" ")} activeClassName={activeNavlink}><Work /></NavLink>
-              <NavLink to="/blog" className={[button, blog].join(" ")} activeClassName={activeNavlink}><MenuBook color="#FFA500"/></NavLink>
+              <NavLink to="/blog" className={[button, blog].join(" ")} activeClassName={activeNavlink}><MenuBook /></NavLink>
               <NavLink to="/contacts" className={[button, contacts].join(" ")} activeClassName={activeNavlink}><Email /></NavLink>
             </div>
         )

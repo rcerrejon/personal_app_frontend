@@ -75,7 +75,7 @@ class ArticlePage extends React.Component{
       if (this.props.common.isDataLoaded)
         return(
             <div className={style.ArticlePageContainer}>
-              {this.state.isOpenPopupComment && <PopupCommentCreate closePopup={this.switchPopupComment}/>}
+              {this.state.isOpenPopupComment && <PopupCommentCreate articleId={article.id} closePopup={this.switchPopupComment}/>}
 
               <div className={action_panel}>
                 <div className={btn_back}

@@ -4,7 +4,6 @@ import axios from 'axios'
 const url = `${process.env.REACT_APP_SERVERURL}/blog`;
 
 export function getBlog() {
-
   return (dispatch, getState) => {
     const stateBlog = getState().blog;
 
@@ -42,6 +41,20 @@ export function getBlog() {
     dispatch(setLoadingData(true))
   }
 }
+
+export function sendComment(id, body){
+  return async (dispatch) => {
+
+    return await axios.post(url + `/sendComment/${id}`, body)
+      .then(res => {
+        dispatch(getArticle(id))
+        return res.data
+      })
+      .catch(e => e)
+
+  }
+}
+
 export function incrementViews(id) {
   return dispatch => {
     let history = JSON.parse(localStorage.getItem('history')) || null;

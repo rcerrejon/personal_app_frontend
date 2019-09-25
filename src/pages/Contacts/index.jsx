@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SidePanel from '../../components/SidePanel';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
+import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from 'react-redux';
 import * as ContactsActions from '../../actions/ContactsAction';
 import { _openInNewTab } from '../../utils/commonFunctions'
 import color from '../../constants/colors'
+import Preloader from '../../components/Common/Preloader';
 
 class Contacts extends React.Component{
     constructor(props){
@@ -17,16 +19,19 @@ class Contacts extends React.Component{
           Email: '',
           Name: '',
           Subject: '',
-          Message: ''
+          Message: '',
+          callbackCaptcha: null,
+          valueCaptcha: null,
+          loadCaptcha: false,
+          expiredCaptcha: false
         }
+        this._reCaptchaRef = React.createRef();
     }
     actionsContacts = bindActionCreators(ContactsActions, this.props.dispatch);
 
     componentDidMount() {
       this.actionsContacts.getLinks()
     }
-
-    componentWillUnmount() {}
 
     render() {
       const {
@@ -51,6 +56,18 @@ class Contacts extends React.Component{
                 <div className={header}>Contact me</div>
                 <div className={form}>
                   {this.renderInputs(['Email', 'Name', 'Subject', 'Message'])}
+                  {
+                    <ReCAPTCHA
+                      style={{ display: "block", width: '100%' }}
+                      theme={this.props.common.theme}
+                      ref={this._reCaptchaRef}
+                      sitekey={'6LcnKDsUAAAAAHsAgcPXQFNFyFnAssWPNSZ5tLjx'}
+                      onChange={this.handleChange}
+                      asyncScriptOnLoad={this.asyncScriptOnLoad}
+                    />
+                    ||
+                    <Preloader/>
+                  }
                   <div onClick={() => this.sendMail()}
                        className={
                          this.props.common.theme === 'dark'
@@ -59,7 +76,7 @@ class Contacts extends React.Component{
                          :
                          this.checkFullForm() ? btn_send_light : btn_send_light__disable
                        }
-                  >{'Send'}</div>
+                  >{this.props.common.lang === 'en' ? 'Send' : 'Отправить'}</div>
                 </div>
               </div>
               <div className={separator}
@@ -83,12 +100,11 @@ class Contacts extends React.Component{
       } = style;
 
       return arr.map((el) =>
-        <div>
+        <div key={el}>
           {el === 'Message'
             ?
             <textarea className={inputArea}
                       name={el}
-                      key={el}
                       style={{
                         background: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
                         color: this.props.common.theme === 'dark' ? color.primary : color.secondary,
@@ -99,7 +115,6 @@ class Contacts extends React.Component{
                       onChange={this.onChangeForm}/>
             :
             <input className={inputArea}
-                   key={el}
                    name={el}
                    style={{
                      background: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
@@ -114,44 +129,57 @@ class Contacts extends React.Component{
       )
     }
 
+    handleChange = value => {
+      console.log("Captcha value:", value);
+      this.setState({ valueCaptcha: value });
+      // if value is null recaptcha expired
+      if (value === null) this.setState({ expiredCaptcha: "true" });
+    };
+    asyncScriptOnLoad = () => {
+      this.setState({ callbackCaptcha: "called!" });
+      console.log("scriptLoad - reCaptcha Ref-", this._reCaptchaRef);
+    };
+
     sendMail = async () => {
-      let res;
-      if (this.checkFullForm()) {
-        const {
-          email,
-          name,
-          subject,
-          message
-        } = this.state;
+      if (this.checkFullForm()){
+        let res;
+        if (this.checkFullForm()) {
+          const {
+            email,
+            name,
+            subject,
+            message
+          } = this.state;
 
-        res = await this.actionsContacts.postMail({
-          email,
-          name,
-          subject,
-          message
-        })
+          res = await this.actionsContacts.postMail({
+            email,
+            name,
+            subject,
+            message
+          })
 
-        this.setState({
-          Name: '',
-          Subject: '',
-          Message: '',
-          Email: ''
-        })
-      } else {
-        console.log('pls full form')
+          this.setState({
+            Name: '',
+            Subject: '',
+            Message: '',
+            Email: ''
+          })
+        } else {
+          console.log('pls full form')
+        }
+
+        console.log(res) // TODO обработка действия после отправки сообщения
       }
 
-      console.log(res) // TODO обработка действия после отправки сообщения
     }
 
     checkFullForm = () => {
-      return this.state.Email !== '' && this.state.Name !== '' && this.state.Subject !== '' && this.state.Message !== ''
+      return this.state.Email !== '' && this.state.Name !== '' && this.state.Subject !== '' && this.state.Message !== '' && this.state.valueCaptcha !== null
     }
 
     onChangeForm = (e) => {
       const name = e.target.name;
       const value = e.target.value;
-      console.log(name, value)
 
       this.setState({
         [name]: value
