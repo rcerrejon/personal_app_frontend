@@ -5,6 +5,7 @@ import {_openInNewTab} from '../../utils/commonFunctions';
 import color from '../../constants/colors';
 import { connect } from 'react-redux';
 import { BtnYellowHome } from '../../styled';
+import CanvasTest from '../../components/CanvasTest';
 
 class Home extends React.Component{
     constructor(props){
@@ -12,7 +13,8 @@ class Home extends React.Component{
         this.state = {
           text_top: '',
           text_left: '',
-          text_right: ''
+          text_right: '',
+          canRerender: false
         }
     }
 
@@ -26,10 +28,16 @@ class Home extends React.Component{
         setTimeout(() => this.typeText('text_top', "я Вадим"), 700)
         setTimeout(() => this.typeText('text_right', "веб разработчик"), 1300)
       }
+      setTimeout(() => this.setState({
+        canRerender: true
+      }), 1400)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps && prevProps.common.lang !== this.props.common.lang){
+    if (prevProps && prevProps.common.lang !== this.props.common.lang && this.state && this.state.canRerender){
+      this.setState({
+        canRerender: false
+      })
       this.setState({
         text_top: '',
         text_left: '',
@@ -37,14 +45,17 @@ class Home extends React.Component{
       })
 
       if (this.props.common.lang === 'en') {
-        setTimeout(() => this.typeText('text_left', 'Greetings'), 50)
+        setTimeout(() => this.typeText('text_left', 'Greetings'), 60)
         setTimeout(() => this.typeText('text_top', "i am Vadim"), 700)
         setTimeout(() => this.typeText('text_right', "web developer"), 1300)
       } else {
-        setTimeout(() => this.typeText('text_left', 'Привет'), 50)
+        setTimeout(() => this.typeText('text_left', 'Привет'), 60)
         setTimeout(() => this.typeText('text_top', "я Вадим"), 700)
         setTimeout(() => this.typeText('text_right', "веб разработчик"), 1300)
       }
+      setTimeout(() => this.setState({
+        canRerender: true
+      }), 1400)
     }
   }
 
@@ -73,8 +84,8 @@ class Home extends React.Component{
             >
               <div className={profileContainerWrap}>
                 <div className={profileContainer}>
-                  <div className={topText}>{this.state.text_top}{/*i am Vadim*/}</div>
                   <div className={leftText}>{this.state.text_left}{/*Greetings*/}</div>
+                  <div className={topText}>{this.state.text_top}{/*i am Vadim*/}</div>
                   <div className={rightText}>{this.state.text_right}{/*web developer*/}</div>
                   <div className={image}
                        style={{
@@ -87,18 +98,9 @@ class Home extends React.Component{
                   </BtnYellowHome>
                 </div>
               </div>
-              <div className={infoContainer}>
-                <div className={greetText}>
-                  {this.props.common.lang === 'en'
-                    ?
-                    <div><span className={greetItem}>Hi,</span><br className={noBrMobile}/><span className={greetItem}>i'm Vadim,</span><br/><span className={greetItem}>web developer</span></div>
-                    :
-                    <div><span className={greetItem}>Привет,</span><br className={noBrMobile}/><span className={greetItem}>я Вадим,</span><br/><span className={greetItem}>веб разработчик</span></div>
-                  }
-                </div>
-                <div className={skills}>Full stack / ReactJS / ExpressJS </div>
+              <div className={coolThing}>
+                <CanvasTest />
               </div>
-              <div className={coolThing}>TODO // крутая штука <br/>вращается.</div>
             </div>
         )
     }
