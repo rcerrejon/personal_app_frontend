@@ -110,12 +110,18 @@ class SearchPanel extends React.Component{
             return (
             <div className={listItem}
                  key={el.id}
-                 onClick={() => this.props.history.push(el.link)}
+                 onClick={() => this.openArticleFromHistory(el.link)}
             >
                 <span>{el.name}</span>
             </div>
             )
         })
+    }
+
+    openArticleFromHistory = (link) => {
+        this.props.history.push(link)
+        if (this.props.isMobile)
+            this.actionsBlog.switchSearch(false)
     }
 }
 

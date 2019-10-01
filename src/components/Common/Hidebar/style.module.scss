@@ -16,7 +16,7 @@
 
   @include mobile{
     width: $height-main-content-mobile;
-    top: calc((100vh - 230px) / 2); left: calc((100vh - 230px) / -2);
+    top: calc((100vh - 180px) / 2); left: calc((100vh - 180px) / -2);
   }
 
 }

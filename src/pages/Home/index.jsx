@@ -4,27 +4,65 @@ import style from './style.module.scss';
 import {_openInNewTab} from '../../utils/commonFunctions';
 import color from '../../constants/colors';
 import { connect } from 'react-redux';
-import { BtnYellow } from '../../styled';
+import { BtnYellowHome } from '../../styled';
 
 class Home extends React.Component{
     constructor(props){
         super(props)
-        this.state = {}
+        this.state = {
+          text_top: '',
+          text_left: '',
+          text_right: ''
+        }
     }
 
-    render() {
+  componentDidMount() {
+      if (this.props.common.lang === 'en') {
+        this.typeText('text_left', 'Greetings')
+        setTimeout(() => this.typeText('text_top', "i am Vadim"), 700)
+        setTimeout(() => this.typeText('text_right', "web developer"), 1300)
+      } else {
+        this.typeText('text_left', 'Привет')
+        setTimeout(() => this.typeText('text_top', "я Вадим"), 700)
+        setTimeout(() => this.typeText('text_right', "веб разработчик"), 1300)
+      }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps && prevProps.common.lang !== this.props.common.lang){
+      this.setState({
+        text_top: '',
+        text_left: '',
+        text_right: ''
+      })
+
+      if (this.props.common.lang === 'en') {
+        setTimeout(() => this.typeText('text_left', 'Greetings'), 50)
+        setTimeout(() => this.typeText('text_top', "i am Vadim"), 700)
+        setTimeout(() => this.typeText('text_right', "web developer"), 1300)
+      } else {
+        setTimeout(() => this.typeText('text_left', 'Привет'), 50)
+        setTimeout(() => this.typeText('text_top', "я Вадим"), 700)
+        setTimeout(() => this.typeText('text_right', "веб разработчик"), 1300)
+      }
+    }
+  }
+
+  render() {
       const {
         HomeContainer,
-        empty,
         profileContainer,
         image,
-        btn_action,
         infoContainer,
         greetText,
         greetItem,
         skills,
-        empty2,
-        coolThing
+        coolThing,
+        noBrMobile,
+        topText,
+        rightText,
+        leftText,
+        profileContainerWrap
       } = style;
 
         return(
@@ -33,48 +71,48 @@ class Home extends React.Component{
                    color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
                  }}
             >
-              <div className={empty} />
-              <div className={profileContainer}>
-                <div className={image}
-                     style={{
-                       borderColor: this.props.common.theme === 'dark' ? color.primary : color.secondary,
-                     }}
-                />
-                <BtnYellow onClick={() => _openInNewTab("https://github.com/Imlerix")} currTheme={this.props.common.theme}>
-                  <FontAwesomeIcon icon={['fab', 'github']}/>
-                  {' Github'}
-                </BtnYellow>
+              <div className={profileContainerWrap}>
+                <div className={profileContainer}>
+                  <div className={topText}>{this.state.text_top}{/*i am Vadim*/}</div>
+                  <div className={leftText}>{this.state.text_left}{/*Greetings*/}</div>
+                  <div className={rightText}>{this.state.text_right}{/*web developer*/}</div>
+                  <div className={image}
+                       style={{
+                         borderColor: this.props.common.theme === 'dark' ? color.primary : color.secondary,
+                       }}
+                  />
+                  <BtnYellowHome onClick={() => _openInNewTab("https://github.com/Imlerix")} currTheme={this.props.common.theme}>
+                    <FontAwesomeIcon icon={['fab', 'github']}/>
+                    {' Github'}
+                  </BtnYellowHome>
+                </div>
               </div>
               <div className={infoContainer}>
                 <div className={greetText}>
                   {this.props.common.lang === 'en'
                     ?
-                    <div><span className={greetItem}>Hi,</span><br/><span className={greetItem}>i'm Vadim,</span><br/><span className={greetItem}>web developer</span></div>
+                    <div><span className={greetItem}>Hi,</span><br className={noBrMobile}/><span className={greetItem}>i'm Vadim,</span><br/><span className={greetItem}>web developer</span></div>
                     :
-                    <div><span className={greetItem}>Привет,</span><br/><span className={greetItem}>я Вадим,</span><br/><span className={greetItem}>веб разработчик</span></div>
-                }</div>
+                    <div><span className={greetItem}>Привет,</span><br className={noBrMobile}/><span className={greetItem}>я Вадим,</span><br/><span className={greetItem}>веб разработчик</span></div>
+                  }
+                </div>
                 <div className={skills}>Full stack / ReactJS / ExpressJS </div>
               </div>
-              <div className={empty2} />
-              <div className={coolThing}>{/*TODO крутая штука <br/>вращается.*/}</div>
+              <div className={coolThing}>TODO // крутая штука <br/>вращается.</div>
             </div>
         )
     }
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
-
-    // onMouseEnterCustom = (e, item) => {
-    //   console.log(item)
-    // }
-    // onMouseLeaveCustom = () => {
-    //   console.log('Mouse leaved!')
-    // }
-    // onMouseOutCustom = () => {
-    //   console.log('Mouse out!')
-    // }
+    typeText = (state_var, content) => {
+      if (content)
+        this.setState({
+          [state_var]: this.state[state_var] + content[0]
+        })
+      if (content && content.length > 0)
+        setTimeout(() => {
+          this.typeText(state_var, content.slice(1))
+        }, 50)
+    }
 }
 
 const mapStateToProps = (state) => {

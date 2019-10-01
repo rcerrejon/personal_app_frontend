@@ -89,7 +89,7 @@ class PopupCommentCreate extends React.Component{
                 />
                 {
                   <ReCAPTCHA
-                    style={{ display: "block", width: '100%' }}
+                    style={{ margin: "0 0 20px 0" }}
                     theme={this.props.common.theme}
                     ref={this._reCaptchaRef}
                     sitekey={'6LcnKDsUAAAAAHsAgcPXQFNFyFnAssWPNSZ5tLjx'}

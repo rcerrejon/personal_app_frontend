@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './style.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import SidePanel from '../../components/SidePanel';
+import SidePanel from '../../components/Common/SidePanel';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
 import ReCAPTCHA from "react-google-recaptcha";
@@ -53,12 +53,21 @@ class Contacts extends React.Component{
             {this.renderCanvasPanel()}
             <div className={main}>
               <div className={contactMe}>
-                <div className={header}>Contact me</div>
+                <div className={header}>
+                  {this.props.common.lang === 'en' ? 'Contact me' : 'Написать мне'}
+                </div>
                 <div className={form}>
-                  {this.renderInputs(['Email', 'Name', 'Subject', 'Message'])}
+                  {this.renderInputs([
+                    { name: 'Email', ru: 'Email' },
+                    { name: 'Name', ru: 'Имя' },
+                    { name: 'Subject', ru: 'Тема' },
+                    { name: 'Message', ru: 'Текст' }
+                  ])}
                   {
                     <ReCAPTCHA
-                      style={{ display: "block", width: '100%' }}
+                      style={{
+                        margin: '0 0 15px 0'
+                      }}
                       theme={this.props.common.theme}
                       ref={this._reCaptchaRef}
                       sitekey={'6LcnKDsUAAAAAHsAgcPXQFNFyFnAssWPNSZ5tLjx'}
@@ -68,7 +77,7 @@ class Contacts extends React.Component{
                     ||
                     <Preloader/>
                   }
-                  <div onClick={() => this.sendMail()}
+                  <div onClick={this.sendMail}
                        className={
                          this.props.common.theme === 'dark'
                          ?
@@ -85,7 +94,9 @@ class Contacts extends React.Component{
                    }}
               />
               <div className={links}>
-                <div className={header}>Links</div>
+                <div className={header}>
+                  {this.props.common.lang === 'en' ? 'Links' : 'Ссылки '}
+                </div>
                 {this.props.contacts.links && this.renderLinks(this.props.contacts.links)}
               </div>
             </div>
@@ -100,29 +111,29 @@ class Contacts extends React.Component{
       } = style;
 
       return arr.map((el) =>
-        <div key={el}>
-          {el === 'Message'
+        <div key={el.name}>
+          {el.name === 'Message'
             ?
             <textarea className={inputArea}
-                      name={el}
+                      name={el.name}
                       style={{
                         background: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
                         color: this.props.common.theme === 'dark' ? color.primary : color.secondary,
                         borderColor: this.props.common.theme === 'dark' ? color.primary : color.secondary,
                       }}
-                      value={this.state[el]}
-                      placeholder={el}
+                      value={this.state[el.name]}
+                      placeholder={this.props.common.lang === 'en' ? el.name : el.ru}
                       onChange={this.onChangeForm}/>
             :
             <input className={inputArea}
-                   name={el}
+                   name={el.name}
                    style={{
                      background: this.props.common.theme === 'dark' ? color.dark : color.grey2C_light,
                      color: this.props.common.theme === 'dark' ? color.primary : color.secondary,
                      borderColor: this.props.common.theme === 'dark' ? color.primary : color.secondary,
                    }}
-                   value={this.state[el]}
-                   placeholder={el}
+                   value={this.state[el.name]}
+                   placeholder={this.props.common.lang === 'en' ? el.name : el.ru}
                    onChange={this.onChangeForm}/>
           }
         </div>
@@ -167,7 +178,7 @@ class Contacts extends React.Component{
         } else {
           console.log('pls full form')
         }
-
+        this._reCaptchaRef.current.reset();
         console.log(res) // TODO обработка действия после отправки сообщения
       }
 

@@ -7,7 +7,7 @@
   grid-template-rows: 1fr;
   grid-template-columns: 20% 1fr 20%;
 
-  @include mobile{
+  @media screen and (max-width: 618px) {
     height: $height-main-content-mobile;
     grid-template-columns: 1fr;
   }
@@ -15,7 +15,7 @@
   .sidePanelWrapper{
     position: relative;
     //width: 20%;
-    @include mobile{
+    @media screen and (max-width: 618px) {
       display: none;
     }
   }
@@ -25,14 +25,16 @@
     display: grid;
     padding: 20px;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 20px 1fr;
+    grid-template-columns: 324px 20px 1fr;
 
     @include mobile{
+      display: flex;
+      flex-direction: column;
       height: $height-main-content-mobile;
       overflow: auto;
       padding: 10px 20px;
-      grid-template-rows: 80% 10px 90%;
-      grid-template-columns: 1fr;
+      //grid-template-rows: 80% 10px 90%;
+      //grid-template-columns: 1fr;
     }
 
     .separator{
@@ -40,6 +42,9 @@
     }
 
     .header{
+      width: 100%;
+      max-width: 304px;
+      text-align: left;
       font-weight: bold;
       font-size: 35px;
       margin: 0 0 20px 0;
@@ -50,9 +55,12 @@
     }
 
     .contactMe{
-      overflow: auto;
-      overflow-x: hidden;
+      //overflow: auto;
+      //overflow-x: hidden;
       padding: 0 20px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       @include mobile{
         padding: 0 0 20px 0;
@@ -60,6 +68,7 @@
 
       .form{
         overflow-x: hidden;
+        width: 304px;
 
         .inputArea{
           //border-radius: 0 10px 10px 0;
@@ -144,6 +153,9 @@
     }
 
     .links{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 0 0 0 20px;
 
       @include mobile{
@@ -151,6 +163,8 @@
       }
 
       .linkItem{
+        width: 100%;
+        max-width: 304px;
         margin: 0 0 10px 0;
         font-weight: bold;
         font-size: 20px;
@@ -166,6 +180,10 @@
         &:hover{
           color: $router-bg;
           background-color: $secondary;
+        }
+
+        @include mobile{
+          max-width: 304px;
         }
       }
     }

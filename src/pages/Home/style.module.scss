@@ -1,86 +1,100 @@
 @import "../../config/scss/index";
 
 .HomeContainer{
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 20px;
   color: #ffffff;
-  display: grid;
+  display: flex;
+  flex-direction: row;
 
-  //@include pc{
-    grid-template-areas:
-            "empty empty coolthing"
-            "avatar greet coolthing"
-            "empty2 empty2 coolthing";
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 2fr 2fr 3fr;
-  //}
   @include mobile{
-    grid-template-areas:
-            "empty empty"
-            "avatar greet";
-    grid-template-rows: 1fr 6fr;
-    grid-template-columns: 2fr 3fr;
-    grid-gap: 2vw;
-  }
-  .empty{
-    grid-area: empty;
-  }
-  .empty2{
-    grid-area: empty2;
+    align-items: center;
+    justify-content: center;
+    //flex-direction: column;
   }
 
-  .profileContainer {
-    grid-area: avatar;
+
+  .profileContainerWrap {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start;
 
     @include pc {
-      flex-direction: column;
-
+      width: 30%;
     }
-    @include mobile {
+    .profileContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
       flex-direction: column;
-    }
+      //margin: 40px 0 0 20px;
 
-    .image{
-      border: 3px solid $primary;
-      border-radius: 50%;
-      background: url("../../assets/avatar.jpg") 100%/100%;
-      margin: 0 0 30px 0;
-
-      @include pc{
-        width: 200px;
-        height: 200px;
+      .topText {
+        position: absolute;
+        white-space: nowrap;
+        width: 150px;
+        top: -40px;
+        font-weight: bold;
+        font-size: 35px;
       }
-      @include mobile{
+
+      .rightText {
+        position: absolute;
+        transform: rotate(90deg);
+        right: -97px;
+        top: 57px;
+        width: 150px;
+        white-space: nowrap;
+        font-weight: bold;
+        font-size: 35px;
+      }
+
+      .leftText {
+        position: absolute;
+        transform: rotate(-90deg);
+        left: -99px;
+        top: 55px;
+        width: 150px;
+        white-space: nowrap;
+        font-weight: bold;
+        font-size: 35px;
+      }
+
+      .image {
+        border-left: 4px solid $primary;
+        border-top: 4px solid $grey-select;
+        border-right: 4px solid $grey-select;
+        background: url("../../assets/avatar.jpg") 100%/100%;
         width: 150px;
         height: 150px;
-      }
-    }
 
-    .btn_action {
-      cursor: pointer;
-      padding: 10px 20px;
-      background-color: $dark;
-      border-left: 4px solid $github;
-      color: $github;
-
-      &:hover, &:active {
-        color: $router-bg;
-        background-color: $github;
       }
 
-      @include pc {
-        font-size: 25px;
+      .btn_action {
+        cursor: pointer;
+        padding: 10px 20px;
+        background-color: $dark;
+        border-left: 4px solid $github;
+        color: $github;
+
+        &:hover, &:active {
+          color: $router-bg;
+          background-color: $github;
+        }
+
+        @include pc {
+          font-size: 25px;
+        }
       }
     }
   }
 
   .infoContainer {
-    grid-area: greet;
-    display: flex;
+    //display: flex;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -88,12 +102,11 @@
     .greetText {
       display: inline;
       font-weight: bold;
+      font-size: 50px;
 
-      @include pc {
-        font-size: 50px;
-      }
       @include mobile{
-        font-size: 25px;
+        font-size: 35px;
+
       }
 
       .greetItem{
@@ -106,14 +119,17 @@
       @include pc {
         font-size: 18px;
       }
+
     }
   }
 
   .coolThing{
-    grid-area: coolthing;
     display: flex;
     align-items: center;
     justify-content: center;
+    @include pc {
+      width: 70%;
+    }
 
     @include mobile{
       display: none;
