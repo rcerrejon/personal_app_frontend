@@ -43,7 +43,6 @@
 
     .header{
       width: 100%;
-      max-width: 304px;
       text-align: left;
       font-weight: bold;
       font-size: 35px;
@@ -51,6 +50,7 @@
 
       @include mobile{
         font-size: 25px;
+        max-width: 304px;
       }
     }
 
@@ -164,7 +164,6 @@
 
       .linkItem{
         width: 100%;
-        max-width: 304px;
         margin: 0 0 10px 0;
         font-weight: bold;
         font-size: 20px;

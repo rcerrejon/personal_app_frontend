@@ -16,3 +16,7 @@ $greyHeader: #fafafa;
 $edge-padding: 30px;
 $height-main-content: calc(100vh - 200px);
 $height-main-content-mobile: calc(100vh - 150px);
+
+//@media screen and (orientation:landscape) and (max-device-width: 999px) {
+//  $height-main-content-mobile: calc(100vw - 50px);
+//}

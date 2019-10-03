@@ -58,10 +58,10 @@ class Contacts extends React.Component{
                 </div>
                 <div className={form}>
                   {this.renderInputs([
-                    { name: 'Email', ru: 'Email' },
-                    { name: 'Name', ru: 'Имя' },
+                    { name: 'Your email', ru: 'Ваш email' },
+                    { name: 'Your name', ru: 'Ваше имя' },
                     { name: 'Subject', ru: 'Тема' },
-                    { name: 'Message', ru: 'Текст' }
+                    { name: 'Message', ru: 'Текст письма' }
                   ])}
                   {
                     <ReCAPTCHA

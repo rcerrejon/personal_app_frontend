@@ -5,7 +5,8 @@ import {_openInNewTab} from '../../utils/commonFunctions';
 import color from '../../constants/colors';
 import { connect } from 'react-redux';
 import { BtnYellowHome } from '../../styled';
-import CanvasTest from '../../components/CanvasTest';
+// import CanvasTest from '../../components/CanvasTest';
+import ThreejsComponent from '../../components/ThreejsComponent';
 
 class Home extends React.Component{
     constructor(props){
@@ -83,7 +84,11 @@ class Home extends React.Component{
                  }}
             >
               <div className={profileContainerWrap}>
-                <div className={profileContainer}>
+                <div className={profileContainer}
+                     style={{
+                       color: this.props.common.theme === 'dark' ? color.primary : color.secondary,
+                     }}
+                >
                   <div className={leftText}>{this.state.text_left}{/*Greetings*/}</div>
                   <div className={topText}>{this.state.text_top}{/*i am Vadim*/}</div>
                   <div className={rightText}>{this.state.text_right}{/*web developer*/}</div>
@@ -99,7 +104,8 @@ class Home extends React.Component{
                 </div>
               </div>
               <div className={coolThing}>
-                <CanvasTest />
+                {/*<CanvasTest />*/}
+                <ThreejsComponent/>
               </div>
             </div>
         )

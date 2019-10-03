@@ -25,10 +25,15 @@
       width: 30%;
     }
     .profileContainer {
+      z-index: 2;
+      position: absolute;
+      top: calc(50% - 100px);
+      left: calc(50% - 75px);
+      //
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
+      //position: relative;
       flex-direction: column;
       //margin: 40px 0 0 20px;
 
@@ -132,7 +137,7 @@
     }
 
     @include mobile{
-      display: none;
+      //display: none;
     }
   }
 }
