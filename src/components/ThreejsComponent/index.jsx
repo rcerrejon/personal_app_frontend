@@ -11,10 +11,13 @@ class ThreejsComponent extends React.Component{
         this.height = this.mount.clientHeight
         console.log(`${this.width} | ${this.height}`)
 
-        let startX = -600/*this.width * (-0.9)*/;
-        let startY = this.height;
+        let startX = 300/*this.width * (-0.9)*/;
+        let startY = this.height - 350;
         let startZ = -400;
-        this.word = [ //// letter R
+        //
+        this.letter_R = {
+          color: 0xFFFFFF,
+          contur: [
             {x: startX ,y: startY ,z: startZ },      {x: startX + 150 ,y: startY ,z: startZ },      {x: startX + 250 ,y: startY ,z: startZ },       {x: startX + 350 ,y: startY ,z: startZ },
             {x: startX ,y: startY-100 ,z: startZ },                                                                                                     {x: startX + 450 ,y: startY-100 ,z: startZ },
             {x: startX ,y: startY-250 ,z: startZ },                                                                                                      {x: startX + 500 ,y: startY-250 ,z: startZ },
@@ -25,8 +28,127 @@ class ThreejsComponent extends React.Component{
             {x: startX ,y: startY-1100 ,z: startZ },                                                                                            {x: startX + 450 ,y: startY-1100 ,z: startZ },
             {x: startX ,y: startY-1200 ,z: startZ },                                                                                                {x: startX + 550,y: startY-1200 ,z: startZ },
             {x: startX ,y: startY-1300 ,z: startZ },                                                                                                {x: startX + 650 ,y: startY-1300 ,z: startZ },
-        ]
+          ]
+        }
+        this.letter_R = this.letter_R.contur.map(el => {
+        el.color = this.letter_R.color
+        return el
+      })
 
+        this.letter_A = {
+          color: 0xFFFFFF,
+          contur: [
+                                                              {x: startX + 225 ,y: startY ,z: startZ },
+                              {x: startX + 150 ,y: startY - 100 ,z: startZ },            {x: startX + 300 ,y: startY - 100 ,z: startZ },
+                            {x: startX + 100 ,y: startY - 200 ,z: startZ },                 {x: startX + 350 ,y: startY - 200 ,z: startZ },
+                        {x: startX + 50 ,y: startY - 300 ,z: startZ },                          {x: startX + 400 ,y: startY - 300 ,z: startZ },
+                  {x: startX ,y: startY - 400 ,z: startZ },  {x: startX + 100 ,y: startY - 400 ,z: startZ }, {x: startX + 200 ,y: startY - 400 ,z: startZ }, {x: startX + 300 ,y: startY - 400 ,z: startZ }, {x: startX + 375 ,y: startY - 400 ,z: startZ },    {x: startX + 450 ,y: startY - 400 ,z: startZ },
+              {x: startX - 50 ,y: startY - 500 ,z: startZ },                                         {x: startX + 500 ,y: startY - 500 ,z: startZ },
+            {x: startX - 100 ,y: startY - 600 ,z: startZ },                                             {x: startX + 550 ,y: startY - 600 ,z: startZ },
+          ]
+        }
+        this.letter_A = this.letter_A.contur.map(el => {
+          el.color = this.letter_A.color
+          return el
+        })
+
+        this.backgrd_Angular = {
+          color: 0xA60000,
+          depth: -100,
+          contur: [
+                                                            {x: startX + 225 ,y: startY + 200 ,z: startZ },
+            {x: startX + 25 ,y: startY + 100 ,z: startZ },{x: startX + 125 ,y: startY + 100 ,z: startZ },{x: startX + 225 ,y: startY + 100 ,z: startZ },{x: startX + 325 ,y: startY + 100 ,z: startZ }, {x: startX + 425 ,y: startY + 100 ,z: startZ },
+            {x: startX - 175 ,y: startY ,z: startZ }, {x: startX - 75 ,y: startY ,z: startZ }, {x: startX + 25 ,y: startY ,z: startZ }, {x: startX + 125 ,y: startY ,z: startZ },{x: startX + 225 ,y: startY ,z: startZ }, {x: startX + 325 ,y: startY ,z: startZ }, {x: startX + 425 ,y: startY ,z: startZ }, {x: startX + 525 ,y: startY ,z: startZ }, {x: startX + 625 ,y: startY ,z: startZ },
+            {x: startX - 350 ,y: startY - 100 ,z: startZ }, {x: startX - 250 ,y: startY - 100 ,z: startZ }, {x: startX - 150 ,y: startY - 100 ,z: startZ },{x: startX - 50 ,y: startY - 100 ,z: startZ },{x: startX + 50 ,y: startY - 100 ,z: startZ }, {x: startX + 150 ,y: startY - 100 ,z: startZ },{x: startX + 225 ,y: startY - 100 ,z: startZ }, {x: startX + 300 ,y: startY - 100 ,z: startZ }, {x: startX + 400 ,y: startY - 100 ,z: startZ }, {x: startX + 500 ,y: startY - 100 ,z: startZ }, {x: startX + 600 ,y: startY - 100 ,z: startZ }, {x: startX + 700 ,y: startY - 100 ,z: startZ }, {x: startX + 800 ,y: startY - 100 ,z: startZ },
+            {x: startX - 300 ,y: startY - 200 ,z: startZ }, {x: startX - 200 ,y: startY - 200 ,z: startZ }, {x: startX - 100 ,y: startY - 200 ,z: startZ }, {x: startX ,y: startY - 200 ,z: startZ }, {x: startX + 100 ,y: startY - 200 ,z: startZ }, {x: startX + 200 ,y: startY - 200 ,z: startZ }, {x: startX + 275 ,y: startY - 200 ,z: startZ },{x: startX + 350 ,y: startY - 200 ,z: startZ }, {x: startX + 450 ,y: startY - 200 ,z: startZ }, {x: startX + 550 ,y: startY - 200 ,z: startZ }, {x: startX + 650 ,y: startY - 200 ,z: startZ }, {x: startX + 750 ,y: startY - 200 ,z: startZ },
+            {x: startX - 250 ,y: startY - 300 ,z: startZ }, {x: startX - 150 ,y: startY - 300 ,z: startZ }, {x: startX - 50 ,y: startY - 300 ,z: startZ }, {x: startX + 50 ,y: startY - 300 ,z: startZ }, {x: startX + 150 ,y: startY - 300 ,z: startZ }, {x: startX + 250 ,y: startY - 300 ,z: startZ }, {x: startX + 350 ,y: startY - 300 ,z: startZ }, {x: startX + 400 ,y: startY - 300 ,z: startZ }, {x: startX + 500 ,y: startY - 300 ,z: startZ }, {x: startX + 600 ,y: startY - 300 ,z: startZ }, {x: startX + 700 ,y: startY - 300 ,z: startZ },
+            {x: startX - 225 ,y: startY - 400 ,z: startZ },{x: startX - 200 ,y: startY - 400 ,z: startZ },{x: startX - 100 ,y: startY - 400 ,z: startZ }, {x: startX ,y: startY - 400 ,z: startZ },  {x: startX + 100 ,y: startY - 400 ,z: startZ }, {x: startX + 200 ,y: startY - 400 ,z: startZ }, {x: startX + 300 ,y: startY - 400 ,z: startZ }, {x: startX + 375 ,y: startY - 400 ,z: startZ },    {x: startX + 450 ,y: startY - 400 ,z: startZ }, {x: startX + 550 ,y: startY - 400 ,z: startZ }, {x: startX + 650 ,y: startY - 400 ,z: startZ }, {x: startX + 675 ,y: startY - 400 ,z: startZ },
+            {x: startX - 200 ,y: startY - 500 ,z: startZ }, {x: startX - 150 ,y: startY - 500 ,z: startZ }, {x: startX - 50 ,y: startY - 500 ,z: startZ }, {x: startX + 50 ,y: startY - 500 ,z: startZ }, {x: startX + 150 ,y: startY - 500 ,z: startZ }, {x: startX + 250 ,y: startY - 500 ,z: startZ }, {x: startX + 350 ,y: startY - 500 ,z: startZ }, {x: startX + 450 ,y: startY - 500 ,z: startZ },{x: startX + 500 ,y: startY - 500 ,z: startZ }, {x: startX + 600 ,y: startY - 500 ,z: startZ }, {x: startX + 650 ,y: startY - 500 ,z: startZ },
+            {x: startX - 175 ,y: startY - 600 ,z: startZ }, {x: startX - 100 ,y: startY - 600 ,z: startZ }, {x: startX ,y: startY - 600 ,z: startZ },  {x: startX + 100 ,y: startY - 600 ,z: startZ }, {x: startX + 200 ,y: startY - 600 ,z: startZ }, {x: startX + 300 ,y: startY - 600 ,z: startZ },  {x: startX + 400 ,y: startY - 600 ,z: startZ }, {x: startX + 475 ,y: startY - 600 ,z: startZ }, {x: startX + 550 ,y: startY - 600 ,z: startZ }, {x: startX + 600 ,y: startY - 600 ,z: startZ },
+            {x: startX - 150 ,y: startY - 700 ,z: startZ },{x: startX - 75 ,y: startY - 700 ,z: startZ }, {x: startX ,y: startY - 700 ,z: startZ },  {x: startX + 100 ,y: startY - 700 ,z: startZ }, {x: startX + 200 ,y: startY - 700 ,z: startZ }, {x: startX + 300 ,y: startY - 700 ,z: startZ },  {x: startX + 400 ,y: startY - 700 ,z: startZ }, {x: startX + 475 ,y: startY - 700 ,z: startZ }, {x: startX + 525 ,y: startY - 700 ,z: startZ }, {x: startX + 600 ,y: startY - 700 ,z: startZ },
+            {x: startX ,y: startY - 800 ,z: startZ },  {x: startX + 100 ,y: startY - 800 ,z: startZ }, {x: startX + 200 ,y: startY - 800 ,z: startZ }, {x: startX + 300 ,y: startY - 800 ,z: startZ },  {x: startX + 400 ,y: startY - 800 ,z: startZ },
+            {x: startX + 200 ,y: startY - 900 ,z: startZ },
+          ]
+        }
+        this.backgrd_Angular = this.backgrd_Angular.contur.map(el => {
+          el.color = this.backgrd_Angular.color
+          el.z += this.backgrd_Angular.depth
+          return el
+        })
+
+        // startZ = -800 ;
+        this.icon_react = {
+          color: 0x5FC0CE,
+          contur: [
+            /*top peak*/{x: startX - 100, y: startY + 200, z: startZ}, {x: startX + 900, y: startY + 200, z: startZ},
+            /*left top*/{x: startX - 115, y: startY + 100, z: startZ}, {x: startX - 100, y: startY - 20, z: startZ}, {x: startX - 50, y: startY - 120, z: startZ}, {x: startX + 10 , y: startY - 220, z: startZ}, {x: startX + 70 , y: startY - 320, z: startZ}, {x: startX + 135 , y: startY - 435, z: startZ}, {x: startX + 200, y: startY - 550, z: startZ}, {x: startX + 280, y: startY - 650, z: startZ}, {x: startX + 380, y: startY - 750, z: startZ}, {x: startX + 480, y: startY - 850, z: startZ}, {x: startX + 600, y: startY - 950, z: startZ}, {x: startX + 700, y: startY - 1000, z: startZ}, {x: startX + 800, y: startY - 1030, z: startZ}, /*long axis*/{x: startX , y: startY + 200, z: startZ}, {x: startX + 100, y: startY + 170, z: startZ}, {x: startX + 200, y: startY + 125, z: startZ}, {x: startX + 300, y: startY + 80, z: startZ}, {x: startX + 400, y: startY + 20, z: startZ}, {x: startX + 500, y: startY - 80, z: startZ}, {x: startX + 585, y: startY - 170, z: startZ}, {x: startX + 675, y: startY - 280, z: startZ}, {x: startX + 750, y: startY - 380, z: startZ}, {x: startX + 810, y: startY - 480, z: startZ}, {x: startX + 860, y: startY - 580, z: startZ}, {x: startX + 890, y: startY - 680, z: startZ}, {x: startX + 910, y: startY - 780, z: startZ}, {x: startX + 905, y: startY - 880, z: startZ},
+            /*right top*/{x: startX + 915, y: startY + 100, z: startZ}, {x: startX + 900, y: startY - 20, z: startZ}, {x: startX + 850, y: startY - 120, z: startZ}, {x: startX + 810 , y: startY - 220, z: startZ}, {x: startX + 770 , y: startY - 320, z: startZ}, {x: startX + 715 , y: startY - 455, z: startZ}, {x: startX + 670, y: startY - 550, z: startZ}, {x: startX + 580, y: startY - 650, z: startZ}, {x: startX + 480, y: startY - 750, z: startZ}, {x: startX + 360, y: startY - 850, z: startZ}, {x: startX + 240, y: startY - 950, z: startZ}, {x: startX + 140, y: startY - 1000, z: startZ}, {x: startX + 10, y: startY - 1030, z: startZ}, /*long axis*/{x: startX + 800, y: startY + 200, z: startZ}, {x: startX + 700, y: startY + 170, z: startZ}, {x: startX + 600, y: startY + 125, z: startZ}, {x: startX + 500, y: startY + 80, z: startZ}, {x: startX + 400, y: startY + 20, z: startZ}, {x: startX + 300, y: startY - 80, z: startZ}, {x: startX + 215, y: startY - 170, z: startZ}, {x: startX + 150, y: startY - 230, z: startZ}, {x: startX + 25 , y: startY - 380, z: startZ}, {x: startX - 35, y: startY - 480, z: startZ}, {x: startX - 85, y: startY - 580, z: startZ}, {x: startX - 115, y: startY - 680, z: startZ}, {x: startX - 135, y: startY - 780, z: startZ}, {x: startX - 140, y: startY - 880, z: startZ},
+            /*left middle*/{x: startX - 250, y: startY - 315, z: startZ}, {x: startX - 165, y: startY - 250, z: startZ}, {x: startX - 80, y: startY - 205, z: startZ}, {x: startX + 10, y: startY - 160, z: startZ}, {x: startX + 100 , y: startY - 130, z: startZ}, {x: startX + 200 , y: startY - 100, z: startZ},/**/ {x: startX + 400 , y: startY - 80, z: startZ}, /**/{x: startX + 1050, y: startY - 315, z: startZ}, {x: startX + 965, y: startY - 250, z: startZ}, {x: startX + 880, y: startY - 205, z: startZ}, {x: startX + 790, y: startY - 160, z: startZ}, {x: startX + 700 , y: startY - 130, z: startZ}, {x: startX + 600 , y: startY - 100, z: startZ},
+            /*right middle*/{x: startX - 250, y: startY - 485, z: startZ}, {x: startX - 165, y: startY - 550, z: startZ}, {x: startX - 80, y: startY - 595, z: startZ}, {x: startX + 10, y: startY - 640, z: startZ}, {x: startX + 100 , y: startY - 670, z: startZ}, {x: startX + 200 , y: startY - 700, z: startZ},/**/ {x: startX + 400 , y: startY - 720, z: startZ}, /**/{x: startX + 1050, y: startY - 485, z: startZ}, {x: startX + 965, y: startY - 550, z: startZ}, {x: startX + 880, y: startY - 595, z: startZ}, {x: startX + 790, y: startY - 640, z: startZ}, {x: startX + 700 , y: startY - 670, z: startZ}, {x: startX + 600 , y: startY - 700, z: startZ},
+
+            /*middle peak*/{x: startX - 300, y: startY - 400, z: startZ},      {x: startX + 400, y: startY - 400, z: startZ , geometry: 'sphere', radius: 100},      {x: startX + 1100, y: startY - 400, z: startZ},
+            /*bottom peak*/{x: startX - 100, y: startY - 1000, z: startZ}, {x: startX + 900, y: startY - 1000, z: startZ},
+          ]
+        }
+        this.icon_react = this.icon_react.contur.map(el => {
+          el.color = this.icon_react.color
+          return el
+        })
+
+      this.backrd_JS = {
+        color: color.github,
+        contur: [
+          /*top left*/{x: startX - 100, y: startY + 200, z: startZ}, {x: startX , y: startY + 200, z: startZ}, {x: startX + 100, y: startY + 200, z: startZ}, {x: startX + 200, y: startY + 200, z: startZ}, {x: startX + 300, y: startY + 200, z: startZ}, {x: startX + 400, y: startY + 200, z: startZ}, {x: startX + 500, y: startY + 200, z: startZ}, {x: startX + 600, y: startY + 200, z: startZ}, {x: startX + 700, y: startY + 200, z: startZ}, {x: startX + 800, y: startY + 200, z: startZ}, {x: startX + 900, y: startY + 200, z: startZ},
+          /*top left*/{x: startX - 100, y: startY + 100, z: startZ}, {x: startX , y: startY + 100, z: startZ}, {x: startX + 100, y: startY + 100, z: startZ}, {x: startX + 200, y: startY + 100, z: startZ}, {x: startX + 300, y: startY + 100, z: startZ}, {x: startX + 400, y: startY + 100, z: startZ}, {x: startX + 500, y: startY + 100, z: startZ}, {x: startX + 600, y: startY + 100, z: startZ}, {x: startX + 700, y: startY + 100, z: startZ}, {x: startX + 800, y: startY + 100, z: startZ}, {x: startX + 900, y: startY + 100, z: startZ},
+          /*top left*/{x: startX - 100, y: startY , z: startZ}, {x: startX , y: startY , z: startZ}, {x: startX + 100, y: startY , z: startZ}, {x: startX + 200, y: startY , z: startZ}, {x: startX + 300, y: startY , z: startZ}, {x: startX + 400, y: startY , z: startZ}, {x: startX + 500, y: startY , z: startZ}, {x: startX + 600, y: startY , z: startZ}, {x: startX + 700, y: startY , z: startZ}, {x: startX + 800, y: startY , z: startZ}, {x: startX + 900, y: startY , z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 100, z: startZ}, {x: startX , y: startY - 100, z: startZ}, {x: startX + 100, y: startY - 100, z: startZ}, {x: startX + 200, y: startY - 100, z: startZ}, {x: startX + 300, y: startY - 100, z: startZ}, {x: startX + 400, y: startY - 100, z: startZ}, {x: startX + 500, y: startY - 100, z: startZ}, {x: startX + 600, y: startY - 100, z: startZ}, {x: startX + 700, y: startY - 100, z: startZ}, {x: startX + 800, y: startY - 100, z: startZ}, {x: startX + 900, y: startY - 100, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 200, z: startZ}, {x: startX , y: startY - 200, z: startZ}, {x: startX + 100, y: startY - 200, z: startZ}, {x: startX + 200, y: startY - 200, z: startZ}, {x: startX + 300, y: startY - 200, z: startZ}, {x: startX + 400, y: startY - 200, z: startZ}, {x: startX + 500, y: startY - 200, z: startZ}, {x: startX + 600, y: startY - 200, z: startZ}, {x: startX + 700, y: startY - 200, z: startZ}, {x: startX + 800, y: startY - 200, z: startZ}, {x: startX + 900, y: startY - 200, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 300, z: startZ}, {x: startX , y: startY - 300, z: startZ}, {x: startX + 100, y: startY - 300, z: startZ}, {x: startX + 200, y: startY - 300, z: startZ}, {x: startX + 300, y: startY - 300, z: startZ}, {x: startX + 400, y: startY - 300, z: startZ}, {x: startX + 500, y: startY - 300, z: startZ}, {x: startX + 600, y: startY - 300, z: startZ}, {x: startX + 700, y: startY - 300, z: startZ}, {x: startX + 800, y: startY - 300, z: startZ}, {x: startX + 900, y: startY - 300, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 400, z: startZ}, {x: startX , y: startY - 400, z: startZ}, {x: startX + 100, y: startY - 400, z: startZ}, {x: startX + 200, y: startY - 400, z: startZ}, {x: startX + 300, y: startY - 400, z: startZ}, {x: startX + 400, y: startY - 400, z: startZ}, {x: startX + 500, y: startY - 400, z: startZ}, {x: startX + 600, y: startY - 400, z: startZ}, {x: startX + 700, y: startY - 400, z: startZ}, {x: startX + 800, y: startY - 400, z: startZ}, {x: startX + 900, y: startY - 400, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 500, z: startZ}, {x: startX , y: startY - 500, z: startZ}, {x: startX + 100, y: startY - 500, z: startZ}, {x: startX + 200, y: startY - 500, z: startZ}, {x: startX + 300, y: startY - 500, z: startZ}, {x: startX + 400, y: startY - 500, z: startZ}, {x: startX + 500, y: startY - 500, z: startZ}, {x: startX + 600, y: startY - 500, z: startZ}, {x: startX + 700, y: startY - 500, z: startZ}, {x: startX + 800, y: startY - 500, z: startZ}, {x: startX + 900, y: startY - 500, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 600, z: startZ}, {x: startX , y: startY - 600, z: startZ}, {x: startX + 100, y: startY - 600, z: startZ}, {x: startX + 200, y: startY - 600, z: startZ}, {x: startX + 300, y: startY - 600, z: startZ}, {x: startX + 400, y: startY - 600, z: startZ}, {x: startX + 500, y: startY - 600, z: startZ}, {x: startX + 600, y: startY - 600, z: startZ}, {x: startX + 700, y: startY - 600, z: startZ}, {x: startX + 800, y: startY - 600, z: startZ}, {x: startX + 900, y: startY - 600, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 700, z: startZ}, {x: startX , y: startY - 700, z: startZ}, {x: startX + 100, y: startY - 700, z: startZ}, {x: startX + 200, y: startY - 700, z: startZ}, {x: startX + 300, y: startY - 700, z: startZ}, {x: startX + 400, y: startY - 700, z: startZ}, {x: startX + 500, y: startY - 700, z: startZ}, {x: startX + 600, y: startY - 700, z: startZ}, {x: startX + 700, y: startY - 700, z: startZ}, {x: startX + 800, y: startY - 700, z: startZ}, {x: startX + 900, y: startY - 700, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 800, z: startZ}, {x: startX , y: startY - 800, z: startZ}, {x: startX + 100, y: startY - 800, z: startZ}, {x: startX + 200, y: startY - 800, z: startZ}, {x: startX + 300, y: startY - 800, z: startZ}, {x: startX + 400, y: startY - 800, z: startZ}, {x: startX + 500, y: startY - 800, z: startZ}, {x: startX + 600, y: startY - 800, z: startZ}, {x: startX + 700, y: startY - 800, z: startZ}, {x: startX + 800, y: startY - 800, z: startZ}, {x: startX + 900, y: startY - 800, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 900, z: startZ}, {x: startX , y: startY - 900, z: startZ}, {x: startX + 100, y: startY - 900, z: startZ}, {x: startX + 200, y: startY - 900, z: startZ}, {x: startX + 300, y: startY - 900, z: startZ}, {x: startX + 400, y: startY - 900, z: startZ}, {x: startX + 500, y: startY - 900, z: startZ}, {x: startX + 600, y: startY - 900, z: startZ}, {x: startX + 700, y: startY - 900, z: startZ}, {x: startX + 800, y: startY - 900, z: startZ}, {x: startX + 900, y: startY - 900, z: startZ},
+          /*top left*/{x: startX - 100, y: startY - 1000, z: startZ}, {x: startX , y: startY - 1000, z: startZ}, {x: startX + 100, y: startY - 1000, z: startZ}, {x: startX + 200, y: startY - 1000, z: startZ}, {x: startX + 300, y: startY - 1000, z: startZ}, {x: startX + 400, y: startY - 1000, z: startZ}, {x: startX + 500, y: startY - 1000, z: startZ}, {x: startX + 600, y: startY - 1000, z: startZ}, {x: startX + 700, y: startY - 1000, z: startZ}, {x: startX + 800, y: startY - 1000, z: startZ}, {x: startX + 900, y: startY - 1000, z: startZ},
+        ]
+      }
+      this.backrd_JS = this.backrd_JS.contur.map(el => {
+        el.color = this.backrd_JS.color
+        return el
+      })
+
+      this.icon_JS = {
+        color: 0xFFFFFF,
+        depth: 100,
+        contur: [
+          //*top left*{x: startX - 100, y: startY + 200, z: startZ}, {x: startX , y: startY + 200, z: startZ}, {x: startX + 100, y: startY + 200, z: startZ}, {x: startX + 200, y: startY + 200, z: startZ}, {x: startX + 300, y: startY + 200, z: startZ}, {x: startX + 400, y: startY + 200, z: startZ}, {x: startX + 500, y: startY + 200, z: startZ}, {x: startX + 600, y: startY + 200, z: startZ}, {x: startX + 700, y: startY + 200, z: startZ}, {x: startX + 800, y: startY + 200, z: startZ}, {x: startX + 900, y: startY + 200, z: startZ},
+          //*top left*{x: startX - 100, y: startY + 100, z: startZ}, {x: startX , y: startY + 100, z: startZ}, {x: startX + 100, y: startY + 100, z: startZ}, {x: startX + 200, y: startY + 100, z: startZ}, {x: startX + 300, y: startY + 100, z: startZ}, {x: startX + 400, y: startY + 100, z: startZ}, {x: startX + 500, y: startY + 100, z: startZ}, {x: startX + 600, y: startY + 100, z: startZ}, {x: startX + 700, y: startY + 100, z: startZ}, {x: startX + 800, y: startY + 100, z: startZ}, {x: startX + 900, y: startY + 100, z: startZ},
+          //*top left*{x: startX - 100, y: startY , z: startZ}, {x: startX , y: startY , z: startZ}, {x: startX + 100, y: startY , z: startZ}, {x: startX + 200, y: startY , z: startZ}, {x: startX + 300, y: startY , z: startZ}, {x: startX + 400, y: startY , z: startZ}, {x: startX + 500, y: startY , z: startZ}, {x: startX + 600, y: startY , z: startZ}, {x: startX + 700, y: startY , z: startZ}, {x: startX + 800, y: startY , z: startZ}, {x: startX + 900, y: startY , z: startZ},
+          //*top left*{x: startX - 100, y: startY - 100, z: startZ}, {x: startX , y: startY - 100, z: startZ}, {x: startX + 100, y: startY - 100, z: startZ}, {x: startX + 200, y: startY - 100, z: startZ}, {x: startX + 300, y: startY - 100, z: startZ}, {x: startX + 400, y: startY - 100, z: startZ}, {x: startX + 500, y: startY - 100, z: startZ}, {x: startX + 600, y: startY - 100, z: startZ}, {x: startX + 700, y: startY - 100, z: startZ}, {x: startX + 800, y: startY - 100, z: startZ}, {x: startX + 900, y: startY - 100, z: startZ},
+          //*top left*{x: startX - 100, y: startY - 200, z: startZ}, {x: startX , y: startY - 200, z: startZ}, {x: startX + 100, y: startY - 200, z: startZ}, {x: startX + 200, y: startY - 200, z: startZ}, {x: startX + 300, y: startY - 200, z: startZ}, {x: startX + 400, y: startY - 200, z: startZ}, {x: startX + 500, y: startY - 200, z: startZ}, {x: startX + 600, y: startY - 200, z: startZ}, {x: startX + 700, y: startY - 200, z: startZ}, {x: startX + 800, y: startY - 200, z: startZ}, {x: startX + 900, y: startY - 200, z: startZ},
+          /*/!*top left*!/{x: startX - 100, y: startY - 300, z: startZ}, {x: startX , y: startY - 300, z: startZ}, {x: startX + 100, y: startY - 300, z: startZ},*/ /*{x: startX + 200, y: startY - 300, z: startZ}, {x: startX + 300, y: startY - 300, z: startZ},*/ {x: startX + 400, y: startY - 300, z: startZ},    /*{x: startX + 600, y: startY - 300, z: startZ},*/ {x: startX + 700, y: startY - 300, z: startZ},
+          /*/!*top left*!/{x: startX - 100, y: startY - 400, z: startZ}, {x: startX , y: startY - 400, z: startZ}, {x: startX + 100, y: startY - 400, z: startZ},*/ /*{x: startX + 200, y: startY - 400, z: startZ}, {x: startX + 300, y: startY - 400, z: startZ},*/ {x: startX + 400, y: startY - 400, z: startZ},    {x: startX + 600, y: startY - 400, z: startZ}, /*{x: startX + 700, y: startY - 400, z: startZ},*/ {x: startX + 800, y: startY - 400, z: startZ},
+          /*/!*top left*!/{x: startX - 100, y: startY - 500, z: startZ}, {x: startX , y: startY - 500, z: startZ}, {x: startX + 100, y: startY - 500, z: startZ},*/ /*{x: startX + 200, y: startY - 500, z: startZ}, {x: startX + 300, y: startY - 500, z: startZ},*/ {x: startX + 400, y: startY - 500, z: startZ},    {x: startX + 600, y: startY - 500, z: startZ}, /*{x: startX + 700, y: startY - 500, z: startZ}, {x: startX + 800, y: startY - 500, z: startZ},*/
+          /*/!*!/!*top left*!/{x: startX - 100, y: startY - 600, z: startZ}, {x: startX , y: startY - 600, z: startZ}, {x: startX + 100, y: startY - 600, z: startZ},*!/ {x: startX + 200, y: startY - 600, z: startZ}, {x: startX + 300, y: startY - 600, z: stZ},*/ {x: startX + 400, y: startY - 600, z: startZ},    /*{x: startX + 600, y: startY - 600, z: startZ},*/ {x: startX + 700, y: startY - 600, z: startZ},
+          /*/!*top left*!/{x: startX - 100, y: startY - 700, z: startZ}, {x: startX , y: startY - 700, z: startZ}, {x: startX + 100, y: startY - 700, z: startZ},*/ /*{x: startX + 200, y: startY - 700, z: startZ}, {x: startX + 300, y: startY - 700, z: startZ},*/ {x: startX + 400, y: startY - 700, z: startZ},    /*{x: startX + 600, y: startY - 700, z: startZ}, {x: startX + 700, y: startY - 700, z: startZ},*/ {x: startX + 800, y: startY - 700, z: startZ},
+          /*top lef     /*{x: startX - 100, y: startY - 800, z: startZ}, {x: startX , y: startY - 800, z: startZ}, {x: startX + 100, y: startY - 800, z: startZ},*/ {x: startX + 200, y: startY - 800, z: startZ}, /*{x: startX + 300, y: startY - 800, z: startZ}, */{x: startX + 400, y: startY - 800, z: startZ},    {x: startX + 600, y: startY - 800, z: startZ}, /*{x: startX + 700, y: startY - 800, z: startZ},*/ {x: startX + 800, y: startY - 800, z: startZ},
+          /*/!*top lef{x: startX - 100, y: startY - 900, z: startZ}, {x: startX , y: startY - 900, z: startZ}, {x: startX + 100, y: startY - 900, z: startZ}, {x: startX + 200, y: startY - 900, z: startZ},     */{x: startX + 300, y: startY - 900, z: startZ}, /*{x: startX + 400, y: startY - 900, z: startZ}, {x: startX + 500, y: startY - 900, z: sta rtZ},   */{x: startX + 700, y: startY - 900, z: startZ},
+          // /*top le {x: startX - 100, y: startY - 1000, z: startZ}, {x: startX , y: startY - 1000, z: startZ}, {x: startX + 100, y: startY - 1000, z: startZ}, {x: startX + 200, y: startY - 1000, z: startZ}, {x: startX + 300, y: startY - 1000, z: startZ}, {x: startX + 400, y: startY - 1000, z: startZ}, {x: startX + 500, y: startY - 1000, z: startZ}, {x: startX + 600, y: startY - 1000, z: startZ}, {x: startX + 700, y: startY - 1000, z: startZ}, {x: startX + 800, y: startY - 1000, z: startZ}, {x: startX + 900, y: startY - 1000, z: startZ},
+        ]
+      }
+      this.icon_JS = this.icon_JS.contur.map(el => {
+        el.color = this.icon_JS.color
+        el.z += this.icon_JS.depth
+        return el
+      })
+
+      this.backrd_JS = [...this.backrd_JS, ...this.icon_JS]
+      this.currentFigure = 'backrd_JS'
+
+        // this.word = [...this.letter_A, ...this.backgrd_Angular]
+        this.word = [...this[this.currentFigure]]
+        //
         this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
         this.camera.position.z = 1000;
         this.scene = new THREE.Scene();
@@ -47,22 +169,44 @@ class ThreejsComponent extends React.Component{
 
         this.objects = [];
 
-        this.geometry = new THREE.BoxBufferGeometry( 80, 80, 80 );
-        for ( let i = 0; i < 50; i ++ ) {
-            let color = i > this.word.length - 1 ? 0xFFA500 : 0xE91E63;
-            let object = new THREE.Mesh( this.geometry, new THREE.MeshLambertMaterial( { color } ) );
+        let radiusDefault = 40;
+        let geometryLib = {
+          cube: new THREE.BoxBufferGeometry( 80, 80, 80 ),
+          sphere: new THREE.SphereBufferGeometry(radiusDefault, 24, 18)
+        }
+
+
+        for ( let i = 0; i <= this.word.length - 1; i++ ) {
+
+            let color = i <= this.word.length - 1 ? this.word[i].color : 0xFFA500;
+            let object = new THREE.Mesh( geometryLib[this.word[i].geometry || 'cube'], new THREE.MeshLambertMaterial( { color }) );
 
             object.position.x = 2 * Math.random() * this.width - this.width ;
             object.position.y = 2 * Math.random() * this.height - this.height ;
             object.position.z = -Math.random() * 450 - 450;
+
             object.rotation.x = Math.random() * 2 * Math.PI;
             object.rotation.y = Math.random() * 2 * Math.PI;
             object.rotation.z = Math.random() * 2 * Math.PI;
-            // object.scale.x = Math.random() * 2 + 1;
-            // object.scale.y = Math.random() * 2 + 1;
-            // object.scale.z = Math.random() * 2 + 1;
+
             object.castShadow = true;
             object.receiveShadow = true;
+
+            if (this.currentFigure === 'icon_react') {
+              if (this.word[i].geometry === 'sphere' && this.word[i].radius){
+                let radiusMultiplier = (this.word[i].radius / radiusDefault)
+                object.scale.x *= radiusMultiplier;
+                object.scale.y *= radiusMultiplier;
+                object.scale.z *= radiusMultiplier;
+              } else {
+                let multiplier = 0.5;
+                object.scale.x *= multiplier;
+                object.scale.y *= multiplier;
+                object.scale.z *= multiplier;
+              }
+            }
+
+
 
             this.scene.add( object );
             this.objects.push( object );
@@ -91,7 +235,7 @@ class ThreejsComponent extends React.Component{
         this.animate()
     }
 
-    throwingCube = () => {
+    throwingCube = () => { // TODO
 
     }
 
@@ -125,9 +269,9 @@ class ThreejsComponent extends React.Component{
                     this.objects[i].rotation.x += Math.random() * 0.01;
                     this.objects[i].rotation.y += Math.random() * 0.01;
                 } else {
-                    if (this.objects[i].rotation.x !== 45 || this.objects[i].rotation.x !== -45) this.objects[i].rotation.x += (45 - this.objects[i].rotation.x) / 100
-                    if (this.objects[i].rotation.y !== 0) this.objects[i].rotation.y += (0 - this.objects[i].rotation.y) / 100
-                    if (this.objects[i].rotation.z !== 45 || this.objects[i].rotation.z !== -45) this.objects[i].rotation.z += (45 - this.objects[i].rotation.z) / 100
+                    if (this.objects[i].rotation.x !== 0 || this.objects[i].rotation.x !== -0) this.objects[i].rotation.x += (0 - this.objects[i].rotation.x) / 100
+                    if (this.objects[i].rotation.y !== 0 || this.objects[i].rotation.y !== -0) this.objects[i].rotation.y += (0 - this.objects[i].rotation.y) / 100
+                    if (this.objects[i].rotation.z !== 0 || this.objects[i].rotation.z !== -0) this.objects[i].rotation.z += (0 - this.objects[i].rotation.z) / 100
                 }
             } else {
                 this.objects[i].rotation.x += Math.random() * 0.007;

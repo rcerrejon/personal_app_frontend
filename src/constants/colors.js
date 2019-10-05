@@ -14,5 +14,6 @@ export default {
   light: '#ffffff',
   greySelect_light: '#F7F7F7',
   grey2C_light: '#F4F4F4',
-  greyHeader: '#fafafa'
+  greyHeader: '#fafafa',
+  react: '#5FC0CE'
 }

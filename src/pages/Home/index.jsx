@@ -104,7 +104,6 @@ class Home extends React.Component{
                 </div>
               </div>
               <div className={coolThing}>
-                {/*<CanvasTest />*/}
                 <ThreejsComponent/>
               </div>
             </div>
