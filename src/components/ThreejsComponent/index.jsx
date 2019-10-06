@@ -122,32 +122,73 @@ class ThreejsComponent extends React.Component{
         color: 0xFFFFFF,
         depth: 100,
         contur: [
-          //*top left*{x: startX - 100, y: startY + 200, z: startZ}, {x: startX , y: startY + 200, z: startZ}, {x: startX + 100, y: startY + 200, z: startZ}, {x: startX + 200, y: startY + 200, z: startZ}, {x: startX + 300, y: startY + 200, z: startZ}, {x: startX + 400, y: startY + 200, z: startZ}, {x: startX + 500, y: startY + 200, z: startZ}, {x: startX + 600, y: startY + 200, z: startZ}, {x: startX + 700, y: startY + 200, z: startZ}, {x: startX + 800, y: startY + 200, z: startZ}, {x: startX + 900, y: startY + 200, z: startZ},
-          //*top left*{x: startX - 100, y: startY + 100, z: startZ}, {x: startX , y: startY + 100, z: startZ}, {x: startX + 100, y: startY + 100, z: startZ}, {x: startX + 200, y: startY + 100, z: startZ}, {x: startX + 300, y: startY + 100, z: startZ}, {x: startX + 400, y: startY + 100, z: startZ}, {x: startX + 500, y: startY + 100, z: startZ}, {x: startX + 600, y: startY + 100, z: startZ}, {x: startX + 700, y: startY + 100, z: startZ}, {x: startX + 800, y: startY + 100, z: startZ}, {x: startX + 900, y: startY + 100, z: startZ},
-          //*top left*{x: startX - 100, y: startY , z: startZ}, {x: startX , y: startY , z: startZ}, {x: startX + 100, y: startY , z: startZ}, {x: startX + 200, y: startY , z: startZ}, {x: startX + 300, y: startY , z: startZ}, {x: startX + 400, y: startY , z: startZ}, {x: startX + 500, y: startY , z: startZ}, {x: startX + 600, y: startY , z: startZ}, {x: startX + 700, y: startY , z: startZ}, {x: startX + 800, y: startY , z: startZ}, {x: startX + 900, y: startY , z: startZ},
-          //*top left*{x: startX - 100, y: startY - 100, z: startZ}, {x: startX , y: startY - 100, z: startZ}, {x: startX + 100, y: startY - 100, z: startZ}, {x: startX + 200, y: startY - 100, z: startZ}, {x: startX + 300, y: startY - 100, z: startZ}, {x: startX + 400, y: startY - 100, z: startZ}, {x: startX + 500, y: startY - 100, z: startZ}, {x: startX + 600, y: startY - 100, z: startZ}, {x: startX + 700, y: startY - 100, z: startZ}, {x: startX + 800, y: startY - 100, z: startZ}, {x: startX + 900, y: startY - 100, z: startZ},
-          //*top left*{x: startX - 100, y: startY - 200, z: startZ}, {x: startX , y: startY - 200, z: startZ}, {x: startX + 100, y: startY - 200, z: startZ}, {x: startX + 200, y: startY - 200, z: startZ}, {x: startX + 300, y: startY - 200, z: startZ}, {x: startX + 400, y: startY - 200, z: startZ}, {x: startX + 500, y: startY - 200, z: startZ}, {x: startX + 600, y: startY - 200, z: startZ}, {x: startX + 700, y: startY - 200, z: startZ}, {x: startX + 800, y: startY - 200, z: startZ}, {x: startX + 900, y: startY - 200, z: startZ},
-          /*/!*top left*!/{x: startX - 100, y: startY - 300, z: startZ}, {x: startX , y: startY - 300, z: startZ}, {x: startX + 100, y: startY - 300, z: startZ},*/ /*{x: startX + 200, y: startY - 300, z: startZ}, {x: startX + 300, y: startY - 300, z: startZ},*/ {x: startX + 400, y: startY - 300, z: startZ},    /*{x: startX + 600, y: startY - 300, z: startZ},*/ {x: startX + 700, y: startY - 300, z: startZ},
-          /*/!*top left*!/{x: startX - 100, y: startY - 400, z: startZ}, {x: startX , y: startY - 400, z: startZ}, {x: startX + 100, y: startY - 400, z: startZ},*/ /*{x: startX + 200, y: startY - 400, z: startZ}, {x: startX + 300, y: startY - 400, z: startZ},*/ {x: startX + 400, y: startY - 400, z: startZ},    {x: startX + 600, y: startY - 400, z: startZ}, /*{x: startX + 700, y: startY - 400, z: startZ},*/ {x: startX + 800, y: startY - 400, z: startZ},
-          /*/!*top left*!/{x: startX - 100, y: startY - 500, z: startZ}, {x: startX , y: startY - 500, z: startZ}, {x: startX + 100, y: startY - 500, z: startZ},*/ /*{x: startX + 200, y: startY - 500, z: startZ}, {x: startX + 300, y: startY - 500, z: startZ},*/ {x: startX + 400, y: startY - 500, z: startZ},    {x: startX + 600, y: startY - 500, z: startZ}, /*{x: startX + 700, y: startY - 500, z: startZ}, {x: startX + 800, y: startY - 500, z: startZ},*/
-          /*/!*!/!*top left*!/{x: startX - 100, y: startY - 600, z: startZ}, {x: startX , y: startY - 600, z: startZ}, {x: startX + 100, y: startY - 600, z: startZ},*!/ {x: startX + 200, y: startY - 600, z: startZ}, {x: startX + 300, y: startY - 600, z: stZ},*/ {x: startX + 400, y: startY - 600, z: startZ},    /*{x: startX + 600, y: startY - 600, z: startZ},*/ {x: startX + 700, y: startY - 600, z: startZ},
-          /*/!*top left*!/{x: startX - 100, y: startY - 700, z: startZ}, {x: startX , y: startY - 700, z: startZ}, {x: startX + 100, y: startY - 700, z: startZ},*/ /*{x: startX + 200, y: startY - 700, z: startZ}, {x: startX + 300, y: startY - 700, z: startZ},*/ {x: startX + 400, y: startY - 700, z: startZ},    /*{x: startX + 600, y: startY - 700, z: startZ}, {x: startX + 700, y: startY - 700, z: startZ},*/ {x: startX + 800, y: startY - 700, z: startZ},
-          /*top lef     /*{x: startX - 100, y: startY - 800, z: startZ}, {x: startX , y: startY - 800, z: startZ}, {x: startX + 100, y: startY - 800, z: startZ},*/ {x: startX + 200, y: startY - 800, z: startZ}, /*{x: startX + 300, y: startY - 800, z: startZ}, */{x: startX + 400, y: startY - 800, z: startZ},    {x: startX + 600, y: startY - 800, z: startZ}, /*{x: startX + 700, y: startY - 800, z: startZ},*/ {x: startX + 800, y: startY - 800, z: startZ},
-          /*/!*top lef{x: startX - 100, y: startY - 900, z: startZ}, {x: startX , y: startY - 900, z: startZ}, {x: startX + 100, y: startY - 900, z: startZ}, {x: startX + 200, y: startY - 900, z: startZ},     */{x: startX + 300, y: startY - 900, z: startZ}, /*{x: startX + 400, y: startY - 900, z: startZ}, {x: startX + 500, y: startY - 900, z: sta rtZ},   */{x: startX + 700, y: startY - 900, z: startZ},
-          // /*top le {x: startX - 100, y: startY - 1000, z: startZ}, {x: startX , y: startY - 1000, z: startZ}, {x: startX + 100, y: startY - 1000, z: startZ}, {x: startX + 200, y: startY - 1000, z: startZ}, {x: startX + 300, y: startY - 1000, z: startZ}, {x: startX + 400, y: startY - 1000, z: startZ}, {x: startX + 500, y: startY - 1000, z: startZ}, {x: startX + 600, y: startY - 1000, z: startZ}, {x: startX + 700, y: startY - 1000, z: startZ}, {x: startX + 800, y: startY - 1000, z: startZ}, {x: startX + 900, y: startY - 1000, z: startZ},
+          /**/ /*{x: startX + 200, y: startY - 300, z: startZ}, {x: startX + 300, y: startY - 300, z: startZ},*/ {x: startX + 400, y: startY - 300, z: startZ},    /*{x: startX + 600, y: startY - 300, z: startZ},*/ {x: startX + 700, y: startY - 300, z: startZ},
+          /*,*/ /*{x: strtX + 200, y: startY - 400, z: startZ}, {x: startX + 300, y: startY - 400, z: startZ},*/ {x: startX + 400, y: startY - 400, z: startZ},    {x: startX + 600, y: startY - 400, z: startZ}, /*{x: startX + 700, y: startY - 400, z: startZ},*/ {x: startX + 800, y: startY - 400, z: startZ},
+          /**/ /*{x: startX + 200, y: startY - 500, z: startZ}, {x: startX + 300, y: startY - 500, z: startZ},*/ {x: startX + 400, y: startY - 500, z: startZ},    {x: startX + 600, y: startY - 500, z: startZ}, /*{x: startX + 700, y: startY - 500, z: startZ}, {x: startX + 800, y: startY - 500, z: startZ},*/
+          /*    *!/ {x: startX + 200, y: startY - 600, z: startZ}, {x: startX + 300, y: startY - 600, z: stZ},*/ {x: startX + 400, y: startY - 600, z: startZ},    /*{x: startX + 600, y: startY - 600, z: startZ},*/ {x: startX + 700, y: startY - 600, z: startZ},
+          /**/ /*{x: startX + 200, y: startY - 700, z: startZ}, {x: startX + 300, y: startY - 700, z: startZ},*/ {x: startX + 400, y: startY - 700, z: startZ},    /*{x: startX + 600, y: startY - 700, z: startZ}, {x: startX + 700, y: startY - 700, z: startZ},*/ {x: startX + 800, y: startY - 700, z: startZ},
+          /**/ {x: startX + 200, y: startY - 800, z: startZ}, /*{x: startX + 300, y: startY - 800, z: startZ}, */{x: startX + 400, y: startY - 800, z: startZ},    {x: startX + 600, y: startY - 800, z: startZ}, /*{x: startX + 700, y: startY - 800, z: startZ},*/ {x: startX + 800, y: startY - 800, z: startZ},
+          /*{x: startX + 200, y: startY - 900, z: startZ},    */{x: startX + 300, y: startY - 900, z: startZ}, /*{x: startX + 400, y: startY - 900, z: startZ}, {x: startX + 500, y: startY - 900, z: sta rtZ},   */{x: startX + 700, y: startY - 900, z: startZ},
         ]
       }
+      //fo node_back
+      // this.icon_JS.color = 0x46473F;
+      //
       this.icon_JS = this.icon_JS.contur.map(el => {
+        //for node_back
+        // el.x -= 100
+        // el.y += 200
+        //
         el.color = this.icon_JS.color
         el.z += this.icon_JS.depth
         return el
       })
 
-      this.backrd_JS = [...this.backrd_JS, ...this.icon_JS]
-      this.currentFigure = 'backrd_JS'
+      this.backrd_Node = {
+        color: 0x92CA3F,
+        contur: [
+          /*/!*top left*!/{x: startX - 100, y: startY + 200, z: startZ}, {x: startX , y: startY + 200, z: startZ}, {x: startX + 100, y: startY + 200, z: startZ}, {x: startX + 200, y: startY + 200, z: startZ},*/ {x: startX + 300, y: startY + 200, z: startZ}, {x: startX + 400, y: startY + 200, z: startZ}, {x: startX + 500, y: startY + 200, z: startZ}, {x: startX + 600, y: startY + 200, z: startZ}, {x: startX + 700, y: startY + 200, z: startZ}, {x: startX + 800, y: startY + 200, z: startZ}, {x: startX + 900, y: startY + 200, z: startZ},
+          /*top left*//*{x: startX - 100, y: startY + 100, z: startZ}, {x: startX , y: startY + 100, z: startZ}, {x: startX + 100, y: startY + 100, z: startZ},*/ {x: startX + 200, y: startY + 100, z: startZ}, {x: startX + 300, y: startY + 100, z: startZ}, {x: startX + 400, y: startY + 100, z: startZ}, {x: startX + 500, y: startY + 100, z: startZ}, {x: startX + 600, y: startY + 100, z: startZ}, {x: startX + 700, y: startY + 100, z: startZ}, {x: startX + 800, y: startY + 100, z: startZ}, {x: startX + 900, y: startY + 100, z: startZ},
+          /*top left*//*{x: startX - 100, y: startY , z: startZ}, {x: startX , y: startY , z: startZ},*/ {x: startX + 100, y: startY , z: startZ}, {x: startX + 200, y: startY , z: startZ}, {x: startX + 300, y: startY , z: startZ}, {x: startX + 400, y: startY , z: startZ}, {x: startX + 500, y: startY , z: startZ}, {x: startX + 600, y: startY , z: startZ}, {x: startX + 700, y: startY , z: startZ}, {x: startX + 800, y: startY , z: startZ}, {x: startX + 900, y: startY , z: startZ},
+          /*top left*//*{x: startX - 100, y: startY - 100, z: startZ},*/ {x: startX , y: startY - 100, z: startZ}, {x: startX + 100, y: startY - 100, z: startZ}, {x: startX + 200, y: startY - 100, z: startZ}, {x: startX + 300, y: startY - 100, z: startZ}, {x: startX + 400, y: startY - 100, z: startZ}, {x: startX + 500, y: startY - 100, z: startZ}, {x: startX + 600, y: startY - 100, z: startZ}, {x: startX + 700, y: startY - 100, z: startZ}, {x: startX + 800, y: startY - 100, z: startZ}, {x: startX + 900, y: startY - 100, z: startZ},
+          /*top left*//*{x: startX - 100, y: startY - 200, z: startZ},*/ {x: startX , y: startY - 200, z: startZ}, {x: startX + 100, y: startY - 200, z: startZ}, {x: startX + 200, y: startY - 200, z: startZ}, {x: startX + 300, y: startY - 200, z: startZ}, {x: startX + 400, y: startY - 200, z: startZ}, {x: startX + 500, y: startY - 200, z: startZ}, {x: startX + 600, y: startY - 200, z: startZ}, {x: startX + 700, y: startY - 200, z: startZ}, {x: startX + 800, y: startY - 200, z: startZ}, {x: startX + 900, y: startY - 200, z: startZ},
+          /*top left*//*{x: startX - 100, y: startY - 300, z: startZ},*/ {x: startX , y: startY - 300, z: startZ}, {x: startX + 100, y: startY - 300, z: startZ}, {x: startX + 200, y: startY - 300, z: startZ}, {x: startX + 300, y: startY - 300, z: startZ}, {x: startX + 400, y: startY - 300, z: startZ}, {x: startX + 500, y: startY - 300, z: startZ}, {x: startX + 600, y: startY - 300, z: startZ}, {x: startX + 700, y: startY - 300, z: startZ}, {x: startX + 800, y: startY - 300, z: startZ}, {x: startX + 900, y: startY - 300, z: startZ},
+          /*top left*//*{x: startX - 100, y: startY - 400, z: startZ},*/ {x: startX , y: startY - 400, z: startZ}, {x: startX + 100, y: startY - 400, z: startZ}, {x: startX + 200, y: startY - 400, z: startZ}, {x: startX + 300, y: startY - 400, z: startZ}, {x: startX + 400, y: startY - 400, z: startZ}, {x: startX + 500, y: startY - 400, z: startZ}, {x: startX + 600, y: startY - 400, z: startZ}, {x: startX + 700, y: startY - 400, z: startZ}, {x: startX + 800, y: startY - 400, z: startZ}, {x: startX + 900, y: startY - 400, z: startZ},
+          /*top left*//*{x: startX -  y: startY - 500, z: startZ    },*/ {x: startX , y: startY - 500, z: startZ}, {x: startX + 100, y: startY - 500, z: startZ}, {x: startX + 200, y: startY - 500, z: startZ}, {x: startX + 300, y: startY - 500, z: startZ}, {x: startX + 400, y: startY - 500, z: startZ}, {x: startX + 500, y: startY - 500, z: startZ}, {x: startX + 600, y: startY - 500, z: startZ}, {x: startX + 700, y: startY - 500, z: startZ}, {x: startX + 800, y: startY - 500, z: startZ}, {x: startX + 900, y: startY - 500, z: startZ},
+          /*/!*top left*!/{x: startX - 100,artY - 600, z: startZ}, {x: startX , y: startY - 600, z: startZ},*/ {x: startX + 100, y: startY - 600, z: startZ}, {x: startX + 200, y: startY - 600, z: startZ}, {x: startX + 300, y: startY - 600, z: startZ}, {x: startX + 400, y: startY - 600, z: startZ}, {x: startX + 500, y: startY - 600, z: startZ}, {x: startX + 600, y: startY - 600, z: startZ}, {x: startX + 700, y: startY - 600, z: startZ}, {x: startX + 800, y: startY - 600, z: startZ}, {x: startX + 900, y: startY - 600, z: startZ},
+          /*/!*top left*!/{x: startX - 100, y: startY - 700, z: startZ}, {x: startX , y: startY - 700, z: startZ}, {x: startX + 100, y: startY - 700, z: startZ},*/ {x: startX + 200, y: startY - 700, z: startZ}, {x: startX + 300, y: startY - 700, z: startZ}, {x: startX + 400, y: startY - 700, z: startZ}, {x: startX + 500, y: startY - 700, z: startZ}, {x: startX + 600, y: startY - 700, z: startZ}, {x: startX + 700, y: startY - 700, z: startZ}, {x: startX + 800, y: startY - 700, z: startZ}, {x: startX + 900, y: startY - 700, z: startZ},
+          /*/!*top left*!/{x: startX - 100, y: startY - 800, z: startZ}, {x: startX , y: startY - 800, z: startZ}, {x: startX + 100, y: startY - 800, z: startZ}, {x: startX + 200, y: startY - 800, z: startZ},*/ {x: startX + 300, y: startY - 800, z: startZ}, {x: startX + 400, y: startY - 800, z: startZ}, {x: startX + 500, y: startY - 800, z: startZ}, {x: startX + 600, y: startY - 800, z: startZ}, {x: startX + 700, y: startY - 800, z: startZ}, {x: startX + 800, y: startY - 800, z: startZ}, {x: startX + 900, y: startY - 800, z: startZ},
+          /*/!*top left*!/{x: startX - 100, y: startY - 900, z: startZ}, {x: startX , y: startY - 900, z: startZ}, {x: startX + 100, y: startY - 900, z: startZ}, {x: startX + 200, y: startY - 900, z: startZ}, {x: startX + 300, y: startY - 900, z: startZ},*/ {x: startX + 400, y: startY - 900, z: startZ}, {x: startX + 500, y: startY - 900, z: startZ}, {x: startX + 600, y: startY - 900, z: startZ}, {x: startX + 700, y: startY - 900, z: startZ}, {x: startX + 800, y: startY - 900, z: startZ}, {x: startX + 900, y: startY - 900, z: startZ},
+          /*/!*top left*!/{x: startX - 100, y: startY - 1000, z: startZ}, {x: startX , y: startY - 1000, z: startZ}, {x: startX + 100, y: startY - 1000, z: startZ}, {x: startX + 200, y: startY - 1000, z: startZ}, {x: startX + 300, y: startY - 1000, z: startZ}, {x: startX + 400, y: startY - 1000, z: startZ},*/ {x: startX + 500, y: startY - 1000, z: startZ}, {x: startX + 600, y: startY - 1000, z: startZ}, {x: startX + 700, y: startY - 1000, z: startZ}, {x: startX + 800, y: startY - 1000, z: startZ}, {x: startX + 900, y: startY - 1000, z: startZ},
+        ]
+      }
+      this.backrd_Node = this.backrd_Node.contur.map(el => {
+        el.color = this.backrd_Node.color
+        return el
+      })
+
+      let icons_arr = [
+        {
+          name: 'icon_js',
+          arr: [...this.backrd_JS, ...this.icon_JS]
+        },
+        {
+          name: 'icon_angular',
+          arr: [...this.backgrd_Angular, ...this.letter_A]
+        },
+        {
+          name: 'icon_react',
+          arr: [...this.icon_react]
+        },
+      ]
+      let random_icon = Math.round(Math.random() * 2)
+
+      console.log(random_icon)
+      
+      this.currentFigure = icons_arr[random_icon].name
 
         // this.word = [...this.letter_A, ...this.backgrd_Angular]
-        this.word = [...this[this.currentFigure]]
+        this.word = [...icons_arr[random_icon].arr]
         //
         this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
         this.camera.position.z = 1000;

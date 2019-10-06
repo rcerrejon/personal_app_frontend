@@ -88,10 +88,6 @@ class AboutPage extends React.Component{
                 >
                   {this.renderWorkPath()}
                 </div>
-                {/*<div className={educationTitle}>Education</div>*/}
-                {/*<div className={educationPath}>*/}
-                {/*  {this.renderEducations()}*/}
-                {/*</div>*/}
               </div>
 
               <div className={[sidePanelWrapper, noMobile].join(" ")}>

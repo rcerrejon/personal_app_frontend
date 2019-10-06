@@ -5,7 +5,6 @@ import {_openInNewTab} from '../../utils/commonFunctions';
 import color from '../../constants/colors';
 import { connect } from 'react-redux';
 import { BtnYellowHome } from '../../styled';
-// import CanvasTest from '../../components/CanvasTest';
 import ThreejsComponent from '../../components/ThreejsComponent';
 
 class Home extends React.Component{
@@ -15,11 +14,28 @@ class Home extends React.Component{
           text_top: '',
           text_left: '',
           text_right: '',
-          canRerender: false
+          canRerender: false,
+          isMobile: false
         }
     }
 
+  updateWidth = () => {
+    let isMobile = window.innerWidth <= 999
+    this.setState({isMobile})
+
+  }
+
+  componentWillMount() {
+    this.updateWidth()
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWidth)
+  }
+
   componentDidMount() {
+      window.addEventListener('resize', this.updateWidth)
+      this.updateWidth()
       if (this.props.common.lang === 'en') {
         this.typeText('text_left', 'Greetings')
         setTimeout(() => this.typeText('text_top', "i am Vadim"), 700)
@@ -86,7 +102,7 @@ class Home extends React.Component{
               <div className={profileContainerWrap}>
                 <div className={profileContainer}
                      style={{
-                       color: this.props.common.theme === 'dark' ? color.primary : color.secondary,
+                       color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
                      }}
                 >
                   <div className={leftText}>{this.state.text_left}{/*Greetings*/}</div>
@@ -103,6 +119,19 @@ class Home extends React.Component{
                   </BtnYellowHome>
                 </div>
               </div>
+
+              <div className={infoContainer}>
+                <div className={greetText}>
+                  {this.props.common.lang === 'en'
+                    ?
+                    <div><span className={greetItem}>Hi,</span><br className={noBrMobile}/><span className={greetItem}>i'm Vadim,</span><br/><span className={greetItem}>web developer</span></div>
+                    :
+                    <div><span className={greetItem}>Привет,</span><br className={noBrMobile}/><span className={greetItem}>я Вадим,</span><br/><span className={greetItem}>веб разработчик</span></div>
+                  }
+                </div>
+                <div className={skills}>Full stack / ReactJS / ExpressJS </div>
+              </div>
+
               <div className={coolThing}>
                 <ThreejsComponent/>
               </div>
