@@ -1,11 +1,12 @@
 import React from 'react';
 import { Work, Home, Email, MenuBook } from '@material-ui/icons';
-import style from './style.module.scss';
+import style from './style.scss';
 import { mdiNewspaper } from '@mdi/js';
 import Icon from '@mdi/react';
 import { NavLink } from 'react-router-dom';
 import color from '../../constants/colors';
 import { connect } from 'react-redux';
+import Link from 'next/link';
 
 class NavbarMain extends React.Component{
     constructor(props){
@@ -35,10 +36,27 @@ class NavbarMain extends React.Component{
                    color: this.props.common.theme === 'dark' ? color.light : color.black,
                  }}
             >
-              <NavLink exact to="/" className={[button, home].join(" ")} activeClassName={activeNavlink}><Home /></NavLink>
-              <NavLink to="/portfolio" className={[button, portfolio].join(" ")} activeClassName={activeNavlink}><Work /></NavLink>
-              <NavLink to="/blog" className={[button, blog].join(" ")} activeClassName={activeNavlink}><MenuBook /></NavLink>
-              <NavLink to="/contacts" className={[button, contacts].join(" ")} activeClassName={activeNavlink}><Email /></NavLink>
+              {/*activeClassName={activeNavlink}*/}
+              <Link href="/">
+                <div className={[button, home].join(" ")} >
+                  <Home />
+                </div>
+              </Link>
+              <Link href="/portfolio">
+                <div className={[button, portfolio].join(" ")} >
+                  <Work />
+                </div>
+              </Link>
+              <Link href="/blog">
+                <div className={[button, blog].join(" ")} >
+                  <MenuBook />
+                </div>
+              </Link>
+              <Link href="/contacts">
+                <div className={[button, contacts].join(" ")} >
+                  <Email />
+                </div>
+              </Link>
             </div>
         )
     }

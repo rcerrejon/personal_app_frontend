@@ -2,6 +2,7 @@ import React from 'react';
 import style from './style.module.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
+import { withRouter } from 'react-router';
 import * as BlogAction from '../../../actions/BlogAction';
 import color from '../../../constants/colors';
 
@@ -65,6 +66,7 @@ class TagPanel extends React.Component{
       })
       this.actionsBlog.chooseTags(tags)
       this.actionsBlog.getBlog();
+      this.props.history.push('/blog')
     }
 }
 
@@ -79,4 +81,7 @@ const mapStateToProps = state => {
     }
   }
 }
-export default connect(mapStateToProps)(TagPanel);
+export default compose(
+  connect(mapStateToProps),
+  withRouter
+)(TagPanel);

@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './style.module.scss';
-import history from '../../../history';
 import Img from 'react-image';
 import { DeveloperBoard, Person, ArrowBackIos, ArrowForwardIos } from '@material-ui/icons/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
@@ -55,7 +54,7 @@ class FoldersAndFiles extends React.Component{
       let materialIconItem = el.type === 'folder' ? 'folder' : 'file';
 
       return (
-        <div key={el.id} className={classItem} onClick={() => history.push(`/portfolio${el.url}`)}>
+        <div key={el.id} className={classItem} onClick={() => this.props.history.push(`/portfolio${el.url}`)}>
           <FontAwesomeIcon className={indicator}
                            icon={materialIconItem}
           />

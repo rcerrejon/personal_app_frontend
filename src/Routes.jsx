@@ -57,11 +57,9 @@ function Routes(props) {
             >
               <Component >
                 {children && (
-                  <Switch>
-                    {children.map( ({path, exact, Component}) => (
+                    children.map( ({path, exact, Component}) => (
                       <Route path={path} exact={exact} key={path} component={Component}/>
-                    ))}
-                  </Switch>
+                    ))
                 )}
               </Component>
             </div>
@@ -75,7 +73,9 @@ function Routes(props) {
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    common: {
+      theme: state.common.theme
+    }
   }
 }
 export default connect(mapStateToProps)(Routes);

@@ -3,12 +3,12 @@ import { mdiLightbulbOutline,  mdiLightbulb, mdiClose, mdiMinus, mdiFullscreen }
 import { Tonality, Brightness6 } from '@material-ui/icons';
 import Icon, { Stack } from '@mdi/react';
 import color from '../../constants/colors'
-import { withRouter } from "react-router";
-import style from './style.module.scss';
+import style from './style.scss';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CommonAction from '../../actions/CommonAction';
 import Img from 'react-image'
+import Link from 'next/link';
 
 class Header extends React.Component{
     constructor(props){
@@ -32,7 +32,7 @@ class Header extends React.Component{
         } = style;
 
         return(
-            <div className={HeaderContainer}
+            <div className={style.HeaderContainer}
                  style={{
                    backgroundColor: this.props.common.theme === 'dark' ? color.grey2C : color.greyHeader,
                    color: this.props.common.theme === 'dark' ? color.light : color.black,
@@ -50,11 +50,12 @@ class Header extends React.Component{
                 </div>
               </div>
               {/*<div className={style.HeaderLogo}> </div>*/}
-              <Img className={HeaderLogo}
-                   src="https://cdn1.savepice.ru/uploads/2019/9/19/22693186150623c85e17e2ab6311c481-full.png"
-                   src={require(`../../assets/horseshoeIcon${this.props.common.theme === 'dark' ? '' : '_light'}.png`)}
-                   onClick={() => {this.props.history.push('/')}}
-              />
+              <Link href='/'>
+                <Img className={HeaderLogo}
+                     src="https://cdn1.savepice.ru/uploads/2019/9/19/22693186150623c85e17e2ab6311c481-full.png"
+                     src={require(`../../assets/horseshoeIcon${this.props.common.theme === 'dark' ? '' : '_light'}.png`)}
+                />
+              </Link>
               <div className={HeaderRightButtons}>
                 <div className={button}
                      onClick={() => this.actionsCommon.switchTheme()}
@@ -86,6 +87,5 @@ const mapStateToProps = (state) => {
   }
 }
 export default compose(
-  withRouter,
   connect(mapStateToProps)
 )(Header);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
-import style from './style.module.scss';
+import style from './style.scss';
 import {_openInNewTab} from '../../utils/commonFunctions';
 import color from '../../constants/colors';
 import { connect } from 'react-redux';
@@ -25,9 +25,9 @@ class Home extends React.Component{
 
   }
 
-  componentWillMount() {
-    this.updateWidth()
-  }
+  // componentWillMount() {
+  //   this.updateWidth()
+  // }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWidth)
@@ -96,9 +96,10 @@ class Home extends React.Component{
         return(
             <div className={HomeContainer}
                  style={{
+                   backgroundColor: this.props.common.theme === 'dark' ? color.routerBg : color.light,
                    color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
                  }}
-            >
+             >
               <div className={profileContainerWrap}>
                 <div className={profileContainer}
                      style={{
@@ -133,7 +134,7 @@ class Home extends React.Component{
               </div>
 
               <div className={coolThing}>
-                <ThreejsComponent/>
+                {!this.state.isMobile && <ThreejsComponent/>}
               </div>
             </div>
         )

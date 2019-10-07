@@ -1,9 +1,8 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from './style.scss';
 import * as THREE from 'three'
 import color from '../../constants/colors'
-import { DragControls } from 'three/examples/jsm/controls/DragControls';
-import Stats from 'three/examples/jsm/libs/stats.module';
+// import { DragControls } from 'three/examples/jsm/controls/DragControls';
 
 class ThreejsComponent extends React.Component{
     componentDidMount() {
@@ -184,7 +183,7 @@ class ThreejsComponent extends React.Component{
       let random_icon = Math.round(Math.random() * 2)
 
       console.log(random_icon)
-      
+
       this.currentFigure = icons_arr[random_icon].name
 
         // this.word = [...this.letter_A, ...this.backgrd_Angular]
@@ -261,13 +260,13 @@ class ThreejsComponent extends React.Component{
 
         this.mount.appendChild( this.renderer.domElement )
 
-        let controls = new DragControls( this.objects, this.camera, this.renderer.domElement );
-        controls.addEventListener( 'dragstart', function ( event ) {
-            event.object.material.emissive.set( 0xaaaaaa );
-        } );
-        controls.addEventListener( 'dragend', function ( event ) {
-            event.object.material.emissive.set( 0x000000 );
-        } );
+        // this.controls = new DragControls( this.objects, this.camera, this.renderer.domElement );
+        // this.controls.addEventListener( 'dragstart', function ( event ) {
+        //     event.object.material.emissive.set( 0xaaaaaa );
+        // } );
+        // this.controls.addEventListener( 'dragend', function ( event ) {
+        //     event.object.material.emissive.set( 0x000000 );
+        // } );
 
         // this.stats = new Stats();
         // this.mount.appendChild( this.stats.dom );
@@ -324,7 +323,17 @@ class ThreejsComponent extends React.Component{
         this.renderer.render( this.scene, this.camera );
     }
 
-    render(){
+    componentWillUnmount() {
+      // window.removeEventListener('resize', this.onWindowResize)
+      // this.controls.removeEventListener( 'dragstart', function ( event ) {
+      //   event.object.material.emissive.set( 0xaaaaaa );
+      // } );
+      // this.controls.removeEventListener( 'dragend', function ( event ) {
+      //   event.object.material.emissive.set( 0x000000 );
+      // } );
+    }
+
+  render(){
         return(
           <div
             style={{
