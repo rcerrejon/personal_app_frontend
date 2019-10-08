@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import axios from 'axios'
-const url = `${process.env.REACT_APP_SERVERURL}/contacts`;
+const url = `http://udachin.tech/api/contacts`;
 
 export function getLinks() {
   return (dispatch) => {

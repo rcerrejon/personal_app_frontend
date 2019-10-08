@@ -1,7 +1,7 @@
+import Blog from '../../src/pages/Blog';
+
 const Post = props => (
-  <>
-    blog
-  </>
+  <Blog/>
 );
 
 export default Post;

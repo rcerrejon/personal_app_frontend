@@ -1,7 +1,7 @@
+import ArticlePage from '../../src/components/Blog/ArticlePage';
+
 const Post = props => (
-  <>
-   blog id
-  </>
+  <ArticlePage/>
 );
 
 export default Post;

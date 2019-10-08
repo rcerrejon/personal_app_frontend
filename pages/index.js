@@ -3,9 +3,7 @@ import App from '../src/App';
 import React from 'react';
 
 const Post = props => (
-  <App>
-    <Home />
-  </App>
+  <Home />
 );
 
 export default Post;

@@ -1,9 +1,8 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SidePanel from '../../components/Common/SidePanel';
 import { bindActionCreators, compose } from 'redux';
-import { withRouter } from 'react-router';
 import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from 'react-redux';
 import * as ContactsActions from '../../actions/ContactsAction';
@@ -27,11 +26,14 @@ class Contacts extends React.Component{
         }
         this._reCaptchaRef = React.createRef();
     }
-    actionsContacts = bindActionCreators(ContactsActions, this.props.dispatch);
 
-    componentDidMount() {
-      this.actionsContacts.getLinks()
-    }
+
+    // static async getInitialProps(context) {
+    //   context.store.dispatch(ContactsActions.getLinks())
+    // }
+    // componentDidMount() {
+    //   this.actionsContacts.getLinks()
+    // }
 
     render() {
       const {
@@ -49,7 +51,11 @@ class Contacts extends React.Component{
       } = style;
 
       return(
-          <div className={style.ContactsContainer}>
+          <div className={style.ContactsContainer}
+               style={{
+                 backgroundColor: this.props.common.theme === 'dark' ? color.routerBg : color.light,
+                 color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
+               }}>
             {this.renderCanvasPanel()}
             <div className={main}>
               <div className={contactMe}>
@@ -232,6 +238,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-  withRouter,
   connect(mapStateToProps)
 )(Contacts);

@@ -52,7 +52,6 @@ class Header extends React.Component{
               {/*<div className={style.HeaderLogo}> </div>*/}
               <Link href='/'>
                 <Img className={HeaderLogo}
-                     src="https://cdn1.savepice.ru/uploads/2019/9/19/22693186150623c85e17e2ab6311c481-full.png"
                      src={require(`../../assets/horseshoeIcon${this.props.common.theme === 'dark' ? '' : '_light'}.png`)}
                 />
               </Link>

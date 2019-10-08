@@ -112,6 +112,7 @@ class Home extends React.Component{
                   <div className={image}
                        style={{
                          borderColor: this.props.common.theme === 'dark' ? color.primary : color.secondary,
+                         background: `url("https://sun9-67.userapi.com/c855732/v855732397/736e8/HA-8c1BWL_Q.jpg") 100%/100%`
                        }}
                   />
                   <BtnYellowHome onClick={() => _openInNewTab("https://github.com/Imlerix")} currTheme={this.props.common.theme}>
