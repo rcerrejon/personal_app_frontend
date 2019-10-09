@@ -1,12 +1,12 @@
 import React from 'react';
-import style from './style.module.scss';
-import {withRouter} from 'react-router'
+import style from './style.scss';
 import { Search, Clear } from '@material-ui/icons/index';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as BlogAction from '../../../actions/BlogAction';
 import color from '../../../constants/colors';
 import { BtnSearch } from './slyled';
+import Link from 'next/link';
 
 class SearchPanel extends React.Component{
     constructor(props){
@@ -108,18 +108,19 @@ class SearchPanel extends React.Component{
 
         return this.state.history.map(el => {
             return (
-            <div className={listItem}
-                 key={el.id}
-                 onClick={() => this.openArticleFromHistory(el.link)}
-            >
-                <span>{el.name}</span>
-            </div>
+              <Link href={`blog/${el.link}`} as={`blog/${el.link}`}>
+                <div className={listItem}
+                     key={el.id}
+                     onClick={() => this.openArticleFromHistory()}
+                >
+                    <span>{el.name}</span>
+                </div>
+              </Link>
             )
         })
     }
 
-    openArticleFromHistory = (link) => {
-        this.props.history.push(link)
+    openArticleFromHistory = () => {
         if (this.props.isMobile)
             this.actionsBlog.switchSearch(false)
     }
@@ -134,6 +135,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-  withRouter,
   connect(mapStateToProps)
 )(SearchPanel);

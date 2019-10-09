@@ -25,6 +25,9 @@
 const withSass = require('@zeit/next-sass');
 const withCSS = require("@zeit/next-css");
 module.exports = withCSS(withSass({
+  env: {
+    REACT_APP_SERVERURL: 'http://udachin.tech/api'
+  },
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,

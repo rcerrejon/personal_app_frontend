@@ -1,15 +1,13 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from './style.scss';
 import { Comment, Visibility, NavigateBefore, AddComment, Edit } from '@material-ui/icons';
-import {withRouter} from 'react-router';
 import PopupCommentCreate from '../PopupCommentCreate';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as BlogActions from '../../../actions/BlogAction'
 import * as CommonActions from '../../../actions/CommonAction'
 import Preloader from '../../Common/Preloader';
-import axios from 'axios/index'
-import * as types from '../../../constants/ActionTypes';
+import Router from 'next/router'
 
 class ArticlePage extends React.Component{
     constructor(props){
@@ -79,7 +77,7 @@ class ArticlePage extends React.Component{
 
               <div className={action_panel}>
                 <div className={btn_back}
-                     onClick={() => {this.props.history.goBack()}}
+                     onClick={Router.back}
                 ><NavigateBefore/></div>
                 <div className={stats}>
                   <div className={stat}><Visibility/> {article.views}</div>
@@ -121,12 +119,6 @@ class ArticlePage extends React.Component{
         return <Preloader/>
     }
 
-    componentWillMount() {
-      this.actionsCommon.setLoadingData(false)
-      this.actionsBlog.getArticle(this.props.match.params.id)
-      this.actionsBlog.getBlog();
-    }
-
     setHistory = (article) => {
       let history = JSON.parse(localStorage.getItem('history'))
 
@@ -149,17 +141,6 @@ class ArticlePage extends React.Component{
         localStorage.setItem('history', JSON.stringify(history))
       }
     }
-
-    componentDidMount() {
-      axios.get(`${process.env.REACT_APP_SERVERURL}/blog` + `/${this.props.match.params.id}`)
-        .then(res => {
-          this.setHistory(res.data)
-        })
-        .catch(err => {
-          console.error(err)
-        })
-    }
-    componentWillUnmount() {}
 
     switchPopupComment = () => {
       this.setState({isOpenPopupComment: !this.state.isOpenPopupComment})
@@ -223,6 +204,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-  withRouter,
   connect(mapStateToProps)
 )(ArticlePage);

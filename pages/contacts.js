@@ -1,4 +1,3 @@
-import App from '../src/App'
 import Contacts from '../src/pages/Contacts';
 import * as ContactsActions from '../src/actions/ContactsAction';
 import {connect} from 'react-redux';
@@ -8,12 +7,12 @@ import { bindActionCreators } from 'redux';
 class ContactsPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   static async getInitialProps(context) {
+    console.log(context)
     const actionsContacts = bindActionCreators(ContactsActions, context.store.dispatch);
-    actionsContacts.getLinks()
+    await actionsContacts.getLinks()
   }
 
   render() {
@@ -22,6 +21,8 @@ class ContactsPage extends React.Component {
 }
 
 export default connect(
-  state => state,
-  ContactsActions
+  state => ({
+    contacts: state.contacts,
+    common: state.common
+  })
 )(ContactsPage);

@@ -19,13 +19,11 @@ export default withRedux(initStore, { debug: false })(
     render() {
       const { Component, pageProps, store } = this.props;
       return (
-        <Container>
           <Provider store={store}>
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </Provider>
-        </Container>
       );
     }
   }

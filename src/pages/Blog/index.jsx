@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from './style.scss';
 import { Btn } from '../Portfolio/styled';
 import { Search } from '@material-ui/icons';
 import SearchPanel from '../../components/Blog/SearchPanel';
@@ -98,9 +98,7 @@ class Blog extends React.Component{
       window.addEventListener('resize', this.updateWidth)
       this.updateWidth()
     }
-    componentWillMount() {
-      this.updateWidth()
-    }
+
     componentWillUnmount() {
       window.removeEventListener('resize', this.updateWidth)
     }

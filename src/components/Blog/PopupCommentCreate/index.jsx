@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from './style.scss';
 import {Close} from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

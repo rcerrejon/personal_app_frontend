@@ -4,7 +4,7 @@ import axios from 'axios'
 const url = `${process.env.REACT_APP_SERVERURL}/blog`;
 
 export function getBlog() {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const stateBlog = getState().blog;
 
     const params = {
@@ -14,7 +14,7 @@ export function getBlog() {
       search: stateBlog.search.toLowerCase()
     }
 
-    axios.get(url, { params })
+    await axios.get(url, { params })
       .then(res => {
         let data = {
           type: types.GET_BLOG,
@@ -56,7 +56,7 @@ export function sendComment(id, body){
 }
 
 export function incrementViews(id) {
-  return dispatch => {
+  return async (dispatch) => {
     let history = JSON.parse(localStorage.getItem('history')) || null;
     let foundArticle = false
     if (history){
@@ -68,7 +68,7 @@ export function incrementViews(id) {
     }
 
     if (!foundArticle){
-      axios.post(url + `/incrementViews/${id}`)
+      await axios.post(url + `/incrementViews/${id}`)
         .catch(err => {
           console.error(err)
         })
@@ -77,9 +77,9 @@ export function incrementViews(id) {
 }
 
 export function getArticle(id) {
-  return dispatch => {
+  return async (dispatch) => {
 
-    axios.get(url + `/${id}`)
+    await axios.get(url + `/${id}`)
       .then(res => {
         dispatch({
           type: types.GET_ARTICLE,

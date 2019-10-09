@@ -1,7 +1,8 @@
-import Portfolio from '../../src/pages/Portfolio';
+// import Portfolio from '../../src/pages/Portfolio';
 
+  // {/*<Portfolio/>*/}
 const Post = props => (
-  <Portfolio/>
+  <div>Portfolio</div>
 );
 
 export default Post;

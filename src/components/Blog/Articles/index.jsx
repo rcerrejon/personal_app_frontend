@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from './style.scss';
 import ArticleCard from '../ArticleCard';
 import {connect} from 'react-redux'
 import { bindActionCreators, compose } from 'redux';
@@ -32,10 +32,7 @@ class Articles extends React.Component{
           <div className={style.ArticlesContainer}>
             {this.renderFilter()}
             <div className={articlesBlock}>
-              {this.props.common.isDataLoaded
-                ? this.renderArticles()
-                : <Preloader/>
-              }
+              {this.renderArticles()}
             </div>
           </div>
       )

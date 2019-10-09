@@ -10,6 +10,8 @@ import { ThemeProvider } from 'styled-components';
 import Console from './components/Console';
 import Header from './components/Header';
 import NavbarMain from './components/NavbarMain';
+import {connect} from 'react-redux';
+import color from './constants/colors'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./config/scss/index.scss');
@@ -20,16 +22,19 @@ function App(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <>
+      <div style={{
+        backgroundColor: props.common.theme === 'dark' ? color.routerBg : color.light,
+        color: props.common.theme === 'dark' ? color.light : color.text_secondary,
+      }}>
         <Header />
         <NavbarMain />
         <div className={style.AppContainer}>
           {props.children}
         </div>
         <Console />
-      </>
+      </div>
     </ThemeProvider>
   )
 }
-
-export default App;
+const mapStateToProps = (state) => state
+export default connect(mapStateToProps)(App);

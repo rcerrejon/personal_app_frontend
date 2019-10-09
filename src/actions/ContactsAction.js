@@ -1,10 +1,10 @@
 import * as types from '../constants/ActionTypes';
 import axios from 'axios'
-const url = `http://udachin.tech/api/contacts`;
+const url = `${process.env.REACT_APP_SERVERURL}/contacts`;
 
 export function getLinks() {
-  return (dispatch) => {
-    axios.get(url)
+  return async (dispatch) => {
+    await axios.get(url)
       .then(res => {
         let data = {
           type: types.GET_LINKS,

@@ -1,8 +1,7 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from './style.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import { withRouter } from 'react-router';
 import * as BlogAction from '../../../actions/BlogAction';
 import color from '../../../constants/colors';
 
@@ -82,6 +81,5 @@ const mapStateToProps = state => {
   }
 }
 export default compose(
-  connect(mapStateToProps),
-  withRouter
+  connect(mapStateToProps)
 )(TagPanel);

@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '@mdi/react';
-import style from './style.module.scss';
+import style from './style.scss';
 import SidePanel from '../../Common/SidePanel';
 import { mdiMedal, mdiSchool, mdiBriefcase } from '@mdi/js';
 import { connect } from 'react-redux';

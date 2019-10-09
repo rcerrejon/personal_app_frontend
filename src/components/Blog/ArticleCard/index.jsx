@@ -1,11 +1,11 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from './style.scss';
 import { Visibility, Comment, ArrowForward } from '@material-ui/icons';
 import { bindActionCreators, compose } from 'redux';
 import {connect} from 'react-redux';
-import { withRouter } from 'react-router';
 import * as BlogAction from '../../../actions/BlogAction';
 import color from '../../../constants/colors'
+import Link from 'next/link';
 
 class ArticleCard extends React.Component{
   constructor(props){
@@ -126,12 +126,14 @@ class ArticleCard extends React.Component{
         </div>
         <div className={text}>{this.sliceText(this.props.common.lang === 'en' ? article.text_EN : article.text_RU)}</div>
         <div className={action_panel}>
-          <div className={btn_open}
-               onClick={() => { this.props.history.push(`blog/${article.id}`); this.incrementViews(article.id) }}
-          >
-            <div>{this.props.common.lang === 'en' ? 'Continue read ' : 'Продолжить читать '}</div>
-             <ArrowForward/>
-          </div>
+          <Link href={`blog/${article.id}`}>
+            <div className={btn_open}
+                 onClick={() => { this.incrementViews(article.id) }}
+            >
+              <div>{this.props.common.lang === 'en' ? 'Continue read ' : 'Продолжить читать '}</div>
+               <ArrowForward/>
+            </div>
+          </Link>
           <div className={stats}>
             <div className={stat}><Visibility/> {article.views}</div>
             <div className={stat}><Comment/> {article.commentsCount}</div>
@@ -149,7 +151,6 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-  withRouter,
   connect(mapStateToProps)
 )(ArticleCard);
         

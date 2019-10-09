@@ -1,9 +1,17 @@
 import Home from '../src/pages/Home';
-import App from '../src/App';
+import {connect} from 'react-redux';
 import React from 'react';
 
-const Post = props => (
-  <Home />
-);
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default Post;
+  render() {
+    return <Home/>
+  }
+}
+
+export default connect(
+  state => state
+)(HomePage);

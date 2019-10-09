@@ -95,10 +95,6 @@ class Home extends React.Component{
 
         return(
             <div className={HomeContainer}
-                 style={{
-                   backgroundColor: this.props.common.theme === 'dark' ? color.routerBg : color.light,
-                   color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
-                 }}
              >
               <div className={profileContainerWrap}>
                 <div className={profileContainer}
