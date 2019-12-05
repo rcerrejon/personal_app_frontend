@@ -1,16 +1,14 @@
 import React from 'react';
+import Router from 'next/router'
 import style from './style.module.scss';
 import { KeyboardArrowDownRounded, KeyboardArrowRightRounded, Note, Menu } from '@material-ui/icons';
 import { Switch, withRouter } from 'react-router';
-import history from '../../history';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Btn } from './styled';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as PortfolioActions from '../../actions/PortfolioActions';
 import Hidebar from '../../components/Common/Hidebar';
-import { mdiInformationVariant, mdiFileTree } from '@mdi/js';
-import Icon, { Stack } from '@mdi/react';
 import color from '../../constants/colors'
 
 class Portfolio extends React.Component{
@@ -56,9 +54,7 @@ class Portfolio extends React.Component{
               }
             {/*<div className={[style.loader, style.center].join(" ")}><span>!</span></div>*/}
               <div className={mainContent}>
-                <Switch>
-                  {this.props.children}
-                </Switch>
+                {this.props.children}
               </div>
             </div>
         )
@@ -85,14 +81,6 @@ class Portfolio extends React.Component{
       window.addEventListener('resize', this.updateWidth)
       this.updateWidth()
       this.actions.getFolders()
-    }
-
-    componentWillMount() {
-      this.updateWidth()
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.updateWidth)
     }
 
     _switchLeftnav = (value) => {
@@ -175,14 +163,14 @@ class Portfolio extends React.Component{
     }
 
     moveToFile = (url) => {
-      history.push(`/portfolio${url}`)
+      Router.push(`/portfolio${url}`)
     }
 
     moveToFolder = (item) => {
       if (!item.open){
         this.openFolder(item.id)
       }
-      history.push(`/portfolio${item.url}`)
+      Router.push(`/portfolio${item.url}`)
     }
 
     renderNavlist = () => {
@@ -200,6 +188,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-  withRouter,
   connect(mapStateToProps)
 )(Portfolio);

@@ -71,7 +71,7 @@ class AboutPage extends React.Component{
       return(
           <div className={style.AboutPageContainer}>
               <div className={main}>
-                <BreadPath/>
+                <BreadPath pathname={this.props.pathname}/>
                 <div className={title}>
                   {this.props.common.lang === 'en' ? 'About me' : 'Обо мне'}
                 </div>

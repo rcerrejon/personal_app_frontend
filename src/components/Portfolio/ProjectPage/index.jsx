@@ -30,17 +30,13 @@ class ProjectPage extends React.Component{
       let project = await this.findProjectByUrl()
       this.actions.getProjectPage(project.id)
     }
-
-    updateWidth = () => {
-      this.setState({isMobile: window.innerWidth <= 999})
-    }
-
-    componentWillMount() {
-      this.updateWidth()
-    }
-
+    
     componentWillUnmount() {
       window.removeEventListener('resize', this.updateWidth)
+    }
+
+  updateWidth = () => {
+      this.setState({isMobile: window.innerWidth <= 999})
     }
 
     render() {
@@ -62,7 +58,7 @@ class ProjectPage extends React.Component{
             <div className={style.ProjectPageContainer}>
               {this.state.isOpenPopupGalary ? <PopupGalary arrayImages={project.images} currentImageId={this.state.selectedImageId} closePopup={this._switchPopupGalery}/> : null}
               <div className={main}>
-                {!(this.props.portfolio.isOpenInfo && this.state.isMobile) && <BreadPath/>}
+                {!(this.props.portfolio.isOpenInfo && this.state.isMobile) && <BreadPath pathname={this.props.pathname}/>}
                 <div className={spanWrapper}>
                   <span className={name}
                         onClick={() => this._openInNewTab(project.linkToSite)}
@@ -127,7 +123,7 @@ class ProjectPage extends React.Component{
 
     let folders = [];
     let project = {};
-    let url = this.props.location.pathname.replace('/portfolio', '')
+    let url = this.props.pathname.replace('/portfolio', '')
 
     await axios.get(`${process.env.REACT_APP_SERVERURL}/portfolio`)
       .then(res => {

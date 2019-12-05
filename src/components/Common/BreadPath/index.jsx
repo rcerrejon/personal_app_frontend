@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'next/router'
 import style from './style.module.scss';
 import Img from 'react-image'
 import { withRouter } from 'react-router';
@@ -18,7 +19,7 @@ function BreadPath(props) {
     return arr.map((el, index, array) => {
       return (
         <span className={pathItem} key={el}>
-            <span onClick={ () => props.history.push('/' + array.filter((el, i) => i <= index).join('/') ) }>
+            <span onClick={ () => Router.push('/' + array.filter((el, i) => i <= index).join('/') ) }>
               {el}
             </span>
           { index + 1 !== arr.length && <ArrowForwardIos/> }
@@ -29,17 +30,17 @@ function BreadPath(props) {
 
   return (
       <div className={style.BreadPathContainer}>
-        {props.location.pathname.split('/').slice(1).length > 1
+        {props.pathname.split('/').slice(1).length > 1
         &&
         <div className={btn_back}
-             onClick={() => props.history.goBack()}
+             onClick={() => Router.back()}
         >
           <ArrowBackIos/>
           <span>{props.common.lang === 'en' ? 'back' : 'назад'}</span>
         </div>
         }
         <div className={path}>
-          {renderPath(props.location.pathname)}
+          {renderPath(props.pathname)}
         </div>
       </div>
   );
@@ -52,7 +53,6 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-  withRouter,
   connect(mapStateToProps)
 )(BreadPath);
         

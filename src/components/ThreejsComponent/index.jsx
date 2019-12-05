@@ -2,13 +2,20 @@ import React from 'react';
 import style from './style.scss';
 import * as THREE from 'three'
 import color from '../../constants/colors'
-// import { DragControls } from 'three/examples/jsm/controls/DragControls';
+import { connect } from 'react-redux';
+// import {DragControls} from 'three/examples/jsm/controls/DragControls';
 
 class ThreejsComponent extends React.Component{
+    constructor(props){
+      super(props)
+      this.state = {
+        scene: undefined
+      }
+    }
+
     componentDidMount() {
         this.width = this.mount.clientWidth
         this.height = this.mount.clientHeight
-        console.log(`${this.width} | ${this.height}`)
 
         let startX = 300/*this.width * (-0.9)*/;
         let startY = this.height - 350;
@@ -171,18 +178,18 @@ class ThreejsComponent extends React.Component{
           name: 'icon_js',
           arr: [...this.backrd_JS, ...this.icon_JS]
         },
-        {
-          name: 'icon_angular',
-          arr: [...this.backgrd_Angular, ...this.letter_A]
-        },
-        {
-          name: 'icon_react',
-          arr: [...this.icon_react]
-        },
+        // {
+        //   name: 'icon_angular',
+        //   arr: [...this.backgrd_Angular, ...this.letter_A]
+        // },
+        // {
+        //   name: 'icon_react',
+        //   arr: [...this.icon_react]
+        // },
       ]
-      let random_icon = Math.round(Math.random() * 2)
+      let random_icon = /*Math.round(Math.random() * 2)*/ 0;
 
-      console.log(random_icon)
+      // console.log(random_icon)
 
       this.currentFigure = icons_arr[random_icon].name
 
@@ -192,7 +199,7 @@ class ThreejsComponent extends React.Component{
         this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
         this.camera.position.z = 1000;
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color( color.routerBg );
+        this.scene.background = new THREE.Color( this.props.common.theme === 'dark' ? color.routerBg : color.light );
 
         this.scene.add( new THREE.AmbientLight( 0x505050 ) );
 
@@ -260,6 +267,8 @@ class ThreejsComponent extends React.Component{
 
         this.mount.appendChild( this.renderer.domElement )
 
+      // SyntaxError: Unexpected token {
+      // ыыыыыы
         // this.controls = new DragControls( this.objects, this.camera, this.renderer.domElement );
         // this.controls.addEventListener( 'dragstart', function ( event ) {
         //     event.object.material.emissive.set( 0xaaaaaa );
@@ -270,7 +279,7 @@ class ThreejsComponent extends React.Component{
 
         // this.stats = new Stats();
         // this.mount.appendChild( this.stats.dom );
-        //
+
         window.addEventListener( 'resize', this.onWindowResize, false );
         this.animate()
     }
@@ -320,7 +329,9 @@ class ThreejsComponent extends React.Component{
         }
     }
     renderScene = () => {
-        this.renderer.render( this.scene, this.camera );
+      let scene = this.scene
+      scene.background = new THREE.Color( this.props.common.theme === 'dark' ? color.routerBg : color.light );
+      this.renderer.render( scene, this.camera );
     }
 
     componentWillUnmount() {
@@ -350,4 +361,9 @@ class ThreejsComponent extends React.Component{
     }
 }
 
-export default ThreejsComponent;
+const mapStateToProps = (state) => {
+  return {
+    common: state.common
+  }
+}
+export default connect(mapStateToProps)(ThreejsComponent);

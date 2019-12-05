@@ -1,9 +1,9 @@
 import React from 'react';
+import Router from 'next/router'
 import style from './style.module.scss';
 import Img from 'react-image';
 import { DeveloperBoard, Person, ArrowBackIos, ArrowForwardIos } from '@material-ui/icons/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
-import { withRouter } from 'react-router';
 import Preloader from '../../Common/Preloader';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
@@ -25,7 +25,7 @@ class FoldersAndFiles extends React.Component{
 
         return(
             <div className={style.FoldersAndFilesContainer}>
-              <BreadPath/>
+              <BreadPath pathname={this.props.pathname}/>
               {this.renderItems()}
             </div>
         )
@@ -54,7 +54,7 @@ class FoldersAndFiles extends React.Component{
       let materialIconItem = el.type === 'folder' ? 'folder' : 'file';
 
       return (
-        <div key={el.id} className={classItem} onClick={() => this.props.history.push(`/portfolio${el.url}`)}>
+        <div key={el.id} className={classItem} onClick={() => Router.push(`/portfolio${el.url}`)}>
           <FontAwesomeIcon className={indicator}
                            icon={materialIconItem}
           />
@@ -73,7 +73,7 @@ class FoldersAndFiles extends React.Component{
 
     findParentFolder = () => {
       let folders = [...this.props.portfolio.folders];
-      let url = this.props.location.pathname.replace('/portfolio', '')
+      let url = this.props.pathname.replace('/portfolio', '')
       let childs = []
 
       let openEach = (arr) => arr.forEach(item => {
@@ -100,6 +100,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-  withRouter,
   connect(mapStateToProps)
 )(FoldersAndFiles);

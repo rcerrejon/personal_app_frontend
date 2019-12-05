@@ -1,4 +1,3 @@
-// const webpack = require('webpack')
 // const withSass = require('@zeit/next-sass');
 // const withPlugins = require('next-compose-plugins');
 // const path = require('path');
@@ -22,9 +21,14 @@
 //       return config;
 //     },
 //   });
+
+const webpack = require('webpack');
 const withSass = require('@zeit/next-sass');
 const withCSS = require("@zeit/next-css");
-module.exports = withCSS(withSass({
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const withProgressBar = require('next-progressbar')
+
+module.exports = withProgressBar(withSass({
   env: {
     REACT_APP_SERVERURL: 'http://udachin.tech/api'
   },
@@ -33,7 +37,10 @@ module.exports = withCSS(withSass({
     importLoaders: 1,
     localIdentName: "[local]___[hash:base64:5]",
   },
-  webpack (config, options) {
+  progressBar: {
+    profile: true
+  },
+  webpack (config, {dev, isServer}) {
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
       use: {
@@ -44,6 +51,23 @@ module.exports = withCSS(withSass({
       }
     });
 
+    // if (isServer) {
+    //   return config;
+    // }
+    //
+    // var isProduction = config.mode === 'production';
+    // if (!isProduction) {
+    //   return config;
+    // }         config.plugins.push(
+    //   new webpack.optimize.LimitChunkCountPlugin({
+    //     maxChunks: 1,
+    //   })
+    // );
+    //
+    // config.optimization.minimizer.push(
+    //   new OptimizeCSSAssetsPlugin({})
+    // );
+
     return config;
   }
-}));
+}))

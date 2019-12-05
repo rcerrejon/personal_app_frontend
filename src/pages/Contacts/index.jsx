@@ -191,7 +191,11 @@ class Contacts extends React.Component{
     }
 
     checkFullForm = () => {
-      return this.state.Email !== '' && this.state.Name !== '' && this.state.Subject !== '' && this.state.Message !== '' && this.state.valueCaptcha !== null
+      return this.state.Email !== ''
+        && this.state.Name !== ''
+        && this.state.Subject !== ''
+        && this.state.Message !== ''
+        && this.state.valueCaptcha !== null
     }
 
     onChangeForm = (e) => {
@@ -212,7 +216,12 @@ class Contacts extends React.Component{
 
       return links.map(el => {
         return (
-          <div key={el.url} className={linkItem} onClick={() => _openInNewTab(el.url)}>
+          <div key={el.url}
+               className={linkItem}
+               style={{
+                 backgroundColor: this.props.common.theme === 'dark' ? color.black : color.greySelect_light
+               }}
+               onClick={() => _openInNewTab(el.url)}>
             {el.icon && <FontAwesomeIcon icon={['fab', el.icon]}/>}
             {el.icon && ' '}
             {el.name}

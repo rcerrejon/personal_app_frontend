@@ -118,7 +118,10 @@ class Home extends React.Component{
                 </div>
               </div>
 
-              <div className={infoContainer}>
+              <div className={infoContainer}
+                   style={{
+                     color: this.props.common.theme === 'dark' ? color.light : color.text_secondary,
+                   }}>
                 <div className={greetText}>
                   {this.props.common.lang === 'en'
                     ?
@@ -131,7 +134,7 @@ class Home extends React.Component{
               </div>
 
               <div className={coolThing}>
-                {!this.state.isMobile && <ThreejsComponent/>}
+                {!this.state.isMobile && <ThreejsComponent />}
               </div>
             </div>
         )

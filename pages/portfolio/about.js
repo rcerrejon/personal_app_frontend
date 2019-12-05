@@ -1,11 +1,11 @@
-import Portfolio from '../../../src/pages/Portfolio';
-import FoldersAndFiles from '../../../src/components/Portfolio/FoldersAndFiles'
-import * as PortfolioAction from '../../../src/actions/PortfolioActions';
+import Portfolio from '../../src/pages/Portfolio';
+import AboutPage from '../../src/components/Blog/AboutPage'
+import * as PortfolioAction from '../../src/actions/PortfolioActions';
 import {connect} from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 
-class PortfolioPage extends React.Component {
+class AboutNext extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -15,14 +15,14 @@ class PortfolioPage extends React.Component {
     await actionsPortfolio.getFolders()
 
     return {
-      pathname: context.pathname.replace('[folder_top_id]', `${context.query.folder_top_id}`)
+      pathname: context.pathname
     }
   }
 
   render() {
     return (
       <Portfolio pathname={this.props.pathname}>
-        <FoldersAndFiles pathname={this.props.pathname}/>
+        <AboutPage pathname={this.props.pathname}/>
       </Portfolio>)
   }
 }
@@ -32,4 +32,4 @@ export default connect(
     portfolio: state.portfolio,
     common: state.common
   })
-)(PortfolioPage);
+)(AboutNext);

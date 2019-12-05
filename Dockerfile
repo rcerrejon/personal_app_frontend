@@ -9,5 +9,6 @@ RUN npm install -g node-gyp
 COPY . /app
 RUN npm run build
 
-EXPOSE 80
-ENTRYPOINT npm run start
+CMD ["npm", "run", "start"]
+EXPOSE 3000
+#ENTRYPOINT npm run start

@@ -12,6 +12,7 @@ import Header from './components/Header';
 import NavbarMain from './components/NavbarMain';
 import {connect} from 'react-redux';
 import color from './constants/colors'
+import NextNProgress from './components/NextNProgress';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./config/scss/index.scss');
@@ -26,6 +27,7 @@ function App(props) {
         backgroundColor: props.common.theme === 'dark' ? color.routerBg : color.light,
         color: props.common.theme === 'dark' ? color.light : color.text_secondary,
       }}>
+        <NextNProgress />
         <Header />
         <NavbarMain />
         <div className={style.AppContainer}>
