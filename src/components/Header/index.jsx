@@ -40,21 +40,9 @@ class Header extends React.Component {
         }}
       >
         <div className={HeaderLeftButtons}>
-          <div className={[button, close].join(' ')}>
-            <div className={icon}>
-              <Icon path={mdiClose} />
-            </div>
-          </div>
-          <div className={[button, yellow].join(' ')}>
-            <div className={icon}>
-              <Icon path={mdiMinus} />
-            </div>
-          </div>
-          <div className={[button, green].join(' ')}>
-            <div className={icon}>
-              <Icon path={mdiFullscreen} />
-            </div>
-          </div>
+          <div className={[button, close].join(' ')}></div>
+          <div className={[button, yellow].join(' ')}></div>
+          <div className={[button, green].join(' ')}></div>
         </div>
         {/*<div className={style.HeaderLogo}> </div>*/}
         <Img className={HeaderLogo} src={require('../../assets/circle_avatar.png')} />
